@@ -1,11 +1,11 @@
 <template>
   <div>
     <template v-if="menu.submenus">
-      <BaseMenuItem :menu="menu" :depth="depth + 1" />
+      <BaseMenuItem :class="classes" :menu="menu" :depth="depth + 1" />
     </template>
 
     <nuxt-link
-      class="block"
+      :class="`${classes} block`"
       v-else
       :id="menu.title.toLowerCase().replace(' ', '-')"
       :to="menu.slug.cached_url"
@@ -25,6 +25,10 @@ export default {
     depth: {
       type: Number,
       required: true,
+    },
+    classes: {
+      type: String,
+      default: '',
     },
   },
 };

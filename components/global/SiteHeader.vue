@@ -1,118 +1,151 @@
 <template>
-  <header class="container mx-auto flex justify-between">
-    <div class="w-28">
+  <header class="relative flex items-center justify-between">
+    <div class="bg-green-primary p-4 z-50">
       <BaseLink href="/" :inert="isMobileMenuOpen">
-        <BaseImage v-if="logo" :src="logo.filename" :alt="logo.alt" />
+        <BaseImage class="w-16 lg:w-24" v-if="logo" :src="logo.filename" :alt="logo.alt" />
       </BaseLink>
     </div>
 
-    <nav>
-      <ul class="desktop hidden md:flex space-x-6">
+    <nav
+      class="absolute z-40 hidden lg:flex items-center justify-end xl:justify-center w-full h-full font-semibold"
+    >
+      <ul class="flex text-lg uppercase mr-6 xl:mr-0">
         <li v-for="menu in nav" :key="menu.id">
-          <BaseMenu :menu="menu" :depth="0" />
+          <BaseMenu
+            classes="w-40 text-center py-2 border-t-2 border-transparent opacity-75 hover:opacity-100"
+            :menu="menu"
+            :depth="0"
+          />
         </li>
       </ul>
+    </nav>
 
-      <div class="mobile md:hidden">
-        <button
-          ref="openButtonRef"
-          @click="toggleMobileMenu"
-          type="button"
-          :inert="isMobileMenuOpen"
-        >
-          <span class="sr-only">Open main menu</span>
+    <div class="hidden xl:flex space-x-6 mr-6 z-50">
+      <a class="flex items-center" href="#">
+        <span class="mr-3 text-green-primary opacity-75">
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
+            class="h-5 w-5"
+            viewBox="0 0 20 20"
+            fill="currentColor"
           >
             <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"
+              d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
             />
           </svg>
+        </span>
+        <div class="">
+          <p class="text-sm">902 Halifax Sq</p>
+          <p class="text-xs">Brunswick, GA 31520</p>
+        </div>
+      </a>
 
-          <Portal to="mobile-menu">
+      <a class="flex items-center" href="#">
+        <span class="mr-3 text-green-primary opacity-75">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"
+            />
+          </svg>
+        </span>
+        <div class="">
+          <p class="text-sm">(912) 223-4110</p>
+          <p class="text-xs">Support Available 24/7</p>
+        </div>
+      </a>
+    </div>
+
+    <div class="mobile lg:hidden">
+      <button ref="openButtonRef" @click="toggleMobileMenu" type="button" :inert="isMobileMenuOpen">
+        <span class="sr-only">Open main menu</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="h-6 w-6"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M4 6h16M4 12h16M4 18h16"
+          />
+        </svg>
+
+        <Portal to="mobile-menu">
+          <div
+            :class="`z-[999] fixed lg:hidden inset-0 bg-black transition duration-150 ${
+              isMobileMenuOpen ? 'bg-opacity-75' : 'bg-opacity-0 pointer-events-none'
+            }`"
+            :inert="!isMobileMenuOpen"
+            @keydown.esc="closeMenu"
+          >
             <div
-              :class="`fixed inset-0 bg-black transition duration-150 ${
-                isMobileMenuOpen
-                  ? 'bg-opacity-75'
-                  : 'bg-opacity-0 pointer-events-none'
+              :class="`flex transform transition-transform duration-150 ease-in-out ${
+                isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
               }`"
-              :inert="!isMobileMenuOpen"
-              @keydown.esc="closeMenu"
             >
-              <div
-                :class="`flex transform transition-transform duration-150 ease-in-out ${
-                  isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-                }`"
-              >
-                <div>
-                  <button
-                    class="flex justify-center items-center bg-white rounded-full ml-4 mr-4 mt-4 h-12 w-12"
-                    ref="closeButtonRef"
-                    @click="closeMenu"
-                    type="button"
-                  >
-                    <span class="sr-only">Close menu</span>
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="h-6 w-6"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M6 18L18 6M6 6l12 12"
-                      />
-                    </svg>
-                  </button>
-                </div>
-
-                <div
-                  class="flex flex-col justify-between h-screen w-full bg-white"
+              <div>
+                <button
+                  class="flex justify-center items-center bg-white rounded-full ml-4 mr-4 mt-4 h-12 w-12"
+                  ref="closeButtonRef"
+                  @click="closeMenu"
+                  type="button"
                 >
-                  <nav role="navigation">
-                    <ul>
-                      <li
-                        class="py-3 px-4 border-b border-gray-300"
-                        v-for="menu in nav"
-                        :key="menu.id"
-                      >
-                        <BaseMenu :menu="menu" :depth="0" />
-                      </li>
-                    </ul>
-                  </nav>
+                  <span class="sr-only">Close menu</span>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    class="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              </div>
 
-                  <div class="px-3 py-6">
-                    <BaseLink href="/">
-                      <BaseImage
-                        v-if="logo"
-                        :src="logo.filename"
-                        :alt="logo.alt"
-                      />
-                    </BaseLink>
-                  </div>
+              <div class="flex flex-col justify-between h-screen w-full bg-white">
+                <nav role="navigation">
+                  <ul>
+                    <li
+                      class="py-3 px-4 border-b border-gray-300"
+                      v-for="menu in nav"
+                      :key="menu.id"
+                    >
+                      <BaseMenu :menu="menu" :depth="0" />
+                    </li>
+                  </ul>
+                </nav>
+
+                <div class="px-3 py-6">
+                  <BaseLink href="/">
+                    <BaseImage v-if="logo" :src="logo.filename" :alt="logo.alt" />
+                  </BaseLink>
                 </div>
               </div>
             </div>
-          </Portal>
-        </button>
-      </div>
-    </nav>
+          </div>
+        </Portal>
+      </button>
+    </div>
   </header>
 </template>
 
 <script>
-import { mapState } from "vuex";
-import { Portal } from "portal-vue";
+import { mapState } from 'vuex';
+import { Portal } from 'portal-vue';
 
 export default {
   components: {
@@ -129,21 +162,18 @@ export default {
     },
   },
   computed: {
-    ...mapState("global", ["isMobileMenuOpen", "pageHasModalOpen"]),
+    ...mapState('global', ['isMobileMenuOpen', 'pageHasModalOpen']),
   },
   methods: {
     async toggleMobileMenu() {
-      await this.$store.commit(
-        "global/isMobileMenuOpen",
-        !this.isMobileMenuOpen
-      );
+      await this.$store.commit('global/isMobileMenuOpen', !this.isMobileMenuOpen);
       await this.$nextTick();
       await this.$nextTick();
 
       this.$refs.closeButtonRef?.focus();
     },
     async closeMenu() {
-      await this.$store.commit("global/isMobileMenuOpen", false);
+      await this.$store.commit('global/isMobileMenuOpen', false);
       await this.$nextTick();
       await this.$nextTick();
 
@@ -152,3 +182,9 @@ export default {
   },
 };
 </script>
+
+<style lang="postcss">
+.nuxt-link-exact-active {
+  @apply border-green-primary opacity-100;
+}
+</style>
