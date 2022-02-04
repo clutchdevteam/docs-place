@@ -14,7 +14,7 @@
       <ul class="flex uppercase mr-6 xl:mr-0">
         <li v-for="menu in nav" :key="menu.id">
           <BaseMenu
-            classes="w-40 text-center py-2 border-t-2 border-transparent opacity-75 hover:opacity-100"
+            classes="w-32 xl:w-40 text-center py-2 border-t-2 border-transparent opacity-75 hover:opacity-100"
             :menu="menu"
             :depth="0"
           />
@@ -22,7 +22,9 @@
       </ul>
     </nav>
 
-    <div class="hidden lg:flex space-x-6 mr-6 z-50 text-white">
+    <div
+      class="hidden lg:flex space-x-6 mr-6 z-50 text-white origin-right scale-90 xl:transform-none"
+    >
       <a class="flex items-center opacity-75 hover:opacity-100" href="#">
         <span class="mr-3 text-primary-light">
           <svg
@@ -125,14 +127,14 @@
               </div>
 
               <div class="flex flex-col justify-between h-screen w-full bg-white">
-                <nav role="navigation">
+                <nav class="text-secondary-dark" role="navigation">
                   <ul>
-                    <li
-                      class="py-3 px-4 border-b border-gray-300"
-                      v-for="menu in nav"
-                      :key="menu.id"
-                    >
-                      <BaseMenu :menu="menu" :depth="0" />
+                    <li v-for="menu in nav" :key="menu.id">
+                      <BaseMenu
+                        classes="py-6 px-4 border-b border-gray-300"
+                        :menu="menu"
+                        :depth="0"
+                      />
                     </li>
                   </ul>
                 </nav>
@@ -200,6 +202,10 @@ export default {
 </script>
 
 <style lang="postcss">
+nav ul li div a {
+  @apply uppercase font-semibold tracking-wider;
+}
+
 .nuxt-link-exact-active {
   @apply border-primary-light opacity-100;
 }
