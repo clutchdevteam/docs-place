@@ -2,7 +2,7 @@
   <div class="site-wrapper">
     <SiteHeader :nav="mainNav" :logo="logo" :inert="hasOpenMenu" />
 
-    <main :inert="hasOpenMenu">
+    <main class="h-[1000px]" :inert="hasOpenMenu">
       <Nuxt />
     </main>
 
@@ -14,17 +14,11 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState } from 'vuex';
 
 export default {
   computed: {
-    ...mapState("global", [
-      "pageHasModalOpen",
-      "isMobileMenuOpen",
-      "mainNav",
-      "logo",
-      "footer",
-    ]),
+    ...mapState('global', ['pageHasModalOpen', 'isMobileMenuOpen', 'mainNav', 'logo', 'footer']),
     hasOpenMenu() {
       return this.pageHasModalOpen || this.isMobileMenuOpen;
     },

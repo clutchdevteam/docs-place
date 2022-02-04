@@ -1,15 +1,17 @@
 <template>
-  <header class="relative flex items-center justify-between">
-    <div class="bg-green-primary p-4 z-50">
+  <header
+    :class="`relative flex items-center justify-between ${!isHomePage ? 'bg-secondary-dark' : ''}`"
+  >
+    <div class="bg-primary-light p-4 z-50">
       <BaseLink href="/" :inert="isMobileMenuOpen">
-        <BaseImage class="w-16 lg:w-24" v-if="logo" :src="logo.filename" :alt="logo.alt" />
+        <BaseImage class="w-16 lg:w-20" v-if="logo" :src="logo.filename" :alt="logo.alt" />
       </BaseLink>
     </div>
 
     <nav
-      class="absolute z-40 hidden lg:flex items-center justify-end xl:justify-center w-full h-full font-semibold"
+      class="absolute z-40 hidden lg:flex items-center justify-center w-full h-full font-semibold text-white"
     >
-      <ul class="flex text-lg uppercase mr-6 xl:mr-0">
+      <ul class="flex uppercase mr-6 xl:mr-0">
         <li v-for="menu in nav" :key="menu.id">
           <BaseMenu
             classes="w-40 text-center py-2 border-t-2 border-transparent opacity-75 hover:opacity-100"
@@ -20,9 +22,9 @@
       </ul>
     </nav>
 
-    <div class="hidden xl:flex space-x-6 mr-6 z-50">
-      <a class="flex items-center" href="#">
-        <span class="mr-3 text-green-primary opacity-75">
+    <div class="hidden lg:flex space-x-6 mr-6 z-50 text-white">
+      <a class="flex items-center opacity-75 hover:opacity-100" href="#">
+        <span class="mr-3 text-primary-light">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-5 w-5"
@@ -40,8 +42,8 @@
         </div>
       </a>
 
-      <a class="flex items-center" href="#">
-        <span class="mr-3 text-green-primary opacity-75">
+      <a class="flex items-center opacity-75 hover:opacity-100" href="#">
+        <span class="mr-3 text-primary-light">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-5 w-5"
@@ -61,11 +63,17 @@
     </div>
 
     <div class="mobile lg:hidden">
-      <button ref="openButtonRef" @click="toggleMobileMenu" type="button" :inert="isMobileMenuOpen">
+      <button
+        class="text-white p-4"
+        ref="openButtonRef"
+        @click="toggleMobileMenu"
+        type="button"
+        :inert="isMobileMenuOpen"
+      >
         <span class="sr-only">Open main menu</span>
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="h-6 w-6"
+          class="h-8 w-8"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -163,6 +171,14 @@ export default {
   },
   computed: {
     ...mapState('global', ['isMobileMenuOpen', 'pageHasModalOpen']),
+    isHomePage() {
+      return this.$route.fullPath === '/';
+    },
+  },
+  watch: {
+    $route(to, from) {
+      this.closeMenu();
+    },
   },
   methods: {
     async toggleMobileMenu() {
@@ -185,6 +201,6 @@ export default {
 
 <style lang="postcss">
 .nuxt-link-exact-active {
-  @apply border-green-primary opacity-100;
+  @apply border-primary-light opacity-100;
 }
 </style>
