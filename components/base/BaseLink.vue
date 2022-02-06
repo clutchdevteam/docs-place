@@ -1,9 +1,9 @@
 <template>
-  <a v-if="external" class="cursor-pointer" :href="href" v-bind="$attrs">
+  <a v-if="external" :class="`cursor-pointer ${classes}`" :href="href" v-bind="$attrs">
     <slot />
   </a>
 
-  <nuxt-link v-else class="cursor-pointer" :to="href" v-bind="$attrs">
+  <nuxt-link v-else :class="`cursor-pointer ${classes}`" :to="href" v-bind="$attrs">
     <slot />
   </nuxt-link>
 </template>
@@ -19,6 +19,10 @@ export default {
     external: {
       type: Boolean,
       default: false,
+    },
+    classes: {
+      type: String,
+      default: '',
     },
   },
 };

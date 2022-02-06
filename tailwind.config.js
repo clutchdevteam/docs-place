@@ -9,13 +9,15 @@ module.exports = {
         display: ['Hind', '-apple-system', 'sans-serif'],
       },
       colors: {
+        // blue
         primary: {
-          light: '#5bb47f',
-          dark: '#5B886D',
-        },
-        secondary: {
           light: '#6FCFC9',
           dark: '#345A88',
+        },
+        //green
+        secondary: {
+          light: '#5bb47f',
+          dark: '#5B886D',
         },
         gray: {
           light: '#f8f8f8',

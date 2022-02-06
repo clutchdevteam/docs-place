@@ -4,7 +4,7 @@
       !isHomePage ? 'bg-secondary-dark' : ''
     }`"
   >
-    <div class="bg-primary-light p-4 z-50">
+    <div class="bg-secondary-light p-4 z-50">
       <BaseLink href="/" :inert="isMobileMenuOpen">
         <BaseImage class="w-16 lg:w-20" v-if="logo" :src="logo.filename" :alt="logo.alt" />
       </BaseLink>
@@ -28,7 +28,7 @@
       class="hidden lg:flex space-x-6 mr-6 z-50 text-white origin-right scale-90 xl:transform-none"
     >
       <a class="flex items-center opacity-75 hover:opacity-100" href="#">
-        <span class="mr-3 text-primary-light">
+        <span class="mr-3 text-secondary-light">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-5 w-5"
@@ -47,7 +47,7 @@
       </a>
 
       <a class="flex items-center opacity-75 hover:opacity-100" href="#">
-        <span class="mr-3 text-primary-light">
+        <span class="mr-3 text-secondary-light">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             class="h-5 w-5"
@@ -170,6 +170,7 @@ export default {
     },
     logo: {
       type: Object,
+      default: () => {},
       required: true,
     },
   },
@@ -209,6 +210,6 @@ nav ul li div a {
 }
 
 .nuxt-link-exact-active {
-  @apply border-primary-light opacity-100;
+  @apply border-secondary-light opacity-100;
 }
 </style>
