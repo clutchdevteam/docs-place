@@ -1,9 +1,5 @@
 <template>
-  <header
-    :class="`z-[51] absolute w-full flex items-center justify-between ${
-      !isHomePage ? 'bg-secondary-dark' : ''
-    }`"
-  >
+  <header class="z-[51] absolute w-full flex items-center justify-between">
     <div class="bg-secondary-light p-4 z-50">
       <BaseLink href="/" :inert="isMobileMenuOpen">
         <BaseImage class="w-16 lg:w-20" v-if="logo" :src="logo.filename" :alt="logo.alt" />
@@ -11,12 +7,14 @@
     </div>
 
     <nav
-      class="absolute z-40 hidden lg:flex items-center justify-center w-full h-full font-semibold text-white"
+      :class="`absolute z-40 hidden lg:flex items-center justify-center w-full h-full font-semibold ${
+        isHomePage ? 'text-white' : 'text-primary-dark'
+      }`"
     >
       <ul class="flex uppercase mr-6 xl:mr-0">
         <li v-for="menu in nav" :key="menu.id">
           <BaseMenu
-            classes="w-32 xl:w-40 text-center py-2 border-t-2 border-transparent opacity-75 hover:opacity-100"
+            classes="w-32 xl:w-40 text-center py-2 border-t-2 border-transparent hover:border-secondary-dark"
             :menu="menu"
             :depth="0"
           />
@@ -25,7 +23,9 @@
     </nav>
 
     <div
-      class="hidden lg:flex space-x-6 mr-6 z-50 text-white origin-right scale-90 xl:transform-none"
+      :class="`hidden lg:flex space-x-6 mr-6 z-50 origin-right scale-90 xl:transform-none ${
+        isHomePage ? 'text-white' : 'text-primar-dark'
+      }`"
     >
       <a class="flex items-center opacity-75 hover:opacity-100" href="#">
         <span class="mr-3 text-secondary-light">
@@ -170,7 +170,6 @@ export default {
     },
     logo: {
       type: Object,
-      default: () => {},
       required: true,
     },
   },
