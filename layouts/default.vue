@@ -3,7 +3,7 @@
     <SiteHeader :nav="mainNav" :logo="logo" :inert="hasOpenMenu" />
 
     <main
-      :class="`bg-green-900 ${!isHomePage ? 'mt-[66.36px] lg:mt-[74.94px]' : ''} ${
+      :class="`${!isHomePage ? 'mt-[66.36px] lg:mt-[74.94px]' : ''} ${
         lockScroll ? 'overflow-hidden' : ''
       }`"
       :inert="hasOpenMenu"

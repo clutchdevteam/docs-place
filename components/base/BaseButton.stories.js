@@ -1,5 +1,5 @@
 export default {
-  title: "Base components/Button",
+  title: 'Base components/Button',
 };
 
 export const Default = (args) => ({
@@ -21,7 +21,7 @@ export const Default = (args) => ({
   },
   template: `
   <div>
-    <BaseButton :type="type" @click="handleClick">{{buttonText}}</BaseButton>
+    <BaseButton :type="type" :theme="theme" @click="handleClick">{{buttonText}}</BaseButton>
     
     <p class="mt-12">Clicked: {{clicked}}</p>
   </div>`,
@@ -29,17 +29,24 @@ export const Default = (args) => ({
 
 Default.argTypes = {
   default: {
-    type: "string",
+    type: 'string',
   },
   type: {
     control: {
-      type: "select",
-      options: ["button", "submit"],
+      type: 'select',
+      options: ['button', 'submit'],
+    },
+  },
+  theme: {
+    control: {
+      type: 'select',
+      options: ['primary', 'secondary', 'outline'],
     },
   },
 };
 
 Default.args = {
-  default: "Click me",
-  type: "button",
+  default: 'Click me',
+  theme: 'primary',
+  type: 'button',
 };

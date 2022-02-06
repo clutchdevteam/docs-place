@@ -1,5 +1,9 @@
 <template>
-  <button :class="`btn btn-${theme}`" :type="type" @click="$emit('click')">
+  <nuxt-link :class="`btn btn-${theme}`" v-if="href" :to="href">
+    <slot />
+  </nuxt-link>
+
+  <button v-else :class="`btn btn-${theme}`" :type="type" @click="$emit('click')">
     <slot />
   </button>
 </template>
@@ -9,11 +13,15 @@ export default {
   props: {
     type: {
       type: String,
-      default: "button",
+      default: 'button',
     },
     theme: {
       type: String,
-      default: "primary",
+      default: 'primary',
+    },
+    href: {
+      type: String,
+      required: false,
     },
   },
 };
@@ -21,13 +29,29 @@ export default {
 
 <style lang="postcss" scoped>
 .btn {
-  @apply px-5 py-1 rounded transition duration-150 ease-in-out;
+  @apply uppercase px-8 py-2 font-semibold;
 
   &.btn-primary {
-    @apply bg-green-500 text-white;
+    @apply bg-secondary-light text-white;
 
     &:hover {
-      @apply bg-green-600;
+      @apply bg-secondary-dark;
+    }
+  }
+
+  &.btn-secondary {
+    @apply bg-primary-dark text-white;
+
+    &:hover {
+      @apply bg-primary-darker;
+    }
+  }
+
+  &.btn-outline {
+    @apply border-2 border-primary-dark text-primary-dark;
+
+    &:hover {
+      @apply bg-primary-light text-white;
     }
   }
 }
