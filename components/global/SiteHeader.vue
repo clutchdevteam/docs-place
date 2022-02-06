@@ -1,6 +1,6 @@
 <template>
   <header
-    :class="`absolute w-full flex items-center justify-between ${
+    :class="`z-[51] absolute w-full flex items-center justify-between ${
       !isHomePage ? 'bg-secondary-dark' : ''
     }`"
   >
@@ -92,7 +92,7 @@
 
         <Portal to="mobile-menu">
           <div
-            :class="`z-[999] fixed lg:hidden inset-0 bg-black transition duration-150 ${
+            :class="`z-[52] fixed lg:hidden inset-0 bg-black transition duration-150 ${
               isMobileMenuOpen ? 'bg-opacity-75' : 'bg-opacity-0 pointer-events-none'
             }`"
             :inert="!isMobileMenuOpen"

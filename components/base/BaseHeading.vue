@@ -1,5 +1,5 @@
 <template>
-  <component :is="component" :class="classes">
+  <component :is="component" :class="size">
     <slot />
   </component>
 </template>
@@ -10,15 +10,13 @@ export default {
     size: {
       type: String,
       required: true,
-      validator: (value) =>
-        ["h1", "h2", "h3", "h4", "h5", "h6"].includes(value),
+      validator: (value) => ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].includes(value),
     },
     /** The semantic HTML element used for the heading. Defaults to the value of `size`. */
     tag: {
       type: String,
       default: undefined,
-      validator: (value) =>
-        ["h1", "h2", "h3", "h4", "h5", "h6", "div"].includes(value),
+      validator: (value) => ['h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'div'].includes(value),
     },
   },
   computed: {
@@ -29,68 +27,43 @@ export default {
       const classes = [];
 
       switch (this.size) {
-        case "h1":
-          classes.push(
-            "font-heading",
-            "font-semibold",
-            "text-5xl",
-            "xs:text-6xl",
-            "sm:text-7xl",
-            "leading-heading"
-          );
+        case 'h1':
+          classes.push('text-7xl', 'lg:text-[144px]', 'uppercase', 'font-bold', 'tracking-tighter');
           break;
-        case "h2-lg":
-          classes.push(
-            "font-heading",
-            "font-medium",
-            "text-4xl",
-            "sm:text-5xl",
-            "leading-tighter"
-          );
+        case 'h2-lg':
+          classes.push('font-heading', 'font-medium', 'text-4xl', 'sm:text-5xl', 'leading-tighter');
           break;
-        case "h2":
-          classes.push(
-            "font-heading",
-            "font-medium",
-            "text-3xl",
-            "sm:text-4xl",
-            "leading-tighter"
-          );
+        case 'h2':
+          classes.push('font-heading', 'font-medium', 'text-3xl', 'sm:text-4xl', 'leading-tighter');
           break;
-        case "h3":
-          classes.push(
-            "font-heading",
-            "font-medium",
-            "text-2xl",
-            "sm:text-3xl",
-            "leading-tighter"
-          );
+        case 'h3':
+          classes.push('font-heading', 'font-medium', 'text-2xl', 'sm:text-3xl', 'leading-tighter');
           break;
-        case "h4":
-          classes.push(
-            "font-heading",
-            "font-medium",
-            "text-xl",
-            "sm:text-2xl",
-            "leading-tighter"
-          );
+        case 'h4':
+          classes.push('font-heading', 'font-medium', 'text-xl', 'sm:text-2xl', 'leading-tighter');
           break;
-        case "h5":
-          classes.push("font-semibold", "text-xl", "leading-snug");
+        case 'h5':
+          classes.push('font-semibold', 'text-xl', 'leading-snug');
           break;
-        case "h6":
-          classes.push(
-            "font-medium",
-            "text-2xs",
-            "leading-snug",
-            "uppercase",
-            "tracking-wide"
-          );
+        case 'h6':
+          classes.push('font-medium', 'text-2xs', 'leading-snug', 'uppercase', 'tracking-wide');
           break;
       }
 
-      return classes.join(" ");
+      return classes.join(' ');
     },
   },
 };
 </script>
+
+<style lang="postcss" scoped>
+.h1 {
+  @apply text-7xl uppercase font-bold tracking-tighter mb-12;
+}
+
+@screen md {
+  .h1 {
+    @apply text-[144px] mb-8;
+  }
+}
+</style>

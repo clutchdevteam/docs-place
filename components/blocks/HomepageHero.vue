@@ -1,12 +1,12 @@
 <template>
-  <div class="relative h-screen overflow-hidden flex justify-center items-center">
+  <div class="relative h-screen flex justify-center items-center">
     <BaseImage
-      class="absolute z-[-1]"
+      class="absolute z-[-1] object-none object-top md:object-cover h-full"
       :src="block.backgroundImage.filename"
       :alt="block.backgroundImage.alt"
     />
 
-    <div class="flex flex-col items-center">
+    <div class="flex flex-col items-center -mt-64 md:-mt-24">
       <BaseHeading size="h1" class="text-white">{{ block.title }}</BaseHeading>
       <div>
         <BaseButton :href="block.btn[0].link.cached_url">{{ block.btn[0].btnText }}</BaseButton>
