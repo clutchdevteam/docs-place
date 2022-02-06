@@ -23,47 +23,51 @@ export default {
     component() {
       return this.tag ?? this.size.slice(0, 2);
     },
-    classes() {
-      const classes = [];
-
-      switch (this.size) {
-        case 'h1':
-          classes.push('text-7xl', 'lg:text-[144px]', 'uppercase', 'font-bold', 'tracking-tighter');
-          break;
-        case 'h2-lg':
-          classes.push('font-heading', 'font-medium', 'text-4xl', 'sm:text-5xl', 'leading-tighter');
-          break;
-        case 'h2':
-          classes.push('font-heading', 'font-medium', 'text-3xl', 'sm:text-4xl', 'leading-tighter');
-          break;
-        case 'h3':
-          classes.push('font-heading', 'font-medium', 'text-2xl', 'sm:text-3xl', 'leading-tighter');
-          break;
-        case 'h4':
-          classes.push('font-heading', 'font-medium', 'text-xl', 'sm:text-2xl', 'leading-tighter');
-          break;
-        case 'h5':
-          classes.push('font-semibold', 'text-xl', 'leading-snug');
-          break;
-        case 'h6':
-          classes.push('font-medium', 'text-2xs', 'leading-snug', 'uppercase', 'tracking-wide');
-          break;
-      }
-
-      return classes.join(' ');
-    },
   },
 };
 </script>
 
 <style lang="postcss" scoped>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply uppercase tracking-tighter;
+}
+
 .h1 {
-  @apply text-7xl uppercase font-bold tracking-tighter mb-12;
+  @apply text-7xl font-bold mb-12;
+}
+
+.h2 {
+  @apply text-5xl font-bold;
+}
+
+.h3 {
+  @apply text-xl;
+}
+
+.h4 {
+  @apply text-lg;
 }
 
 @screen md {
   .h1 {
     @apply text-[144px] mb-8;
+  }
+
+  .h2 {
+    @apply text-6xl;
+  }
+
+  .h3 {
+    @apply text-2xl;
+  }
+
+  .h4 {
+    @apply text-xl;
   }
 }
 </style>
