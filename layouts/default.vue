@@ -2,7 +2,12 @@
   <div class="site-wrapper">
     <SiteHeader :nav="mainNav" :logo="logo" :inert="hasOpenMenu" />
 
-    <main class="h-[1000px]" :inert="hasOpenMenu">
+    <main
+      :class="`bg-green-900 ${!isHomePage ? 'mt-[66.36px] lg:mt-[74.94px]' : ''} ${
+        lockScroll ? 'overflow-hidden' : ''
+      }`"
+      :inert="hasOpenMenu"
+    >
       <Nuxt />
     </main>
 
@@ -20,6 +25,12 @@ export default {
   computed: {
     ...mapState('global', ['pageHasModalOpen', 'isMobileMenuOpen', 'mainNav', 'logo', 'footer']),
     hasOpenMenu() {
+      return this.pageHasModalOpen || this.isMobileMenuOpen;
+    },
+    isHomePage() {
+      return this.$route.fullPath === '/';
+    },
+    lockScroll() {
       return this.pageHasModalOpen || this.isMobileMenuOpen;
     },
   },

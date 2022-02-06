@@ -1,6 +1,8 @@
 <template>
   <header
-    :class="`relative flex items-center justify-between ${!isHomePage ? 'bg-secondary-dark' : ''}`"
+    :class="`absolute w-full flex items-center justify-between ${
+      !isHomePage ? 'bg-secondary-dark' : ''
+    }`"
   >
     <div class="bg-primary-light p-4 z-50">
       <BaseLink href="/" :inert="isMobileMenuOpen">
@@ -101,7 +103,7 @@
                 isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
               }`"
             >
-              <div>
+              <div @click="closeMenu">
                 <button
                   class="flex justify-center items-center bg-white rounded-full ml-4 mr-4 mt-4 h-12 w-12"
                   ref="closeButtonRef"
