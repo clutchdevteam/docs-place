@@ -5,6 +5,9 @@ module.exports = {
       center: true,
     },
     extend: {
+      fontFamily: {
+        display: ['Hind', '-apple-system', 'sans-serif'],
+      },
       colors: {
         primary: {
           light: '#5bb47f',

@@ -1,3 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind:wght@400;600;700&display=swap');
+
+body {
+  @apply font-display;
+}
+
 *:hover {
   @apply transition duration-150 ease-in-out;
 }
