@@ -18,6 +18,7 @@
       <ul class="flex uppercase mr-6 xl:mr-0">
         <li v-for="menu in nav" :key="menu.id">
           <BaseMenu
+            :id="menu.title"
             classes="w-32 xl:w-40 text-center py-2 border-t-2 border-transparent hover:border-secondary-dark"
             :menu="menu"
             :depth="0"

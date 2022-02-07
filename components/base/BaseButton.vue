@@ -32,18 +32,18 @@ export default {
   @apply uppercase px-8 py-2 font-semibold;
 
   &.btn-primary {
-    @apply bg-secondary-light text-white;
-
-    &:hover {
-      @apply bg-secondary-dark;
-    }
-  }
-
-  &.btn-secondary {
     @apply bg-primary-dark text-white;
 
     &:hover {
       @apply bg-primary-darker;
+    }
+  }
+
+  &.btn-secondary {
+    @apply bg-secondary-dark text-white;
+
+    &:hover {
+      @apply bg-secondary-darker;
     }
   }
 
