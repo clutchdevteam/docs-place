@@ -1,5 +1,9 @@
 <template>
-  <header class="z-[51] absolute w-full flex items-center justify-between">
+  <header
+    :class="`z-[51] absolute w-full flex items-center justify-between ${
+      !isHomePage ? 'shadow-md' : ''
+    }`"
+  >
     <div class="bg-secondary-light p-4 z-50">
       <BaseLink href="/" :inert="isMobileMenuOpen">
         <BaseImage class="w-16 lg:w-20" v-if="logo" :src="logo.filename" :alt="logo.alt" />
@@ -45,27 +49,14 @@
 
     <div class="mobile lg:hidden">
       <button
-        class="text-white p-4"
+        :class="`p-4 ${isHomePage ? 'text-white' : 'text-primary-dark'}`"
         ref="openButtonRef"
         @click="toggleMobileMenu"
         type="button"
         :inert="isMobileMenuOpen"
       >
         <span class="sr-only">Open main menu</span>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          class="h-8 w-8"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            stroke-width="2"
-            d="M4 6h16M4 12h16M4 18h16"
-          />
-        </svg>
+        <BaseIcon class="w-8 h-8" file="menu-icon" alt="Open Menu" />
 
         <Portal to="mobile-menu">
           <div
@@ -88,25 +79,12 @@
                   type="button"
                 >
                   <span class="sr-only">Close menu</span>
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    class="h-6 w-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
+                  <BaseIcon class="w-6 h-6" file="close-icon" alt="Close menu" />
                 </button>
               </div>
 
               <div class="flex flex-col justify-between h-screen w-full bg-white">
-                <nav class="text-secondary-dark" role="navigation">
+                <nav class="text-primary-dark" role="navigation">
                   <ul>
                     <li v-for="menu in nav" :key="menu.id">
                       <BaseMenu
