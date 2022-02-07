@@ -18,9 +18,15 @@
       </nav>
 
       <div class="flex space-x-6 text-primary-dark">
-        <a class="flex items-center" href="#">
+        <a
+          v-for="item in contact"
+          :key="item.id"
+          class="flex items-center opacity-75 hover:opacity-100"
+          href="#"
+        >
           <span class="mr-3 text-primary-light">
             <svg
+              v-if="item.icon === 'address'"
               xmlns="http://www.w3.org/2000/svg"
               class="h-5 w-5"
               viewBox="0 0 20 20"
@@ -30,16 +36,9 @@
                 d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"
               />
             </svg>
-          </span>
-          <div class="">
-            <p class="text-sm font-semibold">902 Halifax Sq</p>
-            <p class="text-xs">Brunswick, GA 31520</p>
-          </div>
-        </a>
 
-        <a class="flex items-center" href="#">
-          <span class="mr-3 text-primary-light">
             <svg
+              v-else
               xmlns="http://www.w3.org/2000/svg"
               class="h-5 w-5"
               viewBox="0 0 20 20"
@@ -51,8 +50,8 @@
             </svg>
           </span>
           <div class="">
-            <p class="text-sm font-semibold">(912) 223-4110</p>
-            <p class="text-xs">Support Available 24/7</p>
+            <p class="text-sm font-semibold">{{ item.Heading }}</p>
+            <p class="text-xs">{{ item.Subheading }}</p>
           </div>
         </a>
       </div>
@@ -61,12 +60,17 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
+
 export default {
   props: {
     footerContent: {
       type: Object,
       required: true,
     },
+  },
+  computed: {
+    ...mapState('global', ['contact']),
   },
 };
 </script>

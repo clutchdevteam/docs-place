@@ -1,6 +1,6 @@
 <template>
   <div class="site-wrapper">
-    <SiteHeader :nav="mainNav" :logo="logo" :inert="hasOpenMenu" />
+    <SiteHeader :nav="mainNav" :logo="logo" :contact="contact" :inert="hasOpenMenu" />
 
     <main
       :class="`${!isHomePage ? 'mt-[66.36px] lg:mt-[74.94px]' : ''} ${
@@ -23,7 +23,14 @@ import { mapState } from 'vuex';
 
 export default {
   computed: {
-    ...mapState('global', ['pageHasModalOpen', 'isMobileMenuOpen', 'mainNav', 'logo', 'footer']),
+    ...mapState('global', [
+      'pageHasModalOpen',
+      'isMobileMenuOpen',
+      'mainNav',
+      'logo',
+      'footer',
+      'contact',
+    ]),
     hasOpenMenu() {
       return this.pageHasModalOpen || this.isMobileMenuOpen;
     },

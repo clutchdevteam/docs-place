@@ -3,6 +3,7 @@ export const state = () => ({
   isMobileMenuOpen: false,
   pageHasModalOpen: false,
   mainNav: [],
+  contact: [],
   logo: null,
   footer: {
     footerNav: [],
@@ -23,6 +24,7 @@ export const mutations = {
   setGlobals(state, globals) {
     state.mainNav = globals.mainNav;
     state.logo = globals.Logo;
+    state.contact = globals.contact;
 
     state.footer.footerNav = globals?.footer[0]?.footerNav;
     state.footer.logo = globals?.footer[0]?.logo;
