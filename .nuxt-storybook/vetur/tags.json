@@ -8,6 +8,12 @@
   "Page": {
     "description": "Auto imported from components/Page.vue"
   },
+  "BlocksHomepageHero": {
+    "description": "Auto imported from components/blocks/HomepageHero.vue"
+  },
+  "BlocksTest": {
+    "description": "Auto imported from components/blocks/Test.vue"
+  },
   "BaseButton": {
     "description": "Auto imported from components/base/BaseButton.vue"
   },
@@ -43,11 +49,5 @@
   },
   "BaseTextarea": {
     "description": "Auto imported from components/base/BaseTextarea.vue"
-  },
-  "BlocksHomepageHero": {
-    "description": "Auto imported from components/blocks/HomepageHero.vue"
-  },
-  "BlocksTest": {
-    "description": "Auto imported from components/blocks/Test.vue"
   }
 }
