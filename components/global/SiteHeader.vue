@@ -38,7 +38,7 @@
         href="#"
       >
         <span class="mr-3 text-secondary-light">
-          <BaseIcon :file="item.icon" :alt="item.icon" />
+          <BaseIcon class="h-5 w-5" :file="item.icon" :alt="item.icon" />
         </span>
         <div class="">
           <p class="text-sm font-semibold">{{ item.Heading }}</p>
