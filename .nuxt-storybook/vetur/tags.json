@@ -8,17 +8,14 @@
   "Page": {
     "description": "Auto imported from components/Page.vue"
   },
-  "BlocksHomepageHero": {
-    "description": "Auto imported from components/blocks/HomepageHero.vue"
-  },
-  "BlocksTest": {
-    "description": "Auto imported from components/blocks/Test.vue"
-  },
   "BaseButton": {
     "description": "Auto imported from components/base/BaseButton.vue"
   },
   "BaseHeading": {
     "description": "Auto imported from components/base/BaseHeading.vue"
+  },
+  "BaseIcon": {
+    "description": "Auto imported from components/base/BaseIcon.vue"
   },
   "BaseImage": {
     "description": "Auto imported from components/base/BaseImage.vue"
@@ -49,5 +46,11 @@
   },
   "BaseTextarea": {
     "description": "Auto imported from components/base/BaseTextarea.vue"
+  },
+  "BlocksHomepageHero": {
+    "description": "Auto imported from components/blocks/HomepageHero.vue"
+  },
+  "BlocksTest": {
+    "description": "Auto imported from components/blocks/Test.vue"
   }
 }
