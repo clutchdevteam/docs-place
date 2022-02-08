@@ -52,7 +52,7 @@
       <button
         :class="`p-4 ${isHomePage ? 'text-white' : 'text-primary-dark'}`"
         ref="openButtonRef"
-        @click="toggleMobileMenu"
+        @click="openMobileMenu"
         type="button"
         :inert="isMobileMenuOpen"
       >
@@ -145,19 +145,21 @@ export default {
     },
   },
   methods: {
-    async toggleMobileMenu() {
-      await this.$store.commit('global/isMobileMenuOpen', !this.isMobileMenuOpen);
+    async openMobileMenu() {
+      await this.$store.commit('global/isMobileMenuOpen', true);
       await this.$nextTick();
       await this.$nextTick();
 
       this.$refs.closeButtonRef?.focus();
     },
-    async closeMenu() {
+    async closeMenu(e) {
       await this.$store.commit('global/isMobileMenuOpen', false);
       await this.$nextTick();
       await this.$nextTick();
 
-      this.$refs.openButtonRef?.focus();
+      if (e.type && e.type === 'click') {
+        this.$refs.openButtonRef?.focus();
+      }
     },
   },
 };

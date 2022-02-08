@@ -4,6 +4,25 @@ body {
   @apply font-display;
 }
 
+*:focus-visible {
+  @apply ring-current;
+
+  outline-color: #6fcfc9;
+  outline-style: auto;
+  outline-offset: 0em;
+  outline-width: 2px;
+}
+
 *:hover {
   @apply transition duration-150 ease-in-out;
+}
+
+.base-wrapper {
+  @apply container mx-auto px-4;
+}
+
+@screen md {
+  .base-wrapper {
+    @apply px-0;
+  }
 }
