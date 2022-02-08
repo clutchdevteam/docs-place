@@ -5,11 +5,9 @@ body {
 }
 
 *:focus-visible {
-  @apply ring-current;
-
   outline-color: #6fcfc9;
   outline-style: auto;
-  outline-offset: 0em;
+  outline-offset: 3px;
   outline-width: 2px;
 }
 

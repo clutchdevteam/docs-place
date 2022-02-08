@@ -35,7 +35,7 @@
       <a
         v-for="item in contact"
         :key="item.id"
-        class="flex items-center opacity-75 hover:opacity-100"
+        class="flex items-center opacity-75 hover:opacity-100 p-1"
         href="#"
       >
         <span class="mr-3 text-secondary-light">
@@ -153,13 +153,10 @@ export default {
       this.$refs.closeButtonRef?.focus();
     },
     async closeMenu(e) {
+      console.log(e);
       await this.$store.commit('global/isMobileMenuOpen', false);
       await this.$nextTick();
       await this.$nextTick();
-
-      if (e.type && e.type === 'click') {
-        this.$refs.openButtonRef?.focus();
-      }
     },
   },
 };
