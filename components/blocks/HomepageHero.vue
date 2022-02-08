@@ -1,7 +1,7 @@
 <template>
-  <div class="relative h-screen flex justify-center items-center">
+  <section class="relative h-screen flex justify-center items-center">
     <BaseImage
-      class="absolute z-[-1] object-none object-top md:object-cover h-full"
+      class="absolute z-[-1] object-none object-center md:object-cover h-full"
       :src="block.backgroundImage.filename"
       :alt="block.backgroundImage.alt"
     />
@@ -12,7 +12,7 @@
         <BaseButton :href="block.btn[0].link.cached_url">{{ block.btn[0].btnText }}</BaseButton>
       </div>
     </div>
-  </div>
+  </section>
 </template>
 
 <script>
