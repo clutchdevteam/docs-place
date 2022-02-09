@@ -1,9 +1,6 @@
 export { default as SiteFooter } from '../../components/global/SiteFooter.vue'
 export { default as SiteHeader } from '../../components/global/SiteHeader.vue'
 export { default as Page } from '../../components/Page.vue'
-export { default as BlocksHomepageHero } from '../../components/blocks/HomepageHero.vue'
-export { default as BlocksTest } from '../../components/blocks/Test.vue'
-export { default as BlocksTwoColImageLeft } from '../../components/blocks/TwoColImageLeft.vue'
 export { default as BaseButton } from '../../components/base/BaseButton.vue'
 export { default as BaseHeading } from '../../components/base/BaseHeading.vue'
 export { default as BaseIcon } from '../../components/base/BaseIcon.vue'
@@ -19,6 +16,10 @@ export { default as BaseSelect } from '../../components/base/BaseSelect.vue'
 export { default as BaseText } from '../../components/base/BaseText.vue'
 export { default as BaseTextarea } from '../../components/base/BaseTextarea.vue'
 export { default as BaseTwoCol } from '../../components/base/BaseTwoCol.vue'
+export { default as BlocksHomepageHero } from '../../components/blocks/HomepageHero.vue'
+export { default as BlocksTest } from '../../components/blocks/Test.vue'
+export { default as BlocksTwoColImageLeft } from '../../components/blocks/TwoColImageLeft.vue'
+export { default as BlocksTwoColImageRight } from '../../components/blocks/TwoColImageRight.vue'
 
 // nuxt/nuxt.js#8607
 function wrapFunctional(options) {

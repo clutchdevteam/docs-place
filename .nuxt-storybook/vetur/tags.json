@@ -8,15 +8,6 @@
   "Page": {
     "description": "Auto imported from components/Page.vue"
   },
-  "BlocksHomepageHero": {
-    "description": "Auto imported from components/blocks/HomepageHero.vue"
-  },
-  "BlocksTest": {
-    "description": "Auto imported from components/blocks/Test.vue"
-  },
-  "BlocksTwoColImageLeft": {
-    "description": "Auto imported from components/blocks/TwoColImageLeft.vue"
-  },
   "BaseButton": {
     "description": "Auto imported from components/base/BaseButton.vue"
   },
@@ -61,5 +52,17 @@
   },
   "BaseTwoCol": {
     "description": "Auto imported from components/base/BaseTwoCol.vue"
+  },
+  "BlocksHomepageHero": {
+    "description": "Auto imported from components/blocks/HomepageHero.vue"
+  },
+  "BlocksTest": {
+    "description": "Auto imported from components/blocks/Test.vue"
+  },
+  "BlocksTwoColImageLeft": {
+    "description": "Auto imported from components/blocks/TwoColImageLeft.vue"
+  },
+  "BlocksTwoColImageRight": {
+    "description": "Auto imported from components/blocks/TwoColImageRight.vue"
   }
 }

@@ -1,15 +1,9 @@
-import TwoColImageLeft from './TwoColImageLeft.vue';
-
 export default {
   title: 'Blocks/Two column image left',
-  component: TwoColImageLeft,
 };
 
 export const Default = (args) => ({
   props: Object.keys(args),
-  components: {
-    TwoColImageLeft,
-  },
   computed: {
     block() {
       return { ...args };
