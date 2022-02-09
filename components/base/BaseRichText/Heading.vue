@@ -6,7 +6,6 @@
 
 <script>
 export default {
-  name: 'RichTextHeading',
   props: {
     attrs: {
       type: Object,
