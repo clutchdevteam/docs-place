@@ -14,6 +14,9 @@
   "BlocksTest": {
     "description": "Auto imported from components/blocks/Test.vue"
   },
+  "BlocksTwoColImageLeft": {
+    "description": "Auto imported from components/blocks/TwoColImageLeft.vue"
+  },
   "BaseButton": {
     "description": "Auto imported from components/base/BaseButton.vue"
   },

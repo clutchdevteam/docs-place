@@ -11,6 +11,7 @@ You can directly use them in pages and other components without the need to impo
 - `<Page>` | `<page>` (components/Page.vue)
 - `<BlocksHomepageHero>` | `<blocks-homepage-hero>` (components/blocks/HomepageHero.vue)
 - `<BlocksTest>` | `<blocks-test>` (components/blocks/Test.vue)
+- `<BlocksTwoColImageLeft>` | `<blocks-two-col-image-left>` (components/blocks/TwoColImageLeft.vue)
 - `<BaseButton>` | `<base-button>` (components/base/BaseButton.vue)
 - `<BaseHeading>` | `<base-heading>` (components/base/BaseHeading.vue)
 - `<BaseIcon>` | `<base-icon>` (components/base/BaseIcon.vue)
