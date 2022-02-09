@@ -29,7 +29,7 @@ export default {
 
 <style lang="postcss" scoped>
 .btn {
-  @apply uppercase px-8 py-2 font-semibold;
+  @apply uppercase px-8 py-2 font-semibold text-center;
 
   &.btn-primary {
     @apply bg-secondary-light text-white;
