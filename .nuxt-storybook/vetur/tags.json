@@ -64,5 +64,14 @@
   },
   "BlocksTwoColImageRight": {
     "description": "Auto imported from components/blocks/TwoColImageRight.vue"
+  },
+  "BaseRichText": {
+    "description": "Auto imported from components/base/BaseRichText/BaseRichText.vue"
+  },
+  "BaseBaseRichTextHeading": {
+    "description": "Auto imported from components/base/BaseRichText/RichTextHeading.vue"
+  },
+  "BaseBaseRichTextParagraph": {
+    "description": "Auto imported from components/base/BaseRichText/RichTextParagraph.vue"
   }
 }

@@ -15,9 +15,7 @@
           </BaseHeading>
 
           <div class="lg:w-3/4">
-            <BaseText>
-              {{ block.text }}
-            </BaseText>
+            <BaseRichText :content="block.text" />
           </div>
         </div>
       </template>

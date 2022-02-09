@@ -90,7 +90,11 @@ export default {
   css: ['~/assets/css/main.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/components', '~/plugins/wicg-inert.client.js'],
+  plugins: [
+    '~/plugins/components',
+    '~/plugins/wicg-inert.client.js',
+    '~/plugins/rich-text-renderer.js',
+  ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -103,6 +107,7 @@ export default {
 
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
+    '@nuxtjs/composition-api/module',
     '@nuxtjs/axios',
     [
       'storyblok-nuxt',

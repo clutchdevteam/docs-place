@@ -28,3 +28,6 @@ You can directly use them in pages and other components without the need to impo
 - `<BlocksTest>` | `<blocks-test>` (components/blocks/Test.vue)
 - `<BlocksTwoColImageLeft>` | `<blocks-two-col-image-left>` (components/blocks/TwoColImageLeft.vue)
 - `<BlocksTwoColImageRight>` | `<blocks-two-col-image-right>` (components/blocks/TwoColImageRight.vue)
+- `<BaseRichText>` | `<base-rich-text>` (components/base/BaseRichText/BaseRichText.vue)
+- `<BaseBaseRichTextHeading>` | `<base-base-rich-text-heading>` (components/base/BaseRichText/RichTextHeading.vue)
+- `<BaseBaseRichTextParagraph>` | `<base-base-rich-text-paragraph>` (components/base/BaseRichText/RichTextParagraph.vue)
