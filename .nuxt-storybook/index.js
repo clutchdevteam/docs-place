@@ -14,11 +14,14 @@ import { createStore } from './store.js'
 /* Plugins */
 
 import nuxt_plugin_plugin_09d02719 from 'nuxt_plugin_plugin_09d02719' // Source: ./components/plugin.js (mode: 'all')
+import nuxt_plugin_plugin_21372941 from 'nuxt_plugin_plugin_21372941' // Source: ./composition-api/plugin.mjs (mode: 'all')
 import nuxt_plugin_portalvue_e1721bf8 from 'nuxt_plugin_portalvue_e1721bf8' // Source: ./portal-vue.js (mode: 'all')
 import nuxt_plugin_templatesplugin0ef19cee_ba666756 from 'nuxt_plugin_templatesplugin0ef19cee_ba666756' // Source: ./templates.plugin.0ef19cee.js (mode: 'all')
 import nuxt_plugin_axios_61696faf from 'nuxt_plugin_axios_61696faf' // Source: ./axios.js (mode: 'all')
 import nuxt_plugin_components_6fb0430c from 'nuxt_plugin_components_6fb0430c' // Source: ../plugins/components (mode: 'all')
 import nuxt_plugin_wicginertclient_6aa59642 from 'nuxt_plugin_wicginertclient_6aa59642' // Source: ../plugins/wicg-inert.client.js (mode: 'client')
+import nuxt_plugin_richtextrenderer_98325662 from 'nuxt_plugin_richtextrenderer_98325662' // Source: ../plugins/rich-text-renderer.js (mode: 'all')
+import nuxt_plugin_meta_24ab3eda from 'nuxt_plugin_meta_24ab3eda' // Source: ./composition-api/meta.mjs (mode: 'all')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -216,6 +219,10 @@ async function createApp(ssrContext, config = {}) {
     await nuxt_plugin_plugin_09d02719(app.context, inject)
   }
 
+  if (typeof nuxt_plugin_plugin_21372941 === 'function') {
+    await nuxt_plugin_plugin_21372941(app.context, inject)
+  }
+
   if (typeof nuxt_plugin_portalvue_e1721bf8 === 'function') {
     await nuxt_plugin_portalvue_e1721bf8(app.context, inject)
   }
@@ -234,6 +241,14 @@ async function createApp(ssrContext, config = {}) {
 
   if (process.client && typeof nuxt_plugin_wicginertclient_6aa59642 === 'function') {
     await nuxt_plugin_wicginertclient_6aa59642(app.context, inject)
+  }
+
+  if (typeof nuxt_plugin_richtextrenderer_98325662 === 'function') {
+    await nuxt_plugin_richtextrenderer_98325662(app.context, inject)
+  }
+
+  if (typeof nuxt_plugin_meta_24ab3eda === 'function') {
+    await nuxt_plugin_meta_24ab3eda(app.context, inject)
   }
 
   // Lock enablePreview in context

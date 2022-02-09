@@ -20,6 +20,9 @@ export { default as BlocksHomepageHero } from '../../components/blocks/HomepageH
 export { default as BlocksTest } from '../../components/blocks/Test.vue'
 export { default as BlocksTwoColImageLeft } from '../../components/blocks/TwoColImageLeft.vue'
 export { default as BlocksTwoColImageRight } from '../../components/blocks/TwoColImageRight.vue'
+export { default as BaseRichText } from '../../components/base/BaseRichText/BaseRichText.vue'
+export { default as BaseBaseRichTextHeading } from '../../components/base/BaseRichText/RichTextHeading.vue'
+export { default as BaseBaseRichTextParagraph } from '../../components/base/BaseRichText/RichTextParagraph.vue'
 
 // nuxt/nuxt.js#8607
 function wrapFunctional(options) {
