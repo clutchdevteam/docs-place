@@ -19,7 +19,7 @@
         <li v-for="menu in nav" :key="menu.id">
           <BaseMenu
             :id="menu.title"
-            classes="w-32 xl:w-40 text-center py-2 border-t-2 border-transparent hover:border-secondary-dark"
+            classes="w-32 xl:w-40 text-center py-2 border-t-2 border-transparent hover:border-primary-light"
             :menu="menu"
             :depth="0"
           />
@@ -38,7 +38,7 @@
         class="flex items-center opacity-75 hover:opacity-100 p-1"
         href="#"
       >
-        <span class="mr-3 text-secondary-light">
+        <span class="mr-3 text-primary-light">
           <BaseIcon class="h-5 w-5" :file="item.icon" :alt="item.icon" />
         </span>
         <div class="">
@@ -168,6 +168,6 @@ nav ul li div a {
 }
 
 .nuxt-link-exact-active {
-  @apply border-secondary-light opacity-100;
+  @apply border-primary-light opacity-100;
 }
 </style>

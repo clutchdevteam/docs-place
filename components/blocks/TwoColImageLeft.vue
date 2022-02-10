@@ -12,7 +12,7 @@
 
       <template v-slot:right>
         <div :class="{ 'mt-8': block.heading }">
-          <BaseHeading v-if="block.heading" class="text-primary-dark font-bold" size="h3">
+          <BaseHeading v-if="block.heading" class="text-primary-dark font-bold mb-6" size="h3">
             {{ block.heading }}
           </BaseHeading>
 
