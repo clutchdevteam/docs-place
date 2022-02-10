@@ -6,7 +6,7 @@
 
     <textarea
       :id="_uid"
-      class="border border-gray-300 rounded-md p-1"
+      class="border border-gray-300 rounded-md p-2"
       :placeholder="placeholder"
       :required="required"
       :rows="rows"

@@ -6,7 +6,7 @@
 
     <input
       :id="_uid"
-      class="border border-gray-300 rounded-md p-1"
+      class="border border-gray-300 rounded-md p-2"
       :type="type"
       :placeholder="placeholder"
       :required="required"

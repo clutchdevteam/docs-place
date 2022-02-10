@@ -21,6 +21,8 @@ body {
 
 .base-wrapper {
   @apply container mx-auto px-4;
+
+  max-width: 960px;
 }
 
 @screen md {
