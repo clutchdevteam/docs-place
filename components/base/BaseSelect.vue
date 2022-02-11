@@ -6,7 +6,7 @@
 
     <select
       :id="fieldId"
-      class="border border-gray-300 rounded-md p-2"
+      class="border border-gray-300 rounded-md px-2 py-1"
       v-bind="$attrs"
       v-on="listeners"
       :required="isRequired"
@@ -41,9 +41,7 @@ export default {
   },
   computed: {
     fieldId() {
-      return `${this.$slots.default[0].text.toLowerCase().replace(" ", "-")}-${
-        this._uid
-      }`;
+      return `${this.$slots.default[0].text.toLowerCase().replace(' ', '-')}-${this._uid}`;
     },
     listeners() {
       const { input, ...listeners } = this.$listeners;

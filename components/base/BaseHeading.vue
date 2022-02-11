@@ -46,7 +46,7 @@ h6 {
 }
 
 .h3 {
-  @apply text-3xl mb-8;
+  @apply text-3xl;
 }
 
 .h4 {
