@@ -4,26 +4,11 @@
     {{ HEAD }}
   </head>
   <body {{ BODY_ATTRS }}>
-    <form name="Contact Form" data-netlify="true" netlify-honeypot="bot-field" hidden>
-      <div>
-        <label for="name">Name</label>
-        <input type="text" name="name" />
-      </div>
-
-      <div>
-        <label for="email">Email</label>
-        <input type="email" name="email" />
-      </div>
-
-      <div>
-        <label for="phone">Phone</label>
-        <input type="tel" name="phone" />
-      </div>
-
-      <div>
-        <label for="message">Message</label>
-        <input type="text" name="message" />
-      </div>
+    <form name="contact" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="tel" name="phone" />
+      <textarea type="text" name="message" />
 
       <button type="submit">Send</button>
     </form>

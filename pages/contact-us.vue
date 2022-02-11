@@ -15,13 +15,12 @@
 
           <form
             class="relative flex flex-col"
-            name="Contact Form"
-            method="POST"
+            name="contact"
+            @submit.prevent="handleSubmit"
             data-netlify="true"
             data-netlify-honeypot="bot-field"
-            action="/thanks"
           >
-            <input class="hidden" type="hidden" name="form-name" value="Contact Form" />
+            <input class="hidden" type="hidden" name="form-name" value="contact" />
             <BaseInput class="mb-4" v-model="name" name="name" required>Name</BaseInput>
 
             <BaseInput class="mb-4" v-model="email" name="email" type="email" required>
@@ -121,10 +120,10 @@ export default {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: this.encode({
           'form-name': 'contact',
-          name: this.name,
-          email: this.email,
-          phone: this.phone,
-          message: this.message,
+          Name: this.name,
+          Email: this.email,
+          Phone: this.phone,
+          Message: this.message,
         }),
       })
         .then((res, err) => {
