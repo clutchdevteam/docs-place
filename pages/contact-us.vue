@@ -1,5 +1,5 @@
 <template>
-  <section class="w-full">
+  <section class="w-full overflow-y-hidden">
     <div class="flex flex-col md:grid lg:grid-cols-2 h-full items-center">
       <div>
         <div class="md:w-3/4 lg:w-1/2 mx-auto px-4 md:px-0">
@@ -21,15 +21,15 @@
             data-netlify-honeypot="bot-field"
           >
             <input class="hidden" type="hidden" name="form-name" value="contact" />
-            <BaseInput class="mb-4" v-model="name" name="name" required>Name</BaseInput>
+            <BaseInput class="mb-4" v-model="form.name" name="name" required>Name</BaseInput>
 
-            <BaseInput class="mb-4" v-model="email" name="email" type="email" required>
+            <BaseInput class="mb-4" v-model="form.email" name="email" type="email" required>
               Email
             </BaseInput>
 
-            <BaseInput class="mb-4" v-model="phone" name="phone" type="tel">Phone</BaseInput>
+            <BaseInput class="mb-4" v-model="form.phone" name="phone" type="tel">Phone</BaseInput>
 
-            <BaseTextarea class="mb-4" v-model="message" name="message" required>
+            <BaseTextarea class="mb-4" v-model="form.message" name="message" required>
               Message
             </BaseTextarea>
 
@@ -43,7 +43,7 @@
               v-if="responseMessage"
               :class="`${
                 responseState === 'success' ? 'text-secondary-dark' : 'text-red-700'
-              } text-sm absolute bottom-0 mb-[-44px]`"
+              } text-sm absolute bottom-0 mb-[-42px]`"
             >
               {{ this.responseMessage }}
             </p>
@@ -70,10 +70,12 @@ import { mapState } from 'vuex';
 export default {
   data() {
     return {
-      name: '',
-      email: '',
-      phone: '',
-      message: '',
+      form: {
+        name: '',
+        email: '',
+        phone: '',
+        message: '',
+      },
       responseMessage: null,
       responseState: null,
     };
@@ -120,10 +122,7 @@ export default {
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: this.encode({
           'form-name': 'contact',
-          Name: this.name,
-          Email: this.email,
-          Phone: this.phone,
-          Message: this.message,
+          ...this.form,
         }),
       })
         .then((res, err) => {
