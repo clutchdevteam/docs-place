@@ -1,7 +1,7 @@
 <template>
   <section class="w-full overflow-y-hidden">
     <div class="flex flex-col md:grid lg:grid-cols-2 h-full items-center">
-      <div>
+      <div class="mb-10 py-10 md:py-0">
         <div class="md:w-3/4 lg:w-1/2 mx-auto px-4 md:px-0">
           <div class="mb-8">
             <BaseHeading class="font-bold text-primary-dark mb-4" size="h3" tag="h1"
