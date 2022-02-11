@@ -7,26 +7,26 @@
             <BaseHeading class="font-bold text-primary-dark mb-4" size="h3" tag="h1"
               >Contact Us.</BaseHeading
             >
-            <BaseText>
+            <BaseText class="-mt-3">
               Do not hesitate to contact us with any questions or concerns regarding availability
               and admissions.
             </BaseText>
           </div>
 
           <form
-            class="flex flex-col space-y-6"
+            class="relative flex flex-col"
             name="Contact Form"
             @submit.prevent="handleSubmit"
             data-netlify="true"
             data-netlify-honeypot="bot-field"
           >
-            <BaseInput v-model="name" required>Name</BaseInput>
+            <BaseInput class="mb-4" v-model="name" required>Name</BaseInput>
 
-            <BaseInput v-model="email" type="email" required>Email</BaseInput>
+            <BaseInput class="mb-4" v-model="email" type="email" required>Email</BaseInput>
 
-            <BaseInput v-model="phone" type="tel">Phone</BaseInput>
+            <BaseInput class="mb-4" v-model="phone" type="tel">Phone</BaseInput>
 
-            <BaseTextarea v-model="message" required>Message</BaseTextarea>
+            <BaseTextarea class="mb-4" v-model="message" required>Message</BaseTextarea>
 
             <p class="hidden">
               <label>Don't fill this out if you're human: <input name="bot-field" /></label>
@@ -35,6 +35,15 @@
             <input class="hidden" type="hidden" name="form-name" value="Contact Form" />
 
             <BaseButton type="submit">Send Message</BaseButton>
+
+            <p
+              v-if="responseMessage"
+              :class="`${
+                responseState === 'success' ? 'text-secondary-dark' : 'text-red-700'
+              } text-sm absolute bottom-0 mb-[-40px]`"
+            >
+              test message
+            </p>
           </form>
         </div>
       </div>
@@ -60,6 +69,8 @@ export default {
       email: '',
       phone: '',
       message: '',
+      responseMessage: null,
+      responseState: null,
     };
   },
   methods: {
@@ -82,10 +93,11 @@ export default {
       })
         .then((res, err) => {
           if (res.status === 200) {
-            console.log('success');
-            this.$router.push('/contact/thanks');
+            this.responseMessage = "Thanks for reaching out! We'll be in contact shortly!";
+            this.responseState = 'success';
           } else {
-            console.log(err);
+            this.responseMessage = 'Oops! Looks like something went wrong. Please try again!';
+            this.responseState = 'error';
           }
         })
         .catch((e) => console.error(e));
