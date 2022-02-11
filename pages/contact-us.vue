@@ -15,7 +15,8 @@
 
           <form
             class="flex flex-col space-y-6"
-            @submit="handleSubmit"
+            name="Contact Form"
+            @submit.prevent="handleSubmit"
             data-netlify="true"
             data-netlify-honeypot="bot-field"
           >
@@ -60,6 +61,35 @@ export default {
       phone: '',
       message: '',
     };
+  },
+  methods: {
+    encode(data) {
+      return Object.keys(data)
+        .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
+        .join('&');
+    },
+    handleSubmit() {
+      fetch('/', {
+        method: 'post',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: this.encode({
+          'form-name': 'contact',
+          name: this.name,
+          email: this.email,
+          phone: this.phone,
+          message: this.message,
+        }),
+      })
+        .then((res, err) => {
+          if (res.status === 200) {
+            console.log('success');
+            this.$router.push('/contact/thanks');
+          } else {
+            console.log(err);
+          }
+        })
+        .catch((e) => console.error(e));
+    },
   },
 };
 </script>
