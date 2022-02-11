@@ -7,6 +7,13 @@
     "_name": "_18b50bef"
   },
   {
+    "name": "thanks",
+    "path": "/thanks",
+    "component": "/Users/drewclements/Desktop/clutch/docs-place/pages/thanks.vue",
+    "chunkName": "pages/thanks",
+    "_name": "_4b12cb66"
+  },
+  {
     "name": "all",
     "path": "/*",
     "component": "/Users/drewclements/Desktop/clutch/docs-place/pages/_.vue",

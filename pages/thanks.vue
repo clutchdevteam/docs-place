@@ -42,9 +42,7 @@
 
             <p
               v-if="responseMessage"
-              :class="`${
-                responseState === 'success' ? 'text-secondary-dark' : 'text-red-700'
-              } text-sm absolute bottom-0 mb-[-44px]`"
+              class="text-secondary-dark text-sm absolute bottom-0 mb-[-44px]"
             >
               {{ this.responseMessage }}
             </p>
@@ -73,39 +71,9 @@ export default {
       email: '',
       phone: '',
       message: '',
-      responseMessage: null,
-      responseState: null,
+      responseMessage: "Thanks for reaching out! We'll be in contact shortly.",
+      responseState: 'success',
     };
-  },
-  methods: {
-    encode(data) {
-      return Object.keys(data)
-        .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
-        .join('&');
-    },
-    handleSubmit() {
-      fetch('/', {
-        method: 'post',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: this.encode({
-          'form-name': 'contact',
-          name: this.name,
-          email: this.email,
-          phone: this.phone,
-          message: this.message,
-        }),
-      })
-        .then((res, err) => {
-          if (res.status === 200) {
-            this.responseMessage = "Thanks for reaching out! We'll be in contact shortly!";
-            this.responseState = 'success';
-          } else {
-            this.responseMessage = 'Oops! Looks like something went wrong. Please try again!';
-            this.responseState = 'error';
-          }
-        })
-        .catch((e) => console.error(e));
-    },
   },
 };
 </script>
