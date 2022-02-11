@@ -13,10 +13,17 @@ export { default as BaseModal } from '../../components/base/BaseModal.vue'
 export { default as BaseRadio } from '../../components/base/BaseRadio.vue'
 export { default as BaseRadioGroup } from '../../components/base/BaseRadioGroup.vue'
 export { default as BaseSelect } from '../../components/base/BaseSelect.vue'
+export { default as BaseText } from '../../components/base/BaseText.vue'
 export { default as BaseTextarea } from '../../components/base/BaseTextarea.vue'
+export { default as BaseTwoCol } from '../../components/base/BaseTwoCol.vue'
 export { default as BlocksHomepageHero } from '../../components/blocks/HomepageHero.vue'
 export { default as BlocksTest } from '../../components/blocks/Test.vue'
 export { default as SectionsTitle } from '../../components/sections/Title.vue'
+export { default as BlocksTwoColImageLeft } from '../../components/blocks/TwoColImageLeft.vue'
+export { default as BlocksTwoColImageRight } from '../../components/blocks/TwoColImageRight.vue'
+export { default as BaseRichText } from '../../components/base/BaseRichText/BaseRichText.vue'
+export { default as BaseBaseRichTextHeading } from '../../components/base/BaseRichText/Heading.vue'
+export { default as BaseBaseRichTextParagraph } from '../../components/base/BaseRichText/Paragraph.vue'
 
 // nuxt/nuxt.js#8607
 function wrapFunctional(options) {

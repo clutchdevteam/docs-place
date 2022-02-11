@@ -44,14 +44,35 @@
   "BaseSelect": {
     "description": "Auto imported from components/base/BaseSelect.vue"
   },
+  "BaseText": {
+    "description": "Auto imported from components/base/BaseText.vue"
+  },
   "BaseTextarea": {
     "description": "Auto imported from components/base/BaseTextarea.vue"
+  },
+  "BaseTwoCol": {
+    "description": "Auto imported from components/base/BaseTwoCol.vue"
   },
   "BlocksHomepageHero": {
     "description": "Auto imported from components/blocks/HomepageHero.vue"
   },
   "BlocksTest": {
     "description": "Auto imported from components/blocks/Test.vue"
+  },
+  "BlocksTwoColImageLeft": {
+    "description": "Auto imported from components/blocks/TwoColImageLeft.vue"
+  },
+  "BlocksTwoColImageRight": {
+    "description": "Auto imported from components/blocks/TwoColImageRight.vue"
+  },
+  "BaseRichText": {
+    "description": "Auto imported from components/base/BaseRichText/BaseRichText.vue"
+  },
+  "BaseBaseRichTextHeading": {
+    "description": "Auto imported from components/base/BaseRichText/Heading.vue"
+  },
+  "BaseBaseRichTextParagraph": {
+    "description": "Auto imported from components/base/BaseRichText/Paragraph.vue"
   },
   "SectionsTitle": {
     "description": "Auto imported from components/sections/Title.vue"

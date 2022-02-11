@@ -29,21 +29,21 @@ export default {
 
 <style lang="postcss" scoped>
 .btn {
-  @apply uppercase px-8 py-2 font-semibold;
+  @apply uppercase px-8 py-2 font-semibold text-center;
 
   &.btn-primary {
-    @apply bg-primary-dark text-white;
+    @apply bg-secondary-light text-white;
 
     &:hover {
-      @apply bg-primary-darker;
+      @apply bg-secondary-dark;
     }
   }
 
   &.btn-secondary {
-    @apply bg-secondary-dark text-white;
+    @apply bg-primary-dark text-white;
 
     &:hover {
-      @apply bg-secondary-darker;
+      @apply bg-primary-darker;
     }
   }
 

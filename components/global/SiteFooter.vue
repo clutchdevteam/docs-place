@@ -10,7 +10,7 @@
           class="flex flex-col md:flex-row text-center md:text-left space-y-8 md:space-x-12 md:space-y-0"
         >
           <li v-for="menu in footerContent.footerNav" :key="menu.id">
-            <BaseLink classes="border-b-2 border-transparent" :href="menu.slug.cached_url">{{
+            <BaseLink classes="border-b-2 border-transparent p-1" :href="menu.slug.cached_url">{{
               menu.title
             }}</BaseLink>
           </li>
@@ -21,7 +21,7 @@
         <a
           v-for="item in contact"
           :key="item.id"
-          class="flex items-center opacity-75 hover:opacity-100"
+          class="flex items-center opacity-75 hover:opacity-100 p-2"
           href="#"
         >
           <span class="mr-3 text-primary-light">
