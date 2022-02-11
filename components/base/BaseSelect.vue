@@ -1,11 +1,11 @@
 <template>
   <div class="flex flex-col">
-    <label class="text-sm mb-2" :for="fieldId">
+    <label class="text-sm mb-2" :for="id">
       <slot>Select an option</slot> <span v-if="isRequired">*</span>
     </label>
 
     <select
-      :id="fieldId"
+      :id="id"
       class="border border-gray-300 rounded-md px-2 py-1"
       v-bind="$attrs"
       v-on="listeners"
@@ -40,8 +40,8 @@ export default {
     },
   },
   computed: {
-    fieldId() {
-      return `${this.$slots.default[0].text.toLowerCase().replace(' ', '-')}-${this._uid}`;
+    ui() {
+      return this._uid;
     },
     listeners() {
       const { input, ...listeners } = this.$listeners;

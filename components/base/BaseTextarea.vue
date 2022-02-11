@@ -1,11 +1,11 @@
 <template>
   <div class="flex flex-col">
-    <label class="text-sm mb-2 font-bold text-primary-dark" :for="_uid">
+    <label class="text-sm mb-2 font-bold text-primary-dark" :for="id">
       <slot /> <span v-if="required">*</span>
     </label>
 
     <textarea
-      :id="_uid"
+      :id="id"
       class="border border-gray-300 rounded-md px-2 py-1"
       :placeholder="placeholder"
       :required="required"
@@ -38,6 +38,9 @@ export default {
     },
   },
   computed: {
+    ui() {
+      return this._uid;
+    },
     listeners() {
       const { input, ...listeners } = this.$listeners;
       return listeners;

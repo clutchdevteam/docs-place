@@ -21,6 +21,7 @@
             data-netlify-honeypot="bot-field"
             action="/thanks"
           >
+            <input class="hidden" type="hidden" name="form-name" value="Contact Form" />
             <BaseInput class="mb-4" v-model="name" name="name" required>Name</BaseInput>
 
             <BaseInput class="mb-4" v-model="email" name="email" type="email" required>
@@ -36,8 +37,6 @@
             <p class="hidden">
               <label>Don't fill this out if you're human: <input name="bot-field" /></label>
             </p>
-
-            <input class="hidden" type="hidden" name="form-name" value="Contact Form" />
 
             <BaseButton type="submit">Send Message</BaseButton>
 
