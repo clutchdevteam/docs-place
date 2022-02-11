@@ -52,5 +52,8 @@
   },
   "BlocksTest": {
     "description": "Auto imported from components/blocks/Test.vue"
+  },
+  "SectionsTitle": {
+    "description": "Auto imported from components/sections/Title.vue"
   }
 }

@@ -16,6 +16,7 @@ export { default as BaseSelect } from '../../components/base/BaseSelect.vue'
 export { default as BaseTextarea } from '../../components/base/BaseTextarea.vue'
 export { default as BlocksHomepageHero } from '../../components/blocks/HomepageHero.vue'
 export { default as BlocksTest } from '../../components/blocks/Test.vue'
+export { default as SectionsTitle } from '../../components/sections/Title.vue'
 
 // nuxt/nuxt.js#8607
 function wrapFunctional(options) {

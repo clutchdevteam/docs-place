@@ -24,3 +24,4 @@ You can directly use them in pages and other components without the need to impo
 - `<BaseTextarea>` | `<base-textarea>` (components/base/BaseTextarea.vue)
 - `<BlocksHomepageHero>` | `<blocks-homepage-hero>` (components/blocks/HomepageHero.vue)
 - `<BlocksTest>` | `<blocks-test>` (components/blocks/Test.vue)
+- `<SectionsTitle>` | `<sections-title>` (components/sections/Title.vue)

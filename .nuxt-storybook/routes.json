@@ -2,8 +2,7 @@
   {
     "name": "all",
     "path": "/*",
-    "component": "/Users/drewclements/Desktop/clutch/docs-place/pages/_.vue",
-    "chunkName": "pages/_",
-    "_name": "_20caba8b"
+    "component": "/Users/mattclark/Documents/docs-place/pages/_.vue",
+    "chunkName": "pages/_"
   }
 ]
