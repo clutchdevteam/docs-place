@@ -44,7 +44,7 @@
               v-if="responseMessage"
               :class="`${
                 responseState === 'success' ? 'text-secondary-dark' : 'text-red-700'
-              } text-sm absolute bottom-0 mb-[-40px]`"
+              } text-sm absolute bottom-0 mb-[-44px]`"
             >
               {{ this.responseMessage }}
             </p>
