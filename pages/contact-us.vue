@@ -2,7 +2,7 @@
   <section class="w-full">
     <div class="flex flex-col md:grid lg:grid-cols-2 h-full items-center">
       <div>
-        <div class="md:w-3/4 lg:w-1/2 mx-auto px-4 md:px-0 py-12">
+        <div class="md:w-3/4 lg:w-1/2 mx-auto px-4 md:px-0">
           <div class="mb-8">
             <BaseHeading class="font-bold text-primary-dark mb-4" size="h3" tag="h1"
               >Contact Us.</BaseHeading
@@ -13,16 +13,27 @@
             </BaseText>
           </div>
 
-          <form class="flex flex-col space-y-6">
+          <form
+            class="flex flex-col space-y-6"
+            @submit="handleSubmit"
+            data-netlify="true"
+            data-netlify-honeypot="bot-field"
+          >
             <BaseInput v-model="name" required>Name</BaseInput>
 
             <BaseInput v-model="email" type="email" required>Email</BaseInput>
 
-            <BaseInput v-model="phone" type="phone">Phone</BaseInput>
+            <BaseInput v-model="phone" type="tel">Phone</BaseInput>
 
             <BaseTextarea v-model="message" required>Message</BaseTextarea>
 
-            <BaseButton type="submit">Take the first step</BaseButton>
+            <p class="hidden">
+              <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+            </p>
+
+            <input class="hidden" type="hidden" name="form-name" value="Contact Form" />
+
+            <BaseButton type="submit">Send Message</BaseButton>
           </form>
         </div>
       </div>
