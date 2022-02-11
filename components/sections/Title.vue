@@ -1,15 +1,21 @@
 <template>
-  <div class="flex flex-col justify-center items-center mt-20 md:mt-28">
+  <section
+    class="flex flex-col justify-center items-center base-wrapper mt-20 md:mt-28"
+  >
     <BaseHeading size="h1" class="text-primary-dark">{{
       block.title
     }}</BaseHeading>
 
-    <BaseHeading size="h3" class="text-secondary-dark -mt-4">{{
-      block.heading
-    }}</BaseHeading>
+    <BaseHeading
+      size="h3"
+      class="text-secondary-dark text-center uppercase font-bold -mt-4"
+      >{{ block.heading }}</BaseHeading
+    >
 
-    <BaseText class="mt-6 text-opacity-75 text-lg">{{ block.text }}</BaseText>
-  </div>
+    <BaseText class="mt-6 text-center max-w-screen-sm">{{
+      block.text
+    }}</BaseText>
+  </section>
 </template>
 
 <script>
