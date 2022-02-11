@@ -16,7 +16,7 @@
           <form
             class="relative flex flex-col"
             name="Contact Form"
-            @submit.prevent="handleSubmit"
+            method="POST"
             data-netlify="true"
             data-netlify-honeypot="bot-field"
           >
@@ -42,7 +42,7 @@
                 responseState === 'success' ? 'text-secondary-dark' : 'text-red-700'
               } text-sm absolute bottom-0 mb-[-40px]`"
             >
-              test message
+              {{ this.responseMessage }}
             </p>
           </form>
         </div>
