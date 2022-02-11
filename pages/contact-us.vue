@@ -16,17 +16,21 @@
           <form
             class="relative flex flex-col"
             name="Contact Form"
-            method="POST"
+            @submit.prevent="handleSubmit"
             data-netlify="true"
             data-netlify-honeypot="bot-field"
           >
-            <BaseInput class="mb-4" v-model="name" required>Name</BaseInput>
+            <BaseInput class="mb-4" v-model="name" name="name" required>Name</BaseInput>
 
-            <BaseInput class="mb-4" v-model="email" type="email" required>Email</BaseInput>
+            <BaseInput class="mb-4" v-model="email" name="email" type="email" required
+              >Email</BaseInput
+            >
 
-            <BaseInput class="mb-4" v-model="phone" type="tel">Phone</BaseInput>
+            <BaseInput class="mb-4" v-model="phone" name="phone" type="tel">Phone</BaseInput>
 
-            <BaseTextarea class="mb-4" v-model="message" required>Message</BaseTextarea>
+            <BaseTextarea class="mb-4" v-model="message" name="message" required
+              >Message</BaseTextarea
+            >
 
             <p class="hidden">
               <label>Don't fill this out if you're human: <input name="bot-field" /></label>
