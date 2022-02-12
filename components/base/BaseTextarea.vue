@@ -38,7 +38,7 @@ export default {
     },
   },
   computed: {
-    ui() {
+    id() {
       return this._uid;
     },
     listeners() {
