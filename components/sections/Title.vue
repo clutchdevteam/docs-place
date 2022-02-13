@@ -9,10 +9,11 @@
     <BaseHeading
       size="h3"
       class="text-secondary-dark text-center uppercase font-bold -mt-4"
+      v-if="block.heading"
       >{{ block.heading }}</BaseHeading
     >
 
-    <BaseText class="mt-6 text-center max-w-screen-sm">{{
+    <BaseText class="mt-6 text-center max-w-screen-sm" v-if="block.text">{{
       block.text
     }}</BaseText>
   </section>
@@ -28,5 +29,3 @@ export default {
   },
 };
 </script>
-
-<style lang="postcss" scoped></style>
