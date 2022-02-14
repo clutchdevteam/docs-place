@@ -49,7 +49,7 @@ h6 {
 }
 
 .h3 {
-  @apply text-3xl;
+  @apply text-2xl;
 }
 
 .h4 {
