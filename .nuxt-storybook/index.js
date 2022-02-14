@@ -13,6 +13,10 @@ import { createStore } from './store.js'
 
 /* Plugins */
 
+import nuxt_plugin_plugin_323c772e from 'nuxt_plugin_plugin_323c772e' // Source: ./components/plugin.js (mode: 'all')
+import nuxt_plugin_portalvue_44d8aeb4 from 'nuxt_plugin_portalvue_44d8aeb4' // Source: ./portal-vue.js (mode: 'all')
+import nuxt_plugin_templatesplugin4067b59e_91cd861a from 'nuxt_plugin_templatesplugin4067b59e_91cd861a' // Source: ./templates.plugin.4067b59e.js (mode: 'all')
+import nuxt_plugin_axios_3efef602 from 'nuxt_plugin_axios_3efef602' // Source: ./axios.js (mode: 'all')
 import nuxt_plugin_plugin_09d02719 from 'nuxt_plugin_plugin_09d02719' // Source: ./components/plugin.js (mode: 'all')
 import nuxt_plugin_plugin_21372941 from 'nuxt_plugin_plugin_21372941' // Source: ./composition-api/plugin.mjs (mode: 'all')
 import nuxt_plugin_portalvue_e1721bf8 from 'nuxt_plugin_portalvue_e1721bf8' // Source: ./portal-vue.js (mode: 'all')
@@ -215,10 +219,12 @@ async function createApp(ssrContext, config = {}) {
   }
   // Plugin execution
 
-  if (typeof nuxt_plugin_plugin_09d02719 === 'function') {
-    await nuxt_plugin_plugin_09d02719(app.context, inject)
+  if (typeof nuxt_plugin_plugin_323c772e === 'function') {
+    await nuxt_plugin_plugin_323c772e(app.context, inject)
   }
 
+  if (typeof nuxt_plugin_portalvue_44d8aeb4 === 'function') {
+    await nuxt_plugin_portalvue_44d8aeb4(app.context, inject)
   if (typeof nuxt_plugin_plugin_21372941 === 'function') {
     await nuxt_plugin_plugin_21372941(app.context, inject)
   }
@@ -227,12 +233,12 @@ async function createApp(ssrContext, config = {}) {
     await nuxt_plugin_portalvue_e1721bf8(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_templatesplugin0ef19cee_ba666756 === 'function') {
-    await nuxt_plugin_templatesplugin0ef19cee_ba666756(app.context, inject)
+  if (typeof nuxt_plugin_templatesplugin4067b59e_91cd861a === 'function') {
+    await nuxt_plugin_templatesplugin4067b59e_91cd861a(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_axios_61696faf === 'function') {
-    await nuxt_plugin_axios_61696faf(app.context, inject)
+  if (typeof nuxt_plugin_axios_3efef602 === 'function') {
+    await nuxt_plugin_axios_3efef602(app.context, inject)
   }
 
   if (typeof nuxt_plugin_components_6fb0430c === 'function') {

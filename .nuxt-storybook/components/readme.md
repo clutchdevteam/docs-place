@@ -26,6 +26,7 @@ You can directly use them in pages and other components without the need to impo
 - `<BaseTwoCol>` | `<base-two-col>` (components/base/BaseTwoCol.vue)
 - `<BlocksHomepageHero>` | `<blocks-homepage-hero>` (components/blocks/HomepageHero.vue)
 - `<BlocksTest>` | `<blocks-test>` (components/blocks/Test.vue)
+- `<SectionsTitle>` | `<sections-title>` (components/sections/Title.vue)
 - `<BlocksTwoColImageLeft>` | `<blocks-two-col-image-left>` (components/blocks/TwoColImageLeft.vue)
 - `<BlocksTwoColImageRight>` | `<blocks-two-col-image-right>` (components/blocks/TwoColImageRight.vue)
 - `<BaseRichText>` | `<base-rich-text>` (components/base/BaseRichText/BaseRichText.vue)
