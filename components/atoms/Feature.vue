@@ -1,12 +1,8 @@
 <template>
   <div class="flex flex-col items-start space-y-6">
-    <BaseIcon
-      class="h-10 w-auto text-secondary-light"
-      :file="feature.icon"
-      alt="feature.icon"
-    />
+    <BaseIcon class="h-10 w-auto text-secondary-light" :file="feature.icon" alt="feature.icon" />
 
-    <BaseHeading size="h4" tag="h2" class="text-primary-dark uppercase">{{
+    <BaseHeading size="h3" tag="h2" class="text-primary-dark uppercase">{{
       feature.heading
     }}</BaseHeading>
 
@@ -18,7 +14,7 @@
 
 <script>
 export default {
-  name: "Feature",
+  name: 'Feature',
   props: {
     feature: {
       type: Object,
