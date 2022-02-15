@@ -5,7 +5,7 @@
         <div class="relative block md:hidden">
           <BaseImage :src="block.image.filename" :alt="block.image.alt" />
           <div
-            :class="`decor-square absolute bottom-0 left-0 mb-[-10%] ml-[-5%] w-24 h-24 ${block.theme}`"
+            :class="`decor-square absolute bottom-0 left-0 mb-[-10%] ml-[-4%] w-24 h-24 ${block.theme}`"
           />
         </div>
 

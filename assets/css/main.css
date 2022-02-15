@@ -25,7 +25,7 @@ body {
   max-width: 960px;
 }
 
-@screen md {
+@screen lg {
   .base-wrapper {
     @apply px-0;
   }

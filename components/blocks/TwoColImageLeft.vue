@@ -5,7 +5,7 @@
         <div class="relative">
           <BaseImage :src="block.image.filename" :alt="block.image.alt" />
           <div
-            :class="`decor-square absolute bottom-0 right-0 mb-[-10%] mr-[-5%] md:mb-[-20%] md:mr-[-10%] w-24 h-24 md:w-1/2 md:h-1/2 ${block.theme}`"
+            :class="`decor-square absolute bottom-0 right-0 mb-[-10%] mr-[-4%] md:mb-[-20%] md:mr-[-10%] w-24 h-24 md:w-1/2 md:h-1/2 ${block.theme}`"
           />
         </div>
       </template>
