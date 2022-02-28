@@ -1,10 +1,10 @@
 <template>
-  <section class="base-wrapper md:grid grid-cols-3 gap-12 my-24 md:my-36">
+  <section class="base-wrapper lg:grid grid-cols-3 gap-12 my-24 lg:my-36">
     <Feature
       v-for="feature in block.features"
       :key="feature._uid"
       :feature="feature"
-      class="mb-24 md:mb-0"
+      class="mb-24 lg:mb-0"
     />
   </section>
 </template>

@@ -1,16 +1,18 @@
 <template>
   <section class="relative h-screen flex justify-center items-center">
     <BaseImage
-      class="absolute z-[-1] object-none object-center md:object-cover h-full"
+      class="absolute z-[-1] object-none object-center lg:object-cover h-full w-full"
       :src="block.backgroundImage.filename"
       :alt="block.backgroundImage.alt"
     />
     <div class="overlay absolute inset-0 bg-primary-dark z-0" />
 
-    <div class="flex flex-col items-center -mt-40 md:-mt-24 z-20">
+    <div class="flex flex-col items-center -mt-40 lg:-mt-24 z-20">
       <BaseHeading size="h1" class="text-white">{{ block.title }}</BaseHeading>
       <div>
-        <BaseButton :href="block.btn[0].link.cached_url">{{ block.btn[0].btnText }}</BaseButton>
+        <BaseButton :href="block.btn[0].link.cached_url">{{
+          block.btn[0].btnText
+        }}</BaseButton>
       </div>
     </div>
   </section>
@@ -29,6 +31,10 @@ export default {
 
 <style lang="postcss" scoped>
 .overlay {
-  background: linear-gradient(180deg, rgba(11, 54, 105, 0.75) 0%, rgba(0, 212, 255, 0) 32%);
+  background: linear-gradient(
+    180deg,
+    rgba(11, 54, 105, 0.75) 0%,
+    rgba(0, 212, 255, 0) 32%
+  );
 }
 </style>

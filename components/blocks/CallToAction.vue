@@ -1,23 +1,23 @@
 <template>
   <section
-    class="flex flex-col justify-center items-center relative py-20 bg-primary-dark"
+    class="flex flex-col justify-center items-center relative py-20 bg-primary-dark overflow-hidden"
   >
     <BaseImage
-      class="object-cover h-full w-auto absolute opacity-10 z-0 md:w-full md:h-max"
+      class="absolute opacity-10 object-cover h-full w-auto lg:h-auto lg:w-full z-0"
       :src="block.background_image.filename"
       :alt="block.background_image.alt"
     />
 
     <div
-      class="base-wrapper flex flex-col justify-center md:items-center opacity-100 z-10"
+      class="base-wrapper flex flex-col justify-center lg:items-center opacity-100 z-10"
     >
       <p
-        class="text-2xl leading-9 text-left font-bold w-3/4 text-white mb-8 md:text-4xl md:leading-normal md:w-full md:my-4 md:text-center lg:text-5xl lg:leading-normal lg:w-11/12 lg:my-8"
+        class="text-2xl leading-9 text-left font-bold w-3/4 text-white mb-16 lg:text-4xl lg:leading-normal lg:max-w-2xl lg:text-center lg:leading-normal"
       >
         {{ block.text }}
       </p>
       <div class="flex flex-col items-center">
-        <BaseButton class="w-full my-8 md:my-4 lg:my-8">
+        <BaseButton class="w-full">
           {{ block.button[0].btnText }}
         </BaseButton>
       </div>
