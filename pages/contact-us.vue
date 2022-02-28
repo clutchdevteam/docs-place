@@ -1,15 +1,18 @@
 <template>
   <section class="w-full overflow-y-hidden">
-    <div class="flex flex-col md:grid lg:grid-cols-2 h-full items-center">
-      <div class="mb-10 py-10 md:py-0">
-        <div class="md:w-3/4 lg:w-1/2 mx-auto px-4 md:px-0">
+    <div class="flex flex-col lg:grid lg:grid-cols-2 h-full items-center">
+      <div class="mb-10 py-10 lg:py-0">
+        <div class="lg:w-3/4 lg:w-1/2 mx-auto px-4 lg:px-0">
           <div class="mb-8">
-            <BaseHeading class="font-bold text-primary-dark mb-4" size="h3" tag="h1"
+            <BaseHeading
+              class="font-bold text-primary-dark mb-4"
+              size="h3"
+              tag="h1"
               >Contact Us.</BaseHeading
             >
             <BaseText class="-mt-3">
-              Do not hesitate to contact us with any questions or concerns regarding availability
-              and admissions.
+              Do not hesitate to contact us with any questions or concerns
+              regarding availability and admissions.
             </BaseText>
           </div>
 
@@ -20,21 +23,43 @@
             data-netlify="true"
             data-netlify-honeypot="bot-field"
           >
-            <input class="hidden" type="hidden" name="form-name" value="contact" />
-            <BaseInput class="mb-4" v-model="form.name" name="name" required>Name</BaseInput>
+            <input
+              class="hidden"
+              type="hidden"
+              name="form-name"
+              value="contact"
+            />
+            <BaseInput class="mb-4" v-model="form.name" name="name" required
+              >Name</BaseInput
+            >
 
-            <BaseInput class="mb-4" v-model="form.email" name="email" type="email" required>
+            <BaseInput
+              class="mb-4"
+              v-model="form.email"
+              name="email"
+              type="email"
+              required
+            >
               Email
             </BaseInput>
 
-            <BaseInput class="mb-4" v-model="form.phone" name="phone" type="tel">Phone</BaseInput>
+            <BaseInput class="mb-4" v-model="form.phone" name="phone" type="tel"
+              >Phone</BaseInput
+            >
 
-            <BaseTextarea class="mb-4" v-model="form.message" name="message" required>
+            <BaseTextarea
+              class="mb-4"
+              v-model="form.message"
+              name="message"
+              required
+            >
               Message
             </BaseTextarea>
 
             <p class="hidden">
-              <label>Don't fill this out if you're human: <input name="bot-field" /></label>
+              <label
+                >Don't fill this out if you're human: <input name="bot-field"
+              /></label>
             </p>
 
             <BaseButton type="submit">Send Message</BaseButton>
@@ -42,7 +67,9 @@
             <p
               v-if="responseMessage"
               :class="`${
-                responseState === 'success' ? 'text-secondary-dark' : 'text-red-700'
+                responseState === 'success'
+                  ? 'text-secondary-dark'
+                  : 'text-red-700'
               } text-sm absolute bottom-0 mb-[-42px]`"
             >
               {{ this.responseMessage }}
@@ -65,28 +92,28 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+import { mapState } from "vuex";
 
 export default {
   data() {
     return {
       form: {
-        name: '',
-        email: '',
-        phone: '',
-        message: '',
+        name: "",
+        email: "",
+        phone: "",
+        message: "",
       },
       responseMessage: null,
       responseState: null,
     };
   },
   computed: {
-    ...mapState('global', ['loaded']),
+    ...mapState("global", ["loaded"]),
     // set version based on environment
     version() {
       return this.$nuxt.context.query._storyblok || this.$nuxt.context.isDev
-        ? 'draft'
-        : 'published';
+        ? "draft"
+        : "published";
     },
   },
   mounted() {
@@ -94,14 +121,14 @@ export default {
       const storyblokInstance = new StoryblokBridge();
 
       // Use the input event for instant update of content
-      storyblokInstance.on('input', (event) => {
+      storyblokInstance.on("input", (event) => {
         if (event.story.id === this.story.id) {
           this.story.content = event.story.content;
         }
       });
 
       // Use the bridge to listen the events
-      storyblokInstance.on(['input', 'published', 'change'], (event) => {
+      storyblokInstance.on(["input", "published", "change"], (event) => {
         // window.location.reload()
         this.$nuxt.$router.go({
           path: this.$nuxt.$router.currentRoute,
@@ -113,46 +140,50 @@ export default {
   methods: {
     encode(data) {
       return Object.keys(data)
-        .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
-        .join('&');
+        .map(
+          (key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`
+        )
+        .join("&");
     },
     handleSubmit() {
-      fetch('/', {
-        method: 'post',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      fetch("/", {
+        method: "post",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: this.encode({
-          'form-name': 'contact',
+          "form-name": "contact",
           ...this.form,
         }),
       })
         .then((res, err) => {
           if (res.status === 200) {
-            this.responseMessage = "Thanks for reaching out! We'll be in contact shortly!";
-            this.responseState = 'success';
+            this.responseMessage =
+              "Thanks for reaching out! We'll be in contact shortly!";
+            this.responseState = "success";
 
-            this.form.name = '';
-            this.form.email = '';
-            this.form.phone = '';
-            this.form.message = '';
+            this.form.name = "";
+            this.form.email = "";
+            this.form.phone = "";
+            this.form.message = "";
           } else {
-            this.responseMessage = 'Oops! Looks like something went wrong. Please try again!';
-            this.responseState = 'error';
+            this.responseMessage =
+              "Oops! Looks like something went wrong. Please try again!";
+            this.responseState = "error";
           }
         })
         .catch((e) => console.error(e));
     },
   },
   async fetch() {
-    const globalRes = await this.$storyapi.get('cdn/stories/global', {
+    const globalRes = await this.$storyapi.get("cdn/stories/global", {
       version: this.version,
     });
 
     // set global content in vuex
-    this.$store.commit('global/setGlobals', globalRes.data.story.content);
+    this.$store.commit("global/setGlobals", globalRes.data.story.content);
     // set loaded to true to negate uneccesary additional calls to storyblok
-    this.$store.commit('global/isLoaded', true);
+    this.$store.commit("global/isLoaded", true);
 
-    const fullSlug = this.$route.path === '/' ? 'home' : this.$route.path;
+    const fullSlug = this.$route.path === "/" ? "home" : this.$route.path;
 
     let res;
     try {
@@ -164,7 +195,7 @@ export default {
       if (!e.response) {
         this.$nuxt.context.error({
           statusCode: 404,
-          message: 'Failed to receive content from api',
+          message: "Failed to receive content from api",
         });
       } else {
         this.$nuxt.context.error({

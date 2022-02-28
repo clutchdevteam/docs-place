@@ -1,18 +1,22 @@
 <template>
-  <section class="base-wrapper my-24 md:my-36">
+  <section class="base-wrapper my-24 lg:my-36">
     <BaseTwoCol>
       <template v-slot:left>
         <div class="relative">
           <BaseImage :src="block.image.filename" :alt="block.image.alt" />
           <div
-            :class="`decor-square absolute bottom-0 right-0 mb-[-10%] mr-[-4%] md:mb-[-20%] md:mr-[-10%] w-24 h-24 md:w-1/2 md:h-1/2 ${block.theme}`"
+            :class="`decor-square absolute bottom-0 right-0 mb-[-10%] mr-[-4%] lg:mb-[-20%] lg:mr-[-10%] w-24 h-24 lg:w-1/2 lg:h-1/2 ${block.theme}`"
           />
         </div>
       </template>
 
       <template v-slot:right>
         <div :class="{ 'mt-8': block.heading }">
-          <BaseHeading v-if="block.heading" class="text-primary-dark font-bold mb-6" size="h3">
+          <BaseHeading
+            v-if="block.heading"
+            class="text-primary-dark font-bold mb-6"
+            size="h3"
+          >
             {{ block.heading }}
           </BaseHeading>
 
