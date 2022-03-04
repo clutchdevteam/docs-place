@@ -1,5 +1,10 @@
 <template>
-  <img :src="src" :alt="alt" loading="lazy" />
+  <img
+    :src="src"
+    :alt="alt"
+    sizes="sm:200px md:400px lg:800px"
+    loading="lazy"
+  />
 </template>
 
 <script>

@@ -23,6 +23,7 @@
     "wicg-inert": "^3.1.1"
   },
   "devDependencies": {
+    "@nuxt/image": "^0.6.2",
     "@nuxtjs/storybook": "^4.2.0",
     "@nuxtjs/tailwindcss": "^4.2.0",
     "postcss": "^8.3.5"
