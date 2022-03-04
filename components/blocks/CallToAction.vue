@@ -12,7 +12,7 @@
       class="base-wrapper flex flex-col justify-center lg:items-center opacity-100 z-10"
     >
       <p
-        class="text-2xl leading-9 text-left font-bold w-3/4 text-white mb-16 lg:text-4xl lg:leading-normal lg:max-w-2xl lg:text-center lg:leading-normal"
+        class="text-2xl leading-9 text-left font-bold w-3/4 text-white mb-16 lg:text-4xl lg:leading-normal lg:max-w-2xl lg:text-center"
       >
         {{ block.text }}
       </p>

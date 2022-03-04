@@ -8,6 +8,7 @@ export const state = () => ({
   footer: {
     footerNav: [],
     logo: null,
+    footerCTA: {},
   },
 });
 
@@ -28,5 +29,6 @@ export const mutations = {
 
     state.footer.footerNav = globals?.footer[0]?.footerNav;
     state.footer.logo = globals?.footer[0]?.logo;
+    state.footer.footerCTA = globals?.footer[0]?.footerCTA[0];
   },
 };
