@@ -2,7 +2,7 @@
   <section class="w-full overflow-y-hidden">
     <div class="flex flex-col lg:grid lg:grid-cols-2 h-full items-center">
       <div class="mb-10 py-10 lg:py-0">
-        <div class="lg:w-3/4 lg:w-1/2 mx-auto px-4 lg:px-0">
+        <div class="lg:w-3/4 mx-auto px-4 lg:px-0">
           <div class="mb-8">
             <BaseHeading
               class="font-bold text-primary-dark mb-4"
