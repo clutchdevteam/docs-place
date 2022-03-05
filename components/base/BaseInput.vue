@@ -17,38 +17,38 @@
 </template>
 
 <script>
-export default {
-  inheritAttrs: false,
-  model: {
-    prop: 'value',
-    event: 'input',
-  },
-  props: {
-    type: {
-      type: String,
-      default: 'text',
-      validator: (value) => {
-        const validProps = ['text', 'email', 'tel', 'url', 'search', 'password'];
-        return validProps.includes(value);
+  export default {
+    inheritAttrs: false,
+    model: {
+      prop: 'value',
+      event: 'input',
+    },
+    props: {
+      type: {
+        type: String,
+        default: 'text',
+        validator: (value) => {
+          const validProps = ['text', 'email', 'tel', 'url', 'search', 'password']
+          return validProps.includes(value)
+        },
+      },
+      placeholder: {
+        type: String,
+        default: '',
+      },
+      required: {
+        type: Boolean,
+        default: false,
       },
     },
-    placeholder: {
-      type: String,
-      default: '',
+    computed: {
+      id() {
+        return this._uid
+      },
+      listeners() {
+        const { input, ...listeners } = this.$listeners
+        return listeners
+      },
     },
-    required: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  computed: {
-    id() {
-      return this._uid;
-    },
-    listeners() {
-      const { input, ...listeners } = this.$listeners;
-      return listeners;
-    },
-  },
-};
+  }
 </script>

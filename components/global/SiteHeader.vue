@@ -6,12 +6,7 @@
   >
     <div class="bg-secondary-light p-4 z-50">
       <BaseLink href="/" :inert="isMobileMenuOpen">
-        <BaseImage
-          class="w-16 lg:w-20"
-          v-if="logo"
-          :src="logo.filename"
-          :alt="logo.alt"
-        />
+        <BaseImage class="w-16 lg:w-20" v-if="logo" :src="logo.filename" :alt="logo.alt" />
       </BaseLink>
     </div>
 
@@ -67,9 +62,7 @@
         <Portal to="mobile-menu">
           <div
             :class="`z-[52] fixed lg:hidden inset-0 bg-black transition duration-150 ${
-              isMobileMenuOpen
-                ? 'bg-opacity-75'
-                : 'bg-opacity-0 pointer-events-none'
+              isMobileMenuOpen ? 'bg-opacity-75' : 'bg-opacity-0 pointer-events-none'
             }`"
             :inert="!isMobileMenuOpen"
             @keydown.esc="closeMenu"
@@ -87,17 +80,11 @@
                   type="button"
                 >
                   <span class="sr-only">Close menu</span>
-                  <BaseIcon
-                    class="w-6 h-6"
-                    file="close-icon"
-                    alt="Close menu"
-                  />
+                  <BaseIcon class="w-6 h-6" file="close-icon" alt="Close menu" />
                 </button>
               </div>
 
-              <div
-                class="flex flex-col justify-between h-screen w-full bg-white"
-              >
+              <div class="flex flex-col justify-between h-screen w-full bg-white">
                 <nav class="text-primary-dark" role="navigation">
                   <ul>
                     <li v-for="menu in nav" :key="menu.id">
@@ -112,11 +99,7 @@
 
                 <div class="px-3 py-6">
                   <BaseLink href="/">
-                    <BaseImage
-                      v-if="logo"
-                      :src="logo.filename"
-                      :alt="logo.alt"
-                    />
+                    <BaseImage v-if="logo" :src="logo.filename" :alt="logo.alt" />
                   </BaseLink>
                 </div>
               </div>
@@ -129,63 +112,63 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
-import { Portal } from "portal-vue";
+  import { mapState } from 'vuex'
+  import { Portal } from 'portal-vue'
 
-export default {
-  components: {
-    Portal,
-  },
-  props: {
-    nav: {
-      type: Array,
-      required: true,
+  export default {
+    components: {
+      Portal,
     },
-    logo: {
-      type: Object,
-      required: true,
-      default: () => {},
+    props: {
+      nav: {
+        type: Array,
+        required: true,
+      },
+      logo: {
+        type: Object,
+        required: true,
+        default: () => {},
+      },
+      contact: {
+        type: Array,
+        default: () => [],
+      },
     },
-    contact: {
-      type: Array,
-      default: () => [],
+    computed: {
+      ...mapState('global', ['isMobileMenuOpen', 'pageHasModalOpen']),
+      isHomePage() {
+        return this.$route.fullPath === '/'
+      },
     },
-  },
-  computed: {
-    ...mapState("global", ["isMobileMenuOpen", "pageHasModalOpen"]),
-    isHomePage() {
-      return this.$route.fullPath === "/";
+    watch: {
+      $route(to, from) {
+        this.closeMenu()
+      },
     },
-  },
-  watch: {
-    $route(to, from) {
-      this.closeMenu();
-    },
-  },
-  methods: {
-    async openMobileMenu() {
-      await this.$store.commit("global/isMobileMenuOpen", true);
-      await this.$nextTick();
-      await this.$nextTick();
+    methods: {
+      async openMobileMenu() {
+        await this.$store.commit('global/isMobileMenuOpen', true)
+        await this.$nextTick()
+        await this.$nextTick()
 
-      this.$refs.closeButtonRef?.focus();
+        this.$refs.closeButtonRef?.focus()
+      },
+      async closeMenu(e) {
+        console.log(e)
+        await this.$store.commit('global/isMobileMenuOpen', false)
+        await this.$nextTick()
+        await this.$nextTick()
+      },
     },
-    async closeMenu(e) {
-      console.log(e);
-      await this.$store.commit("global/isMobileMenuOpen", false);
-      await this.$nextTick();
-      await this.$nextTick();
-    },
-  },
-};
+  }
 </script>
 
 <style lang="postcss">
-nav ul li div a {
-  @apply uppercase font-semibold tracking-wider;
-}
+  nav ul li div a {
+    @apply uppercase font-semibold tracking-wider;
+  }
 
-.nuxt-link-exact-active {
-  @apply border-primary-light opacity-100;
-}
+  .nuxt-link-exact-active {
+    @apply border-primary-light opacity-100;
+  }
 </style>

@@ -1,6 +1,6 @@
 export default {
   title: 'Base components/Two Column Layout',
-};
+}
 
 export const Default = (args) => ({
   template: `
@@ -14,4 +14,4 @@ export const Default = (args) => ({
       </template>
     </BaseTwoCol>
   `,
-});
+})

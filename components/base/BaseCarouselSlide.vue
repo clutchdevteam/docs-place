@@ -1,8 +1,8 @@
 <script>
-/**
- * A slide inside a `BaseSlider` component.
- */
-export default {};
+  /**
+   * A slide inside a `BaseSlider` component.
+   */
+  export default {}
 </script>
 
 <template>

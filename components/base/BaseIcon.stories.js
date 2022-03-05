@@ -1,12 +1,12 @@
 export default {
   title: 'Base components/Icon',
-};
+}
 
 export const Default = (args) => ({
   props: Object.keys(args),
   template:
     '<div class="relative w-12 h-12 ml-32 mt-24"><BaseIcon v-bind="$props" :class="color" /></div>',
-});
+})
 
 Default.argTypes = {
   file: {
@@ -29,10 +29,10 @@ Default.argTypes = {
       ],
     },
   },
-};
+}
 
 Default.args = {
   file: 'address-icon',
   alt: 'Icon alt text',
   color: 'text-primary-dark',
-};
+}

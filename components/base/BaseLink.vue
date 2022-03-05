@@ -9,21 +9,21 @@
 </template>
 
 <script>
-export default {
-  inheritAttrs: false,
-  props: {
-    href: {
-      type: String,
-      required: true,
+  export default {
+    inheritAttrs: false,
+    props: {
+      href: {
+        type: String,
+        required: true,
+      },
+      external: {
+        type: Boolean,
+        default: false,
+      },
+      classes: {
+        type: String,
+        default: '',
+      },
     },
-    external: {
-      type: Boolean,
-      default: false,
-    },
-    classes: {
-      type: String,
-      default: '',
-    },
-  },
-};
+  }
 </script>

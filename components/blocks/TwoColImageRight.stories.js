@@ -1,8 +1,8 @@
-import TwoColImageRight from '~/components/blocks/TwoColImageRight';
+import TwoColImageRight from '~/components/blocks/TwoColImageRight'
 export default {
   title: 'Blocks/Two column image right',
   component: TwoColImageRight,
-};
+}
 
 export const Default = (args) => ({
   props: Object.keys(args),
@@ -11,11 +11,11 @@ export const Default = (args) => ({
   },
   computed: {
     block() {
-      return { ...args };
+      return { ...args }
     },
   },
   template: '<TwoColImageRight :block="block" />',
-});
+})
 
 Default.argTypes = {
   heading: {
@@ -33,7 +33,7 @@ Default.argTypes = {
       options: ['primary', 'secondary'],
     },
   },
-};
+}
 
 Default.args = {
   heading: 'Our Program',
@@ -46,4 +46,4 @@ Default.args = {
     filename: 'https://a.storyblok.com/f/145554/2048x1536/fef3c72a29/img_3691.JPEG',
   },
   button: [],
-};
+}
