@@ -10,7 +10,12 @@
       </h2>
 
       <div>
-        <BaseButton> {{ block.button[0].btnText }} </BaseButton>
+        <BaseButton
+          :href="block.button[0].link.cached_url"
+          class="w-full lg:w-auto"
+        >
+          {{ block.button[0].btnText }}
+        </BaseButton>
       </div>
     </div>
   </section>

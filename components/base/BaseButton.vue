@@ -1,9 +1,14 @@
 <template>
-  <nuxt-link :class="`btn btn-${theme}`" v-if="href" :to="href">
+  <nuxt-link :class="`btn btn-${theme}`" class="block" v-if="href" :to="href">
     <slot />
   </nuxt-link>
 
-  <button v-else :class="`btn btn-${theme}`" :type="type" @click="$emit('click')">
+  <button
+    v-else
+    :class="`btn btn-${theme}`"
+    :type="type"
+    @click="$emit('click')"
+  >
     <slot />
   </button>
 </template>
@@ -13,11 +18,11 @@ export default {
   props: {
     type: {
       type: String,
-      default: 'button',
+      default: "button",
     },
     theme: {
       type: String,
-      default: 'primary',
+      default: "primary",
     },
     href: {
       type: String,
