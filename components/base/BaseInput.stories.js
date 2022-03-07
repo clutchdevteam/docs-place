@@ -1,17 +1,17 @@
 export default {
-  title: "Base components/Input",
-};
+  title: 'Base components/Input',
+}
 
 export const Default = (args) => ({
   props: Object.keys(args),
   data() {
     return {
-      value: "",
-    };
+      value: '',
+    }
   },
   computed: {
     label() {
-      return this.default;
+      return this.default
     },
   },
   template: `
@@ -22,22 +22,22 @@ export const Default = (args) => ({
     <p class="mt-8">v-model: {{value}}</p>
   </div>
   `,
-});
+})
 
 Default.argTypes = {
   default: {
-    control: "text",
+    control: 'text',
   },
   placeholder: {
-    control: "text",
+    control: 'text',
   },
   required: {
-    control: "boolean",
+    control: 'boolean',
   },
-};
+}
 
 Default.args = {
-  default: "First Name",
-  placeholder: "Enter your first name",
+  default: 'First Name',
+  placeholder: 'Enter your first name',
   required: false,
-};
+}

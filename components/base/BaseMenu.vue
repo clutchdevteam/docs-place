@@ -16,20 +16,20 @@
 </template>
 
 <script>
-export default {
-  props: {
-    menu: {
-      type: Object,
-      required: true,
+  export default {
+    props: {
+      menu: {
+        type: Object,
+        required: true,
+      },
+      depth: {
+        type: Number,
+        required: true,
+      },
+      classes: {
+        type: String,
+        default: '',
+      },
     },
-    depth: {
-      type: Number,
-      required: true,
-    },
-    classes: {
-      type: String,
-      default: '',
-    },
-  },
-};
+  }
 </script>

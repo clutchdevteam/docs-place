@@ -1,16 +1,16 @@
 export default {
   title: 'Blocks/Two column image left',
-};
+}
 
 export const Default = (args) => ({
   props: Object.keys(args),
   computed: {
     block() {
-      return { ...args };
+      return { ...args }
     },
   },
   template: '<TwoColImageLeft :block="block" />',
-});
+})
 
 Default.argTypes = {
   heading: {
@@ -28,7 +28,7 @@ Default.argTypes = {
       options: ['primary', 'secondary'],
     },
   },
-};
+}
 
 Default.args = {
   heading: 'Accommodations & Living',
@@ -41,4 +41,4 @@ Default.args = {
     filename: 'https://a.storyblok.com/f/145554/2048x1536/fef3c72a29/img_3691.JPEG',
   },
   button: [],
-};
+}

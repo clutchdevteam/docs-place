@@ -112,62 +112,63 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
-import { Portal } from 'portal-vue';
+  import { mapState } from 'vuex'
+  import { Portal } from 'portal-vue'
 
-export default {
-  components: {
-    Portal,
-  },
-  props: {
-    nav: {
-      type: Array,
-      required: true,
+  export default {
+    components: {
+      Portal,
     },
-    logo: {
-      type: Object,
-      required: true,
+    props: {
+      nav: {
+        type: Array,
+        required: true,
+      },
+      logo: {
+        type: Object,
+        required: true,
+        default: () => {},
+      },
+      contact: {
+        type: Array,
+        default: () => [],
+      },
     },
-    contact: {
-      type: Array,
-      default: () => [],
+    computed: {
+      ...mapState('global', ['isMobileMenuOpen', 'pageHasModalOpen']),
+      isHomePage() {
+        return this.$route.fullPath === '/'
+      },
     },
-  },
-  computed: {
-    ...mapState('global', ['isMobileMenuOpen', 'pageHasModalOpen']),
-    isHomePage() {
-      return this.$route.fullPath === '/';
+    watch: {
+      $route(to, from) {
+        this.closeMenu()
+      },
     },
-  },
-  watch: {
-    $route(to, from) {
-      this.closeMenu();
-    },
-  },
-  methods: {
-    async openMobileMenu() {
-      await this.$store.commit('global/isMobileMenuOpen', true);
-      await this.$nextTick();
-      await this.$nextTick();
+    methods: {
+      async openMobileMenu() {
+        await this.$store.commit('global/isMobileMenuOpen', true)
+        await this.$nextTick()
+        await this.$nextTick()
 
-      this.$refs.closeButtonRef?.focus();
+        this.$refs.closeButtonRef?.focus()
+      },
+      async closeMenu(e) {
+        console.log(e)
+        await this.$store.commit('global/isMobileMenuOpen', false)
+        await this.$nextTick()
+        await this.$nextTick()
+      },
     },
-    async closeMenu(e) {
-      console.log(e);
-      await this.$store.commit('global/isMobileMenuOpen', false);
-      await this.$nextTick();
-      await this.$nextTick();
-    },
-  },
-};
+  }
 </script>
 
 <style lang="postcss">
-nav ul li div a {
-  @apply uppercase font-semibold tracking-wider;
-}
+  nav ul li div a {
+    @apply uppercase font-semibold tracking-wider;
+  }
 
-.nuxt-link-exact-active {
-  @apply border-primary-light opacity-100;
-}
+  .nuxt-link-exact-active {
+    @apply border-primary-light opacity-100;
+  }
 </style>

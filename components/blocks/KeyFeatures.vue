@@ -10,18 +10,18 @@
 </template>
 
 <script>
-import Feature from "~/components/atoms/Feature";
+  import Feature from '~/components/atoms/Feature'
 
-export default {
-  name: "KeyFeatures",
-  components: {
-    Feature,
-  },
-  props: {
-    block: {
-      type: Object,
-      required: true,
+  export default {
+    name: 'KeyFeatures',
+    components: {
+      Feature,
     },
-  },
-};
+    props: {
+      block: {
+        type: Object,
+        required: true,
+      },
+    },
+  }
 </script>

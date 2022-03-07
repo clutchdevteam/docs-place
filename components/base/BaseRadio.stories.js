@@ -1,20 +1,20 @@
 export default {
-  title: "Base components/Radio",
-};
+  title: 'Base components/Radio',
+}
 
 export const Basic = (args) => ({
   props: Object.keys(args),
   data() {
     return {
-      groupValue: "value1",
-    };
+      groupValue: 'value1',
+    }
   },
   computed: {
     label1() {
-      return this.label1Override ?? `${this.default} 1`;
+      return this.label1Override ?? `${this.default} 1`
     },
     label2() {
-      return this.label2Override ?? `${this.default} 2`;
+      return this.label2Override ?? `${this.default} 2`
     },
   },
   template: `
@@ -33,12 +33,12 @@ export const Basic = (args) => ({
       </div>
     </BaseContainer>
   `,
-});
+})
 
 Basic.argTypes = {
   // Slots
   default: {
-    control: "text",
+    control: 'text',
   },
   button: {
     control: null,
@@ -48,52 +48,52 @@ Basic.argTypes = {
     control: null,
   },
   disabled: {
-    control: "boolean",
+    control: 'boolean',
   },
   // Events
   change: {
-    action: "change",
+    action: 'change',
     table: {
-      category: "events",
+      category: 'events',
     },
   },
-};
+}
 
 Basic.args = {
   // Slots
-  default: "Option",
+  default: 'Option',
   button: undefined,
   // Props
   value: undefined,
   disabled: false,
-};
+}
 
-export const Multiline = Basic.bind({});
+export const Multiline = Basic.bind({})
 
 Multiline.argTypes = {
   label1Override: {
-    control: "text",
+    control: 'text',
     table: {
-      category: "story",
+      category: 'story',
     },
   },
   label2Override: {
-    control: "text",
+    control: 'text',
     table: {
-      category: "story",
+      category: 'story',
     },
   },
   ...Basic.argTypes,
   default: {
     control: null,
   },
-};
+}
 
 Multiline.args = {
   label1Override:
-    "<b>Jackie Lubrano</b><br>\n12033 Kearsarge St<br>\nLos Angeles, CA, 90049<br>\nUnited States",
+    '<b>Jackie Lubrano</b><br>\n12033 Kearsarge St<br>\nLos Angeles, CA, 90049<br>\nUnited States',
   label2Override:
-    "<b>Carolyn Kaufman</b><br>\n3077 Rivermont Rd<br>\nChattanooga, TN, 37415<br>\nUnited States",
+    '<b>Carolyn Kaufman</b><br>\n3077 Rivermont Rd<br>\nChattanooga, TN, 37415<br>\nUnited States',
   ...Basic.args,
   default: undefined,
-};
+}

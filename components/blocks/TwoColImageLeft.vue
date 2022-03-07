@@ -12,11 +12,7 @@
 
       <template v-slot:right>
         <div :class="{ 'mt-8': block.heading }">
-          <BaseHeading
-            v-if="block.heading"
-            class="text-primary-dark font-bold mb-6"
-            size="h3"
-          >
+          <BaseHeading v-if="block.heading" class="text-primary-dark font-bold mb-6" size="h3">
             {{ block.heading }}
           </BaseHeading>
 
@@ -30,26 +26,26 @@
 </template>
 
 <script>
-export default {
-  props: {
-    block: {
-      type: Object,
-      required: true,
+  export default {
+    props: {
+      block: {
+        type: Object,
+        required: true,
+      },
     },
-  },
-};
+  }
 </script>
 
 <style lang="postcss" scoped>
-.decor-square {
-  mix-blend-mode: multiply;
+  .decor-square {
+    mix-blend-mode: multiply;
 
-  &.primary {
-    @apply bg-primary-light;
-  }
+    &.primary {
+      @apply bg-primary-light;
+    }
 
-  &.secondary {
-    @apply bg-secondary-light;
+    &.secondary {
+      @apply bg-secondary-light;
+    }
   }
-}
 </style>

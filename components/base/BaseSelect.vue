@@ -23,30 +23,30 @@
 </template>
 
 <script>
-export default {
-  inheritAttrs: false,
-  props: {
-    options: {
-      type: Array,
-      required: true,
+  export default {
+    inheritAttrs: false,
+    props: {
+      options: {
+        type: Array,
+        required: true,
+      },
+      isRequired: {
+        type: Boolean,
+        default: false,
+      },
+      disabled: {
+        type: Boolean,
+        default: false,
+      },
     },
-    isRequired: {
-      type: Boolean,
-      default: false,
+    computed: {
+      ui() {
+        return this._uid
+      },
+      listeners() {
+        const { input, ...listeners } = this.$listeners
+        return listeners
+      },
     },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-  },
-  computed: {
-    ui() {
-      return this._uid;
-    },
-    listeners() {
-      const { input, ...listeners } = this.$listeners;
-      return listeners;
-    },
-  },
-};
+  }
 </script>

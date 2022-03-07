@@ -2,10 +2,7 @@
   <footer class="py-12 bg-gray-light border-t-4 border-primary-light">
     <div class="flex flex-col items-center space-y-10">
       <div class="w-44">
-        <BaseImage
-          :src="footerContent.logo.filename"
-          :alt="footerContent.logo.alt"
-        />
+        <BaseImage :src="footerContent.logo.filename" :alt="footerContent.logo.alt" />
       </div>
 
       <nav class="uppercase text-primary-dark font-bold lg:text-lg">
@@ -13,11 +10,9 @@
           class="flex flex-col lg:flex-row text-center lg:text-left space-y-8 lg:space-x-12 lg:space-y-0"
         >
           <li v-for="menu in footerContent.footerNav" :key="menu.id">
-            <BaseLink
-              classes="border-b-2 border-transparent p-1"
-              :href="menu.slug.cached_url"
-              >{{ menu.title }}</BaseLink
-            >
+            <BaseLink classes="border-b-2 border-transparent p-1" :href="menu.slug.cached_url">{{
+              menu.title
+            }}</BaseLink>
           </li>
         </ul>
       </nav>
@@ -43,23 +38,23 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+  import { mapState } from 'vuex'
 
-export default {
-  props: {
-    footerContent: {
-      type: Object,
-      required: true,
+  export default {
+    props: {
+      footerContent: {
+        type: Object,
+        required: true,
+      },
     },
-  },
-  computed: {
-    ...mapState("global", ["contact"]),
-  },
-};
+    computed: {
+      ...mapState('global', ['contact']),
+    },
+  }
 </script>
 
 <style lang="postcss" scoped>
-.nuxt-link-exact-active {
-  @apply border-primary-light;
-}
+  .nuxt-link-exact-active {
+    @apply border-primary-light;
+  }
 </style>
