@@ -14,6 +14,7 @@
 </template>
 
 <script>
+
 export default {
   props: {
     type: {
@@ -30,34 +31,35 @@ export default {
     },
   },
 };
+
 </script>
 
 <style lang="postcss" scoped>
-.btn {
-  @apply uppercase px-8 py-2 font-semibold text-center;
+  .btn {
+    @apply uppercase px-8 py-2 font-semibold text-center;
 
-  &.btn-primary {
-    @apply bg-secondary-light text-white;
+    &.btn-primary {
+      @apply bg-secondary-light text-white;
 
-    &:hover {
-      @apply bg-secondary-dark;
+      &:hover {
+        @apply bg-secondary-dark;
+      }
+    }
+
+    &.btn-secondary {
+      @apply bg-primary-dark text-white;
+
+      &:hover {
+        @apply bg-primary-darker;
+      }
+    }
+
+    &.btn-outline {
+      @apply border-2 border-primary-dark text-primary-dark;
+
+      &:hover {
+        @apply bg-primary-light text-white;
+      }
     }
   }
-
-  &.btn-secondary {
-    @apply bg-primary-dark text-white;
-
-    &:hover {
-      @apply bg-primary-darker;
-    }
-  }
-
-  &.btn-outline {
-    @apply border-2 border-primary-dark text-primary-dark;
-
-    &:hover {
-      @apply bg-primary-light text-white;
-    }
-  }
-}
 </style>

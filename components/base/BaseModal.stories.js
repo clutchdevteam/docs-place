@@ -1,11 +1,11 @@
-import Vue from "vue";
-import PortalVue from "portal-vue";
+import Vue from 'vue'
+import PortalVue from 'portal-vue'
 
-Vue.use(PortalVue);
+Vue.use(PortalVue)
 
 export default {
-  title: "Base components/Modal",
-};
+  title: 'Base components/Modal',
+}
 
 export const Default = (args) => ({
   template: `
@@ -17,4 +17,4 @@ export const Default = (args) => ({
     
     <portal-target name='modal'></portal-target>
   </div>`,
-});
+})

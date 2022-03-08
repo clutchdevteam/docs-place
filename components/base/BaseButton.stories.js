@@ -1,22 +1,22 @@
 export default {
   title: 'Base components/Button',
-};
+}
 
 export const Default = (args) => ({
   props: Object.keys(args),
   data() {
     return {
       clicked: 0,
-    };
+    }
   },
   computed: {
     buttonText() {
-      return this.default;
+      return this.default
     },
   },
   methods: {
     handleClick() {
-      this.clicked++;
+      this.clicked++
     },
   },
   template: `
@@ -25,7 +25,7 @@ export const Default = (args) => ({
     
     <p class="mt-12">Clicked: {{clicked}}</p>
   </div>`,
-});
+})
 
 Default.argTypes = {
   default: {
@@ -43,10 +43,10 @@ Default.argTypes = {
       options: ['primary', 'secondary', 'outline'],
     },
   },
-};
+}
 
 Default.args = {
   default: 'Click me',
   theme: 'primary',
   type: 'button',
-};
+}

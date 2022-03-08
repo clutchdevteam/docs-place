@@ -8,9 +8,7 @@
       :alt="block.background_image.alt"
     />
 
-    <div
-      class="base-wrapper flex flex-col justify-center lg:items-center opacity-100 z-10"
-    >
+    <div class="base-wrapper flex flex-col justify-center lg:items-center opacity-100 z-10">
       <h2
         :class="`leading-9 text-left font-bold text-white lg:text-center lg:leading-normal ${headingSize}`"
       >
@@ -26,19 +24,19 @@
 </template>
 
 <script>
-export default {
-  props: {
-    block: {
-      type: Object,
-      required: true,
+  export default {
+    props: {
+      block: {
+        type: Object,
+        required: true,
+      },
     },
-  },
-  computed: {
-    headingSize() {
-      return this.block.headingSize === "large"
-        ? "text-2xl lg:text-4xl lg:max-w-2xl  mb-12"
-        : "text-lg mb-8";
+    computed: {
+      headingSize() {
+        return this.block.headingSize === 'large'
+          ? 'text-2xl lg:text-4xl lg:max-w-2xl  mb-12'
+          : 'text-lg mb-8'
+      },
     },
-  },
-};
+  }
 </script>

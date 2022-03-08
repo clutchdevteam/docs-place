@@ -19,52 +19,52 @@
 </template>
 
 <script>
-import { mapState } from 'vuex';
+  import { mapState } from 'vuex'
 
-export default {
-  computed: {
-    ...mapState('global', [
-      'pageHasModalOpen',
-      'isMobileMenuOpen',
-      'mainNav',
-      'logo',
-      'footer',
-      'contact',
-    ]),
-    hasOpenMenu() {
-      return this.pageHasModalOpen || this.isMobileMenuOpen;
+  export default {
+    computed: {
+      ...mapState('global', [
+        'pageHasModalOpen',
+        'isMobileMenuOpen',
+        'mainNav',
+        'logo',
+        'footer',
+        'contact',
+      ]),
+      hasOpenMenu() {
+        return this.pageHasModalOpen || this.isMobileMenuOpen
+      },
+      isHomePage() {
+        return this.$route.fullPath === '/'
+      },
+      lockScroll() {
+        return this.pageHasModalOpen || this.isMobileMenuOpen
+      },
     },
-    isHomePage() {
-      return this.$route.fullPath === '/';
-    },
-    lockScroll() {
-      return this.pageHasModalOpen || this.isMobileMenuOpen;
-    },
-  },
-};
+  }
 </script>
 
 <style lang="postcss" scoped>
-body {
-  overflow-x: hidden;
-  margin: 0;
-}
+  body {
+    overflow-x: hidden;
+    margin: 0;
+  }
 
-.site-wrapper {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-}
+  .site-wrapper {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
 
-header,
-footer {
-  flex-grow: 0;
-}
+  header,
+  footer {
+    flex-grow: 0;
+  }
 
-main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 1;
-}
+  main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+  }
 </style>

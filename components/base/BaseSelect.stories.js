@@ -1,17 +1,17 @@
 export default {
-  title: "Base components/Select",
-};
+  title: 'Base components/Select',
+}
 
 export const Default = (args) => ({
   props: Object.keys(args),
   data() {
     return {
-      selectValue: "",
-    };
+      selectValue: '',
+    }
   },
   computed: {
     label() {
-      return this.default;
+      return this.default
     },
   },
   template: `
@@ -20,39 +20,39 @@ export const Default = (args) => ({
     <p class="mt-12">v-model: {{selectValue}}</p>
   </div>
   `,
-});
+})
 
 Default.argTypes = {
   default: {
-    control: "text",
+    control: 'text',
   },
   options: {
-    control: "object",
+    control: 'object',
   },
   isRequired: {
-    control: "boolean",
+    control: 'boolean',
   },
   disabled: {
-    control: "boolean",
+    control: 'boolean',
   },
-};
+}
 
 Default.args = {
-  default: "Select your state",
+  default: 'Select your state',
   options: [
     {
       id: 1,
-      title: "Georgia",
+      title: 'Georgia',
     },
     {
       id: 2,
-      title: "Alabama",
+      title: 'Alabama',
     },
     {
       id: 3,
-      title: "Florida",
+      title: 'Florida',
     },
   ],
   isRequired: false,
   disabled: false,
-};
+}

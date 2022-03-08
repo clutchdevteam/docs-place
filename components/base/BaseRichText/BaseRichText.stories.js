@@ -1,17 +1,17 @@
 export default {
   title: 'Base components/Rich text',
-};
+}
 
 export const Default = (args) => ({
   props: Object.keys(args),
   template: '<BaseRichText v-bind="$props" />',
-});
+})
 
 Default.argTypes = {
   content: {
     control: 'object',
   },
-};
+}
 
 Default.args = {
   content: {
@@ -217,4 +217,4 @@ Default.args = {
       },
     ],
   },
-};
+}

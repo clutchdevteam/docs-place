@@ -46,7 +46,8 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+  import { mapState } from 'vuex'
+
 
 import FooterCallToAction from "~/components/blocks/FooterCallToAction";
 
@@ -58,16 +59,16 @@ export default {
     footerContent: {
       type: Object,
       required: true,
+
     },
-  },
-  computed: {
-    ...mapState("global", ["contact"]),
-  },
-};
+    computed: {
+      ...mapState('global', ['contact']),
+    },
+  }
 </script>
 
 <style lang="postcss" scoped>
-.nuxt-link-exact-active {
-  @apply border-primary-light;
-}
+  .nuxt-link-exact-active {
+    @apply border-primary-light;
+  }
 </style>

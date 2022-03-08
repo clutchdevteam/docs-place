@@ -10,31 +10,25 @@
     <div class="flex flex-col items-center -mt-40 lg:-mt-24 z-20">
       <BaseHeading size="h1" class="text-white">{{ block.title }}</BaseHeading>
       <div>
-        <BaseButton :href="block.btn[0].link.cached_url">{{
-          block.btn[0].btnText
-        }}</BaseButton>
+        <BaseButton :href="block.btn[0].link.cached_url">{{ block.btn[0].btnText }}</BaseButton>
       </div>
     </div>
   </section>
 </template>
 
 <script>
-export default {
-  props: {
-    block: {
-      type: Object,
-      required: true,
+  export default {
+    props: {
+      block: {
+        type: Object,
+        required: true,
+      },
     },
-  },
-};
+  }
 </script>
 
 <style lang="postcss" scoped>
-.overlay {
-  background: linear-gradient(
-    180deg,
-    rgba(11, 54, 105, 0.75) 0%,
-    rgba(0, 212, 255, 0) 32%
-  );
-}
+  .overlay {
+    background: linear-gradient(180deg, rgba(11, 54, 105, 0.75) 0%, rgba(0, 212, 255, 0) 32%);
+  }
 </style>
