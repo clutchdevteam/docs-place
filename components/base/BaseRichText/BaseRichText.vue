@@ -69,10 +69,6 @@
     @apply underline text-secondary-dark;
   }
 
-  p {
-    @apply text-[14px];
-  }
-
   @screen md {
     p {
       @apply text-base;

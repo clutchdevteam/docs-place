@@ -8,8 +8,17 @@
   "Page": {
     "description": "Auto imported from components/Page.vue"
   },
+  "AtomsFeature": {
+    "description": "Auto imported from components/atoms/Feature.vue"
+  },
   "BaseButton": {
     "description": "Auto imported from components/base/BaseButton.vue"
+  },
+  "BaseCarousel": {
+    "description": "Auto imported from components/base/BaseCarousel.vue"
+  },
+  "BaseCarouselSlide": {
+    "description": "Auto imported from components/base/BaseCarouselSlide.vue"
   },
   "BaseHeading": {
     "description": "Auto imported from components/base/BaseHeading.vue"
@@ -53,11 +62,32 @@
   "BaseTwoCol": {
     "description": "Auto imported from components/base/BaseTwoCol.vue"
   },
+  "BlocksCallToAction": {
+    "description": "Auto imported from components/blocks/CallToAction.vue"
+  },
+  "BlocksCarousel": {
+    "description": "Auto imported from components/blocks/Carousel.vue"
+  },
+  "BlocksFooterCallToAction": {
+    "description": "Auto imported from components/blocks/FooterCallToAction.vue"
+  },
+  "BlocksHighlightText": {
+    "description": "Auto imported from components/blocks/HighlightText.vue"
+  },
   "BlocksHomepageHero": {
     "description": "Auto imported from components/blocks/HomepageHero.vue"
   },
-  "BlocksTest": {
-    "description": "Auto imported from components/blocks/Test.vue"
+  "BlocksKeyFeatures": {
+    "description": "Auto imported from components/blocks/KeyFeatures.vue"
+  },
+  "BlocksPageTitle": {
+    "description": "Auto imported from components/blocks/PageTitle.vue"
+  },
+  "BlocksPartnerBio": {
+    "description": "Auto imported from components/blocks/PartnerBio.vue"
+  },
+  "BlocksTitle": {
+    "description": "Auto imported from components/blocks/Title.vue"
   },
   "BlocksTwoColImageLeft": {
     "description": "Auto imported from components/blocks/TwoColImageLeft.vue"
@@ -73,8 +103,5 @@
   },
   "BaseBaseRichTextParagraph": {
     "description": "Auto imported from components/base/BaseRichText/Paragraph.vue"
-  },
-  "SectionsTitle": {
-    "description": "Auto imported from components/sections/Title.vue"
   }
 }
