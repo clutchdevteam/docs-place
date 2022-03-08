@@ -11,7 +11,7 @@
       <Nuxt />
     </main>
 
-    <SiteFooter :footer-content="footer" :inert="hasOpenMenu" />
+    <SiteFooter :footer-content="footer" :contact="contact" :inert="hasOpenMenu" />
 
     <PortalTarget name="modal"></PortalTarget>
     <PortalTarget name="mobile-menu"></PortalTarget>
