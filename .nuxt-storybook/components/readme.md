@@ -10,6 +10,7 @@ You can directly use them in pages and other components without the need to impo
 - `<SiteHeader>` | `<site-header>` (components/global/SiteHeader.vue)
 - `<Page>` | `<page>` (components/Page.vue)
 - `<AtomsFeature>` | `<atoms-feature>` (components/atoms/Feature.vue)
+
 - `<BlocksCallToAction>` | `<blocks-call-to-action>` (components/blocks/CallToAction.vue)
 - `<BlocksCarousel>` | `<blocks-carousel>` (components/blocks/Carousel.vue)
 - `<BlocksFooterCallToAction>` | `<blocks-footer-call-to-action>` (components/blocks/FooterCallToAction.vue)
@@ -18,9 +19,11 @@ You can directly use them in pages and other components without the need to impo
 - `<BlocksKeyFeatures>` | `<blocks-key-features>` (components/blocks/KeyFeatures.vue)
 - `<BlocksPageTitle>` | `<blocks-page-title>` (components/blocks/PageTitle.vue)
 - `<BlocksQuote>` | `<blocks-quote>` (components/blocks/Quote.vue)
+- `<BlocksPartnerBio>` | `<blocks-partner-bio>` (components/blocks/PartnerBio.vue)
 - `<BlocksTitle>` | `<blocks-title>` (components/blocks/Title.vue)
 - `<BlocksTwoColImageLeft>` | `<blocks-two-col-image-left>` (components/blocks/TwoColImageLeft.vue)
 - `<BlocksTwoColImageRight>` | `<blocks-two-col-image-right>` (components/blocks/TwoColImageRight.vue)
+
 - `<BaseButton>` | `<base-button>` (components/base/BaseButton.vue)
 - `<BaseCarousel>` | `<base-carousel>` (components/base/BaseCarousel.vue)
 - `<BaseCarouselSlide>` | `<base-carousel-slide>` (components/base/BaseCarouselSlide.vue)

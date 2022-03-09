@@ -11,6 +11,8 @@ import FooterCallToAction from '~/components/blocks/FooterCallToAction'
 import HighlightText from '~/components/blocks/HighlightText'
 import Carousel from '~/components/blocks/Carousel'
 import Quote from '~/components/blocks/Quote'
+import PartnerBio from '~/components/blocks/PartnerBio'
+
 
 Vue.component('page', Page)
 Vue.component('HomepageHero', HomepageHero)
@@ -24,3 +26,4 @@ Vue.component('FooterCallToAction', FooterCallToAction)
 Vue.component('HighlightText', HighlightText)
 Vue.component('Carousel', Carousel)
 Vue.component('Quote', Quote)
+Vue.component('PartnerBio', PartnerBio)

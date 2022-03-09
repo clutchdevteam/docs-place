@@ -32,6 +32,9 @@
   "BlocksPageTitle": {
     "description": "Auto imported from components/blocks/PageTitle.vue"
   },
+  "BlocksPartnerBio": {
+    "description": "Auto imported from components/blocks/PartnerBio.vue"
+  },
   "BlocksQuote": {
     "description": "Auto imported from components/blocks/Quote.vue"
   },
