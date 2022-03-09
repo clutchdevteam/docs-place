@@ -6,4 +6,5 @@ export default {
   BookIcon: () => import('~/assets/icons/book-icon.svg?inline'),
   PeopleIcon: () => import('~/assets/icons/people-icon.svg?inline'),
   PersonIcon: () => import('~/assets/icons/person-icon.svg?inline'),
+  QuotesIcon: () => import('~/assets/icons/quotes-icon.svg?inline'),
 }
