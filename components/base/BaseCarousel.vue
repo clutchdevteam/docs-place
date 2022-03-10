@@ -7,7 +7,7 @@
       </ul>
     </div>
 
-    <div v-if="hasPagination">
+    <div class="flex justify-center" v-if="hasPagination">
       <div ref="paginationRef" class="swiper-pagination" @click.stop />
     </div>
   </div>

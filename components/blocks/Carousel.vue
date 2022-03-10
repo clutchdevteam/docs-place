@@ -1,5 +1,5 @@
 <template>
-  <section class="base-wrapper my-32 px-4 lg:px-0">
+  <section class="base-wrapper my-24 px-4 lg:px-0">
     <BaseCarousel hasPagination class="slider">
       <BaseCarouselSlide v-for="img in block.images" :key="img.id" class="slide">
         <BaseImage :src="img.filename" :alt="img.alt" />
