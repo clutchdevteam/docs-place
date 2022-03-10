@@ -24,7 +24,8 @@
             v-for="item in contact"
             :key="item.id"
             class="flex items-center opacity-75 hover:opacity-100 p-2"
-            href="#"
+            :href="item.link.url"
+            target="_blank"
           >
             <span class="mr-3 text-primary-light">
               <BaseIcon class="h-5 w-5" :file="item.icon" :alt="item.icon" />
