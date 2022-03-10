@@ -15,7 +15,7 @@
         {{ block.text }}
       </h2>
       <div class="flex flex-col items-center">
-        <BaseButton class="w-full">
+        <BaseButton class="w-full" :href="block.button[0].link.cached_url">
           {{ block.button[0].btnText }}
         </BaseButton>
       </div>
