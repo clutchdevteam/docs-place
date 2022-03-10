@@ -73,7 +73,7 @@ export default {
       {
         hid: 'twitter:image',
         property: 'twitter:image',
-        content: '/og-image.png',
+        content: 'https://docsplacerecover.com/og-image.png',
       },
     ],
     link: [
