@@ -7,6 +7,7 @@ export default {
   dev: process.env.NODE_ENV !== 'production',
 
   env: {
+    STORYBLOK_PREVIEW_API_KEY: process.env.STORYBLOK_PREVIEW_API_KEY,
     STORYBLOK_API_KEY: process.env.STORYBLOK_API_KEY,
     NODE_ENV: process.env.NODE_ENV,
   },
@@ -42,17 +43,18 @@ export default {
     fallback: true,
     crawler: false, // Revisit in the future
     routes: function (callback) {
-      const token = process.env.STORYBLOK_API_KEY
+      const token = isPreview
+        ? process.env.STORYBLOK_PREVIEW_API_KEY
+        : process.env.STORYBLOK_API_KEY
+
       const version = isPreview ? 'draft' : 'published'
       let cacheVersion = 0
       // ignore these files and folders
       const ignoreFiles = ['home', 'global', 'sitefooter']
-      // update to remove docs after docs build!
-      const ignoreFolders = ['authors', 'companies', 'releases']
 
       const routes = ['/']
 
-      const getRoutes = async (ignoreFiles, ignoreFolders) => {
+      const getRoutes = async (ignoreFiles) => {
         axios
           .get(`https://api.storyblok.com/v1/cdn/spaces/me?token=${token}`)
           /* eslint-disable-next-line camelcase */
@@ -66,10 +68,7 @@ export default {
               )
               .then((res) => {
                 Object.keys(res.data.links).forEach((key) => {
-                  if (
-                    !ignoreFiles.includes(res.data.links[key].slug) &&
-                    !ignoreFolders.includes(res.data.links[key].slug.split('/')[0])
-                  ) {
+                  if (!ignoreFiles.includes(res.data.links[key].slug)) {
                     /*
                      * This block isn't pretty but it prevents attempts
                      * to generate the index.html file of folders that don't
@@ -86,7 +85,7 @@ export default {
           })
       }
 
-      getRoutes(ignoreFiles, ignoreFolders)
+      getRoutes(ignoreFiles)
 
       return routes
     },
@@ -118,7 +117,7 @@ export default {
     [
       'storyblok-nuxt',
       {
-        accessToken: process.env.STORYBLOK_API_KEY,
+        accessToken: process.env.STORYBLOK_PREVIEW_API_KEY,
         cacheProvider: 'memory',
       },
     ],
