@@ -38,6 +38,10 @@ export default {
     ],
   },
 
+  router: {
+    trailingSlash: false,
+  },
+
   generate: {
     concurrency: 25,
     fallback: true,
