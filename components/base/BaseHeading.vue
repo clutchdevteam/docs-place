@@ -64,7 +64,7 @@
     }
 
     .h3 {
-      @apply text-4xl;
+      @apply text-3xl;
     }
 
     .h4 {
