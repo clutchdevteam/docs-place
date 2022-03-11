@@ -23,7 +23,7 @@
           <a
             v-for="item in contact"
             :key="item.id"
-            class="flex items-center opacity-75 hover:opacity-100 p-2"
+            class="flex items-center p-2"
             :href="item.link.url"
             target="_blank"
           >

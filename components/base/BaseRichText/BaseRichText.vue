@@ -66,7 +66,7 @@
   }
 
   a {
-    @apply underline text-secondary-dark;
+    @apply underline text-primary-darker font-bold;
   }
 
   @screen md {

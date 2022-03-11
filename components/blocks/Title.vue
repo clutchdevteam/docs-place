@@ -1,6 +1,6 @@
 <template>
   <section class="flex flex-col justify-center items-center base-wrapper mt-20 lg:mt-28">
-    <BaseHeading size="h1" class="text-primary-dark">{{ block.title }}</BaseHeading>
+    <BaseHeading size="h1" tag="h2" class="text-primary-dark">{{ block.title }}</BaseHeading>
 
     <BaseHeading
       size="h3"
