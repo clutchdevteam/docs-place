@@ -30,7 +30,7 @@ export default {
       { name: 'format-detection', content: 'telephone=no' },
       {
         hid: 'og:url',
-        proptery: 'og:url',
+        property: 'og:url',
         content: 'https://www.docsplacerecovery.com',
       },
       {
@@ -51,17 +51,17 @@ export default {
       },
       {
         hid: 'twitter:url',
-        proptery: 'twitter:url',
-        content: 'https://www.docsplacerecovery.com',
+        name: 'twitter:url',
+        content: 'https://docsplacerecovery.com/og-image.png',
       },
       {
         hid: 'twitter:title',
-        property: 'twitter:title',
+        name: 'twitter:title',
         content: 'A Residential Recovery for Men.',
       },
       {
         hid: 'twitter:description',
-        property: 'twitter:description',
+        name: 'twitter:description',
         content:
           'Doc’s Place is a long-term residential Drug and Alcohol Rehabilitation Program designed to help men recover from substance abuse and/or alcoholism.',
       },
@@ -72,8 +72,8 @@ export default {
       },
       {
         hid: 'twitter:image',
-        property: 'twitter:image',
-        content: 'https://docsplacerecover.com/og-image.png',
+        name: 'twitter:image',
+        content: 'https://docsplacerecovery.com/og-image.png',
       },
     ],
     link: [
