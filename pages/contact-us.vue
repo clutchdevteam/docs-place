@@ -15,6 +15,7 @@
 
           <form class="relative flex flex-col" @submit.prevent="handleSubmit">
             <input class="hidden" type="hidden" name="form-name" value="contact" />
+
             <BaseInput class="mb-4" v-model="form.name" name="name" required>Name</BaseInput>
 
             <BaseInput class="mb-4" v-model="form.email" name="email" type="email" required>
