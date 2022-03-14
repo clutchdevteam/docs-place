@@ -10,25 +10,25 @@ export const state = () => ({
     logo: null,
     footerCTA: {},
   },
-});
+})
 
 export const mutations = {
   isMobileMenuOpen(state, isMenuOpen) {
-    state.isMobileMenuOpen = isMenuOpen;
+    state.isMobileMenuOpen = isMenuOpen
   },
   isModalOpen(state, isModalOpen) {
-    state.pageHasModalOpen = isModalOpen;
+    state.pageHasModalOpen = isModalOpen
   },
   isLoaded(state, isLoaded) {
-    state.loaded = isLoaded;
+    state.loaded = isLoaded
   },
   setGlobals(state, globals) {
-    state.mainNav = globals.mainNav;
-    state.logo = globals.Logo;
-    state.contact = globals.contact;
+    state.mainNav = globals.mainNav
+    state.logo = globals.logo
+    state.contact = globals.contact
 
-    state.footer.footerNav = globals?.footer[0]?.footerNav;
-    state.footer.logo = globals?.footer[0]?.logo;
-    state.footer.footerCTA = globals?.footer[0]?.footerCTA[0];
+    state.footer.footerNav = globals?.footer[0]?.footerNav
+    state.footer.logo = globals?.footer[0]?.logo
+    state.footer.footerCTA = globals?.footer[0]?.footerCTA[0]
   },
-};
+}
