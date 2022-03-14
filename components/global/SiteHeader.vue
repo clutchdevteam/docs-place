@@ -155,7 +155,6 @@
         this.$refs.closeButtonRef?.focus()
       },
       async closeMenu(e) {
-        console.log(e)
         await this.$store.commit('global/isMobileMenuOpen', false)
         await this.$nextTick()
         await this.$nextTick()
