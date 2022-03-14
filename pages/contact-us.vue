@@ -13,13 +13,7 @@
             </BaseText>
           </div>
 
-          <form
-            class="relative flex flex-col"
-            name="contact"
-            @submit.prevent="handleSubmit"
-            data-netlify="true"
-            data-netlify-honeypot="bot-field"
-          >
+          <form class="relative flex flex-col" name="contact" @submit.prevent="handleSubmit">
             <input class="hidden" type="hidden" name="form-name" value="contact" />
             <BaseInput class="mb-4" v-model="form.name" name="name" required>Name</BaseInput>
 
