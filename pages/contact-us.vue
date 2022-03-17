@@ -202,7 +202,7 @@
 
   @media (min-width: 768px) {
     section {
-      height: calc(100vh - 74.95px);
+      height: calc(100vh - 79.61px);
     }
   }
 </style>
