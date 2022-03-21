@@ -26,7 +26,7 @@ export default {
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
+      { hid: 'description', name: 'description', content: "Doc’s Place is a long-term residential Drug and Alcohol Rehabilitation Program designed to help men recover from substance abuse and/or alcoholism." },
       { name: 'format-detection', content: 'telephone=no' },
       {
         hid: 'og:url',
