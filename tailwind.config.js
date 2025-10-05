@@ -6,7 +6,7 @@ module.exports = {
     },
     extend: {
       fontFamily: {
-        display: ['Hind', '-apple-system', 'sans-serif'],
+        display: ['Oswald', '-apple-system', 'sans-serif'],
       },
       colors: {
         // blue

@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
   <button class="open-button" @click="openModal" ref="openButtonRef" type="button">
     <slot name="button" />
     <Portal v-if="isOpen" to="modal">
@@ -70,4 +70,4 @@
     background-color: red;
     color: white;
   }
-</style>
+</style> -->

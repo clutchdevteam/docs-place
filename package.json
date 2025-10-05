@@ -3,29 +3,23 @@
   "version": "1.0.0",
   "private": false,
   "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate",
-    "storybook": "nuxt storybook"
+    "dev": "nuxi dev",
+    "build": "nuxi build",
+    "start": "nuxi start",
+    "generate": "nuxi generate",
+    "preview": "nuxi preview"
   },
   "dependencies": {
-    "@marvr/storyblok-rich-text-types": "^2.0.1",
-    "@marvr/storyblok-rich-text-vue-renderer": "^2.0.1",
-    "@nuxtjs/axios": "^5.13.6",
-    "@nuxtjs/composition-api": "^0.31.0",
-    "@vue/composition-api": "^1.4.6",
-    "core-js": "^3.15.1",
-    "nuxt": "^2.15.7",
-    "portal-vue": "^2.1.7",
-    "storyblok-nuxt": "^2.0.1",
-    "swiper": "6.7.5",
-    "vue-svg-loader": "^0.16.0",
+    "@storyblok/nuxt": "^4.0.0",
+    "@storyblok/richtext": "^2.0.0",
+    "axios": "^1.12.2",
+    "form-data": "^4.0.4",
+    "nuxt": "^3.8.0",
+    "swiper": "^11.0.0",
     "wicg-inert": "^3.1.1"
   },
   "devDependencies": {
-    "@nuxtjs/storybook": "^4.2.0",
-    "@nuxtjs/tailwindcss": "^4.2.0",
-    "postcss": "^8.3.5"
+    "@nuxtjs/tailwindcss": "^6.8.0",
+    "postcss": "^8.4.0"
   }
 }

@@ -1,145 +1,101 @@
-const axios = require('axios')
-const isPreview = process.env.NODE_ENV === 'development'
-
-export default {
+export default defineNuxtConfig({
   // Target: https://go.nuxtjs.dev/config-target
-  target: 'static',
-  dev: process.env.NODE_ENV !== 'production',
-
-  env: {
-    STORYBLOK_PREVIEW_API_KEY: process.env.STORYBLOK_PREVIEW_API_KEY,
-    STORYBLOK_API_KEY: process.env.STORYBLOK_API_KEY,
-    NODE_ENV: process.env.NODE_ENV,
+  ssr: true,
+  compatibilityDate: '2024-10-05',
+  nitro: {
+    prerender: {
+      routes: [],
+    },
   },
 
-  storybook: {
-    port: 4000,
-    stories: ['~/components/**/*.stories.js'],
+  runtimeConfig: {
+    storyblok: {
+      accessToken:
+        process.env.STORYBLOK_PREVIEW_API_KEY ||
+        process.env.STORYBLOK_API_KEY ||
+        'your-preview-token',
+      apiOptions: {
+        region: 'us',
+      },
+    },
+    public: {
+      storyblokApiKey: process.env.STORYBLOK_API_KEY || 'your-published-token',
+      storyblokPreviewApiKey: process.env.STORYBLOK_PREVIEW_API_KEY || 'your-preview-token',
+    },
   },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
-  head: {
-    title: "Doc's Place Recovery",
-    htmlAttrs: {
-      lang: 'en',
+  app: {
+    head: {
+      title: "Doc's Place Recovery",
+      htmlAttrs: {
+        lang: 'en',
+      },
+      meta: [
+        { charset: 'utf-8' },
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+        { hid: 'description', name: 'description', content: '' },
+        { name: 'format-detection', content: 'telephone=no' },
+        {
+          hid: 'og:url',
+          property: 'og:url',
+          content: 'https://www.docsplacerecovery.com',
+        },
+        {
+          hid: 'og:title',
+          property: 'og:title',
+          content: 'A Residential Recovery for Men.',
+        },
+        {
+          hid: 'og:description',
+          property: 'og:description',
+          content:
+            "Doc's Place is a long-term residential Drug and Alcohol Rehabilitation Program designed to help men recover from substance abuse and/or alcoholism.",
+        },
+        {
+          hid: 'og:image',
+          property: 'og:image',
+          content: '/og-image.png',
+        },
+        {
+          hid: 'twitter:url',
+          name: 'twitter:url',
+          content: 'https://docsplacerecovery.com/og-image.png',
+        },
+        {
+          hid: 'twitter:title',
+          name: 'twitter:title',
+          content: 'A Residential Recovery for Men.',
+        },
+        {
+          hid: 'twitter:description',
+          name: 'twitter:description',
+          content:
+            "Doc's Place is a long-term residential Drug and Alcohol Rehabilitation Program designed to help men recover from substance abuse and/or alcoholism.",
+        },
+        {
+          hid: 'twitter:card',
+          name: 'twitter:card',
+          content: 'summary_large_image',
+        },
+        {
+          hid: 'twitter:image',
+          name: 'twitter:image',
+          content: 'https://docsplacerecovery.com/og-image.png',
+        },
+      ],
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        {
+          rel: 'stylesheet',
+          href: 'https://fonts.googleapis.com/css2?family=Hind:wght@400;600;700&display=swap',
+        },
+      ],
     },
-    meta: [
-      { charset: 'utf-8' },
-      { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      { hid: 'description', name: 'description', content: '' },
-      { name: 'format-detection', content: 'telephone=no' },
-      {
-        hid: 'og:url',
-        property: 'og:url',
-        content: 'https://www.docsplacerecovery.com',
-      },
-      {
-        hid: 'og:title',
-        property: 'og:title',
-        content: 'A Residential Recovery for Men.',
-      },
-      {
-        hid: 'og:description',
-        property: 'og:description',
-        content:
-          'Doc’s Place is a long-term residential Drug and Alcohol Rehabilitation Program designed to help men recover from substance abuse and/or alcoholism.',
-      },
-      {
-        hid: 'og:image',
-        property: 'og:image',
-        content: '/og-image.png',
-      },
-      {
-        hid: 'twitter:url',
-        name: 'twitter:url',
-        content: 'https://docsplacerecovery.com/og-image.png',
-      },
-      {
-        hid: 'twitter:title',
-        name: 'twitter:title',
-        content: 'A Residential Recovery for Men.',
-      },
-      {
-        hid: 'twitter:description',
-        name: 'twitter:description',
-        content:
-          'Doc’s Place is a long-term residential Drug and Alcohol Rehabilitation Program designed to help men recover from substance abuse and/or alcoholism.',
-      },
-      {
-        hid: 'twitter:card',
-        name: 'twitter:card',
-        content: 'summary_large_image',
-      },
-      {
-        hid: 'twitter:image',
-        name: 'twitter:image',
-        content: 'https://docsplacerecovery.com/og-image.png',
-      },
-    ],
-    link: [
-      { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-      {
-        rel: 'stylesheet',
-        href: 'https://fonts.googleapis.com/css2?family=Hind:wght@400;600;700&display=swap',
-      },
-    ],
   },
 
   router: {
     trailingSlash: false,
-  },
-
-  generate: {
-    concurrency: 25,
-    fallback: true,
-    crawler: false, // Revisit in the future
-    routes: function (callback) {
-      const token = isPreview
-        ? process.env.STORYBLOK_PREVIEW_API_KEY
-        : process.env.STORYBLOK_API_KEY
-
-      const version = isPreview ? 'draft' : 'published'
-      let cacheVersion = 0
-      // ignore these files and folders
-      const ignoreFiles = ['home', 'global', 'sitefooter']
-
-      const routes = ['/']
-
-      const getRoutes = async (ignoreFiles) => {
-        axios
-          .get(`https://api.storyblok.com/v1/cdn/spaces/me?token=${token}`)
-          /* eslint-disable-next-line camelcase */
-          .then((space_res) => {
-            // timestamp of latest publish
-            cacheVersion = space_res.data.space.version
-            // Call for all Links using the Links API: https://www.storyblok.com/docs/Delivery-Api/Links
-            axios
-              .get(
-                `https://api.storyblok.com/v1/cdn/links?token=${token}&version=${version}&cv=${cacheVersion}`
-              )
-              .then((res) => {
-                Object.keys(res.data.links).forEach((key) => {
-                  if (!ignoreFiles.includes(res.data.links[key].slug)) {
-                    /*
-                     * This block isn't pretty but it prevents attempts
-                     * to generate the index.html file of folders that don't
-                     * have root files in Storyblok. (No index.html.)
-                     */
-                    if (!(res.data.links[key].is_folder && !res.data.links[key].is_startpage)) {
-                      routes.push('/' + res.data.links[key].slug)
-                    }
-                  }
-                })
-
-                callback(null, routes)
-              })
-          })
-      }
-
-      getRoutes(ignoreFiles)
-
-      return routes
-    },
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -156,44 +112,61 @@ export default {
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [
-    // https://go.nuxtjs.dev/tailwindcss
-    '@nuxtjs/tailwindcss',
-  ],
-
-  // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [
-    '@nuxtjs/composition-api/module',
-    '@nuxtjs/axios',
-    [
-      'storyblok-nuxt',
-      {
-        accessToken: process.env.STORYBLOK_PREVIEW_API_KEY,
-        cacheProvider: 'memory',
-      },
-    ],
-    'portal-vue/nuxt',
-  ],
+  modules: ['@nuxtjs/tailwindcss', '@storyblok/nuxt'],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {
-    extend(config, { isClient }) {
-      if (isClient) {
-        config.devtool = 'source-map'
-      }
+  vite: {
+    define: {
+      'process.env.DEBUG': false,
+      global: 'globalThis',
+    },
+    optimizeDeps: {
+      include: ['axios'],
+    },
+    resolve: {
+      alias: {
+        'form-data': 'form-data',
+      },
+    },
+  },
 
-      const svgRule = config.module.rules.find((rule) => rule.test.test('.svg'))
-
-      svgRule.test = /\.(png|jpe?g|gif|webp)$/
-
-      config.module.rules.push({
-        test: /\.svg$/,
-        use: ['babel-loader', 'vue-svg-loader'],
-      })
-
-      config.node = {
-        fs: 'empty',
+  // Generate static routes from Storyblok
+  hooks: {
+    async 'nitro:config'(nitroConfig) {
+      if (nitroConfig.prerender?.routes) {
+        const routes = await getStoryblokRoutes()
+        nitroConfig.prerender.routes.push(...routes)
       }
     },
   },
+})
+
+async function getStoryblokRoutes() {
+  const token = process.env.STORYBLOK_API_KEY
+  const version = 'published'
+  const ignoreFiles = ['home', 'global', 'sitefooter']
+  const routes = ['/']
+
+  try {
+    const spaceResponse = await fetch(`https://api.storyblok.com/v1/cdn/spaces/me?token=${token}`)
+    const spaceData = await spaceResponse.json()
+    const cacheVersion = spaceData.space.version
+
+    const linksResponse = await fetch(
+      `https://api.storyblok.com/v1/cdn/links?token=${token}&version=${version}&cv=${cacheVersion}`
+    )
+    const linksData = await linksResponse.json()
+
+    Object.keys(linksData.links).forEach((key) => {
+      if (!ignoreFiles.includes(linksData.links[key].slug)) {
+        if (!(linksData.links[key].is_folder && !linksData.links[key].is_startpage)) {
+          routes.push('/' + linksData.links[key].slug)
+        }
+      }
+    })
+  } catch (error) {
+    console.error('Error fetching Storyblok routes:', error)
+  }
+
+  return routes
 }

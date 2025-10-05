@@ -112,54 +112,52 @@
   </header>
 </template>
 
-<script>
-  import { mapState } from 'vuex'
-  import { Portal } from 'portal-vue'
+<script setup>
+  const route = useRoute()
 
-  export default {
-    components: {
-      Portal,
+  const props = defineProps({
+    nav: {
+      type: Array,
+      required: true,
     },
-    props: {
-      nav: {
-        type: Array,
-        required: true,
-      },
-      logo: {
-        type: Object,
-        required: true,
-        default: () => {},
-      },
-      contact: {
-        type: Array,
-        default: () => [],
-      },
+    logo: {
+      type: Object,
+      required: true,
+      default: () => {},
     },
-    computed: {
-      ...mapState('global', ['isMobileMenuOpen', 'pageHasModalOpen']),
-      isHomePage() {
-        return this.$route.fullPath === '/'
-      },
+    contact: {
+      type: Array,
+      default: () => [],
     },
-    watch: {
-      $route(to, from) {
-        this.closeMenu()
-      },
+    inert: {
+      type: Boolean,
+      default: false,
     },
-    methods: {
-      async openMobileMenu() {
-        await this.$store.commit('global/isMobileMenuOpen', true)
-        await this.$nextTick()
-        await this.$nextTick()
+  })
 
-        this.$refs.closeButtonRef?.focus()
-      },
-      async closeMenu(e) {
-        await this.$store.commit('global/isMobileMenuOpen', false)
-        await this.$nextTick()
-        await this.$nextTick()
-      },
-    },
+  const isMobileMenuOpen = ref(false)
+  const pageHasModalOpen = ref(false)
+
+  const isHomePage = computed(() => route.fullPath === '/')
+
+  watch(
+    () => route.fullPath,
+    () => {
+      closeMenu()
+    }
+  )
+
+  const openMobileMenu = async () => {
+    isMobileMenuOpen.value = true
+    await nextTick()
+    await nextTick()
+    // Focus close button if it exists
+  }
+
+  const closeMenu = async () => {
+    isMobileMenuOpen.value = false
+    await nextTick()
+    await nextTick()
   }
 </script>
 

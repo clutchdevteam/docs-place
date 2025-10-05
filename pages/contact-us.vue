@@ -40,7 +40,7 @@
                 responseState === 'success' ? 'text-secondary-dark' : 'text-red-700'
               } text-sm absolute bottom-0 mb-[-42px]`"
             >
-              {{ this.responseMessage }}
+              {{ responseMessage }}
             </p>
           </form>
         </div>
@@ -59,139 +59,86 @@
   </section>
 </template>
 
-<script>
-  import { mapState } from 'vuex'
+<script setup>
+  const route = useRoute()
+  const router = useRouter()
 
-  export default {
-    data() {
-      return {
-        form: {
-          name: '',
-          email: '',
-          phone: '',
-          message: '',
-        },
-        responseMessage: null,
-        responseState: null,
-      }
-    },
-    computed: {
-      ...mapState('global', ['loaded']),
-      // set version based on environment
-      version() {
-        return this.$nuxt.context.query._storyblok || this.$nuxt.context.isDev
-          ? 'draft'
-          : 'published'
-      },
-    },
-    mounted() {
-      this.$storybridge(
-        () => {
-          // eslint-disable-next-line no-undef
-          const storyblokInstance = new StoryblokBridge()
-          storyblokInstance.on('enterEditmode', (event) => {
-            this.isProdSite && this.$fetch()
-            this.getStory(event.storyId)
-          })
-          storyblokInstance.on(['input', 'published', 'change'], (event) => this.handleEvent(event))
-        },
-        (error) => {
-          if (this.$nuxt.context.isDev && this.$route.query._storyblok) {
-            this.logError(error)
-          }
-        }
-      )
-    },
-    async fetch() {
-      if (!this.loaded) {
-        const globalRes = await this.$storyapi.get('cdn/stories/global', {
-          version: this.version,
-        })
+  // Form data
+  const form = ref({
+    name: '',
+    email: '',
+    phone: '',
+    message: '',
+  })
 
-        // set global content in vuex
-        this.$store.commit('global/setGlobals', globalRes.data.story.content)
-        // set loaded to true to negate uneccesary additional calls to storyblok
-        this.$store.commit('global/isLoaded', true)
-      }
+  const responseMessage = ref(null)
+  const responseState = ref(null)
 
-      const fullSlug = this.$route.path === '/' ? 'home' : this.$route.path
+  // Get the full slug for the current route
+  const fullSlug = route.path === '/' ? 'home' : route.path.replace(/^\//, '')
 
-      let res
-      try {
-        res = await this.$storyapi.get(`cdn/stories/${fullSlug}`, {
-          version: this.version,
-        })
-        this.story = res.data.story
-      } catch (e) {
-        if (!e.response) {
-          this.$nuxt.context.error({
-            statusCode: 404,
-            message: 'Failed to receive content from api',
-          })
-        } else {
-          this.$nuxt.context.error({
-            statusCode: e.response.status,
-            message: e.response.data,
-          })
-        }
-      }
-    },
-    methods: {
-      encode(data) {
-        return Object.keys(data)
-          .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
-          .join('&')
-      },
-      handleSubmit() {
-        fetch('/', {
-          method: 'post',
-          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-          body: this.encode({
-            'form-name': 'contact',
-            ...this.form,
-          }),
-        })
-          .then((res, err) => {
-            if (res.status === 200) {
-              this.responseMessage = "Thanks for reaching out! We'll be in contact shortly!"
-              this.responseState = 'success'
+  // Set version based on environment and query params
+  const version = route.query._storyblok || process.dev ? 'draft' : 'published'
 
-              this.form.name = ''
-              this.form.email = ''
-              this.form.phone = ''
-              this.form.message = ''
-            } else {
-              this.responseMessage = 'Oops! Looks like something went wrong. Please try again!'
-              this.responseState = 'error'
-            }
-          })
-          .catch((e) => console.error(e))
-      },
-      getStory(storyId, version = 'draft') {
-        return this.$storyapi
-          .get(`cdn/stories/${storyId}`, {
-            version: version,
-          })
-          .then(({ data }) => {
-            this.story.content = data.story && data.story.content
-          })
-          .catch((error) => {
-            console.error(error)
-          })
-      },
-      handleEvent(event) {
+  // Fetch the story using the new Storyblok composable
+  const { story } = await useAsyncStoryblok(fullSlug, {
+    version: version,
+    resolveRelations: ['featured-articles.articles'],
+  }).catch(() => {
+    // Fallback if Storyblok is not configured
+    return { story: { content: { component: 'page' } } }
+  })
+
+  // Handle Storyblok bridge for live editing
+  onMounted(() => {
+    if (window.storyblok) {
+      window.storyblok.init({
+        accessToken: useRuntimeConfig().public.storyblokPreviewApiKey,
+      })
+
+      window.storyblok.on(['input', 'published', 'change'], (event) => {
         if (event.action === 'input') {
-          if (event.story.id === this.story.id) {
-            this.story.content = event.story.content
+          if (event.story.id === story.value.id) {
+            story.value.content = event.story.content
           }
         } else {
-          this.$nuxt.$router.go({
-            path: this.$nuxt.$router.currentRoute,
-            force: true,
-          })
+          router.go(0) // Reload the page
         }
-      },
-    },
+      })
+    }
+  })
+
+  // Form handling methods
+  const encode = (data) => {
+    return Object.keys(data)
+      .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(data[key])}`)
+      .join('&')
+  }
+
+  const handleSubmit = () => {
+    fetch('/', {
+      method: 'post',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: encode({
+        'form-name': 'contact',
+        ...form.value,
+      }),
+    })
+      .then((res, err) => {
+        if (res.status === 200) {
+          responseMessage.value = "Thanks for reaching out! We'll be in contact shortly!"
+          responseState.value = 'success'
+
+          form.value.name = ''
+          form.value.email = ''
+          form.value.phone = ''
+          form.value.message = ''
+        } else {
+          responseMessage.value = 'Oops! Looks like something went wrong. Please try again!'
+          responseState.value = 'error'
+        }
+      })
+      .catch((e) => console.error(e))
   }
 </script>
 

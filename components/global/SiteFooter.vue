@@ -1,6 +1,6 @@
 <template>
   <div>
-    <FooterCallToAction :block="footerContent.footerCTA" />
+    <!-- <FooterCallToAction :block="footerContent.footerCTA" />
     <footer class="py-12 bg-gray-light border-t-4 border-primary-light">
       <div class="flex flex-col items-center space-y-10">
         <div class="w-44">
@@ -37,13 +37,11 @@
           </a>
         </div>
       </div>
-    </footer>
+    </footer> -->
   </div>
 </template>
 
 <script>
-  import { mapState } from 'vuex'
-
   import FooterCallToAction from '~/components/blocks/FooterCallToAction'
 
   export default {

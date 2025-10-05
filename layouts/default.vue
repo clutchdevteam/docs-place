@@ -13,35 +13,33 @@
 
     <SiteFooter :footer-content="footer" :contact="contact" :inert="hasOpenMenu" />
 
-    <PortalTarget name="modal"></PortalTarget>
-    <PortalTarget name="mobile-menu"></PortalTarget>
+    <Teleport to="body">
+      <div id="modal"></div>
+    </Teleport>
+    <Teleport to="body">
+      <div id="mobile-menu"></div>
+    </Teleport>
   </div>
 </template>
 
-<script>
-  import { mapState } from 'vuex'
+<script setup>
+  const route = useRoute()
 
-  export default {
-    computed: {
-      ...mapState('global', [
-        'pageHasModalOpen',
-        'isMobileMenuOpen',
-        'mainNav',
-        'logo',
-        'footer',
-        'contact',
-      ]),
-      hasOpenMenu() {
-        return this.pageHasModalOpen || this.isMobileMenuOpen
-      },
-      isHomePage() {
-        return this.$route.fullPath === '/'
-      },
-      lockScroll() {
-        return this.pageHasModalOpen || this.isMobileMenuOpen
-      },
-    },
-  }
+  // Simple state management without Vuex
+  const pageHasModalOpen = ref(false)
+  const isMobileMenuOpen = ref(false)
+  const mainNav = ref([])
+  const logo = ref(null)
+  const footer = ref({
+    footerNav: [],
+    logo: null,
+    footerCTA: {},
+  })
+  const contact = ref([])
+
+  const hasOpenMenu = computed(() => pageHasModalOpen.value || isMobileMenuOpen.value)
+  const isHomePage = computed(() => route.fullPath === '/')
+  const lockScroll = computed(() => pageHasModalOpen.value || isMobileMenuOpen.value)
 </script>
 
 <style lang="postcss" scoped>

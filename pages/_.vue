@@ -1,104 +1,55 @@
 <template>
-  <Page v-if="story.content.component" :key="story.content._uid" :block="story.content" />
+  <div v-if="story?.content?.component">
+    <Page :key="story.content._uid" :block="story.content" />
+  </div>
+  <div v-else class="min-h-screen flex items-center justify-center bg-gray-50">
+    <div class="text-center">
+      <h1 class="text-4xl font-bold text-gray-900 mb-4">Doc's Place Recovery</h1>
+      <p class="text-xl text-gray-600 mb-8">A Residential Recovery for Men</p>
+      <div class="bg-yellow-100 border border-yellow-400 text-yellow-700 px-4 py-3 rounded">
+        <p class="font-semibold">Storyblok Integration Ready!</p>
+        <p class="text-sm mt-1">Add your Storyblok API keys to see your content.</p>
+        <p class="text-sm">Check the ENVIRONMENT_SETUP.md file for instructions.</p>
+      </div>
+    </div>
+  </div>
 </template>
 
-<script>
-  import { mapState } from 'vuex'
+<script setup>
+  const route = useRoute()
+  const router = useRouter()
 
-  export default {
-    data() {
-      return {
-        story: { content: {} },
-      }
-    },
-    computed: {
-      ...mapState('global', ['loaded']),
-      // set version based on environment
-      version() {
-        return this.$nuxt.context.query._storyblok || this.$nuxt.context.isDev
-          ? 'draft'
-          : 'published'
-      },
-    },
-    mounted() {
-      this.$storybridge(
-        () => {
-          // eslint-disable-next-line no-undef
-          const storyblokInstance = new StoryblokBridge()
-          storyblokInstance.on('enterEditmode', (event) => {
-            this.isProdSite && this.$fetch()
-            this.getStory(event.storyId)
-          })
-          storyblokInstance.on(['input', 'published', 'change'], (event) => this.handleEvent(event))
-        },
-        (error) => {
-          if (this.$nuxt.context.isDev && this.$route.query._storyblok) {
-            this.logError(error)
-          }
-        }
-      )
-    },
-    async fetch() {
-      if (!this.loaded) {
-        const globalRes = await this.$storyapi.get('cdn/stories/global', {
-          version: this.version,
-        })
+  // Get the full slug for the current route
+  const fullSlug = route.path === '/' ? 'home' : route.path.replace(/^\//, '')
 
-        // set global content in vuex
-        this.$store.commit('global/setGlobals', globalRes.data.story.content)
+  // Set version based on environment and query params
+  const version = route.query._storyblok || process.dev ? 'draft' : 'published'
 
-        console.log(globalRes.data.story.content)
-        // set loaded to true to negate uneccesary additional calls to storyblok
-        this.$store.commit('global/isLoaded', true)
-      }
+  // Fetch the story using the new Storyblok composable
+  const { story } = await useAsyncStoryblok(fullSlug, {
+    version: version,
+    resolveRelations: ['featured-articles.articles'],
+  }).catch(() => {
+    // Fallback if Storyblok is not configured
+    return { story: { content: { component: 'page' } } }
+  })
 
-      const fullSlug = this.$route.path === '/' ? 'home' : this.$route.path
+  // Handle Storyblok bridge for live editing
+  onMounted(() => {
+    if (window.storyblok) {
+      window.storyblok.init({
+        accessToken: useRuntimeConfig().public.storyblokPreviewApiKey,
+      })
 
-      let res
-      try {
-        res = await this.$storyapi.get(`cdn/stories/${fullSlug}`, {
-          version: this.version,
-        })
-        this.story = res.data.story
-      } catch (e) {
-        if (!e.response) {
-          this.$nuxt.context.error({
-            statusCode: 404,
-            message: 'Failed to receive content from api',
-          })
-        } else {
-          this.$nuxt.context.error({
-            statusCode: e.response.status,
-            message: e.response.data,
-          })
-        }
-      }
-    },
-    methods: {
-      getStory(storyId, version = 'draft') {
-        return this.$storyapi
-          .get(`cdn/stories/${storyId}`, {
-            version: version,
-          })
-          .then(({ data }) => {
-            this.story.content = data.story && data.story.content
-          })
-          .catch((error) => {
-            console.error(error)
-          })
-      },
-      handleEvent(event) {
+      window.storyblok.on(['input', 'published', 'change'], (event) => {
         if (event.action === 'input') {
-          if (event.story.id === this.story.id) {
-            this.story.content = event.story.content
+          if (event.story.id === story.value.id) {
+            story.value.content = event.story.content
           }
         } else {
-          this.$nuxt.$router.go({
-            path: this.$nuxt.$router.currentRoute,
-            force: true,
-          })
+          router.go(0) // Reload the page
         }
-      },
-    },
-  }
+      })
+    }
+  })
 </script>
