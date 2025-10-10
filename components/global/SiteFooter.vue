@@ -15,9 +15,9 @@
             class="flex flex-col lg:flex-row text-center lg:text-left space-y-8 lg:space-x-12 lg:space-y-0"
           >
             <li v-for="menu in footerContent.footerNav" :key="menu.id">
-              <NuxtLink :href="menu.slug.cached_url"
-                ><Typography as="span">{{ menu.title }}</Typography></NuxtLink
-              >
+              <NuxtLink :href="`/${menu.slug.cached_url}`">
+                <Typography as="span">{{ menu.title }}</Typography>
+              </NuxtLink>
             </li>
           </ul>
         </nav>
