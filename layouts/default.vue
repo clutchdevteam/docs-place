@@ -35,8 +35,8 @@
   })
 
   // Set the global data from Storyblok
-  if (globalStory?.value.content) {
-    setGlobals(globalStory.value.content)
+  if (globalStory?.value?.content) {
+    setGlobals(globalStory.value?.content)
   }
 
   // Mark as loaded
