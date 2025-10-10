@@ -10,11 +10,13 @@
       }}</Typography>
     </div>
 
-    <img
-      src="/static/beach-footer.jpg"
-      alt="Content Background"
-      class="absolute inset-0 object-cover w-full h-full opacity-10"
-    />
+    <div class="absolute inset-0">
+      <img
+        src="/static/beach-footer.jpg"
+        alt="Beach Footer"
+        class="object-cover h-full w-full object-center opacity-10"
+      />
+    </div>
   </div>
 </template>
 

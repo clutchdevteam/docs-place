@@ -28,11 +28,13 @@
           </Typography>
         </div>
       </div>
-      <img
-        src="/static/beach-footer.jpg"
-        alt="Beach Footer"
-        class="absolute inset-0 object-cover w-full object-center opacity-10"
-      />
+      <div class="absolute inset-0">
+        <img
+          src="/static/beach-footer.jpg"
+          alt="Beach Footer"
+          class="object-cover h-full w-full object-center opacity-10"
+        />
+      </div>
     </footer>
   </div>
 </template>

@@ -32,6 +32,7 @@ export const useGlobalData = () => {
   }
 
   const setGlobals = (globals) => {
+    console.log(globals.mainNav)
     mainNav.value = globals.mainNav || []
     logo.value = globals.Logo || null
     contact.value = globals.contact || []
@@ -50,14 +51,14 @@ export const useGlobalData = () => {
 
   return {
     // State
-    isLoaded: readonly(isLoaded),
-    isMobileMenuOpen: readonly(isMobileMenuOpen),
-    pageHasModalOpen: readonly(pageHasModalOpen),
-    mainNav: readonly(mainNav),
-    contact: readonly(contact),
-    logo: readonly(logo),
-    footer: readonly(footer),
-    isHomepage: readonly(isHomepage),
+    isLoaded: isLoaded,
+    isMobileMenuOpen: isMobileMenuOpen,
+    pageHasModalOpen: pageHasModalOpen,
+    mainNav: mainNav,
+    contact: contact,
+    logo: logo,
+    footer: footer,
+    isHomepage: isHomepage,
     // Computed
     hasOpenMenu,
 
