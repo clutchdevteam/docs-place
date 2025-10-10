@@ -7,14 +7,14 @@
       }"
     />
 
-    <section v-if="blogPosts.length > 0" class="container mx-auto py-12 lg:py-24">
+    <section v-if="articlePosts.length > 0" class="container mx-auto py-12 lg:py-24">
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <article
-          v-for="post in blogPosts"
+          v-for="post in articlePosts"
           :key="post.uuid"
           class="border border-gray-100 border-l-secondary border-l-2"
         >
-          <NuxtLink :to="`/blog/${post.slug}`">
+          <NuxtLink :to="`/articles/${post.slug}`">
             <div class="flex p-6 items-center">
               <div class="aspect-square overflow-hidden w-1/2">
                 <img
@@ -45,16 +45,11 @@
   import { computed } from 'vue'
   import Typography from '@/components/atoms/Typography.vue'
   import Icon from '@/components/atoms/Icon.vue'
+  import { useGlobalData } from '@/composables/useGlobalData'
 
-  const slug = useRoute().params.slug
-
-  const path = slug && slug.length > 0 ? slug.join('/') : 'blog'
-  const isHomepage = path === 'blog'
-
-  // Use the global data composable
   const { setIsHomepage } = useGlobalData()
 
-  setIsHomepage(isHomepage)
+  setIsHomepage(false)
 
   // Determine version and API key based on environment
   const isDevelopment = process.env.ENV === 'develop'
@@ -65,16 +60,16 @@
 
   const api = useStoryblokApi()
 
-  // Fetch all articles nested under /blog
-  const { data: blogPostsData } = await api.get('cdn/stories', {
+  // Fetch all articles nested under /article
+  const { data: articlePostsData } = await api.get('cdn/stories', {
     version: version,
     starts_with: 'articles/',
     excluding_slugs: 'articles', // Exclude the main articles page itself
     per_page: 50,
   })
 
-  const blogPosts = computed(() => {
-    return blogPostsData?.stories || []
+  const articlePosts = computed(() => {
+    return articlePostsData?.stories || []
   })
 
   // Format date helper
