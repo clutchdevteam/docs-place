@@ -8,7 +8,7 @@
 
   const props = defineProps()
 
-  const forwarded = useForwardPropsEmits(props, emits)
+  const forwarded = useForwardPropsEmits(props)
 </script>
 
 <template>
