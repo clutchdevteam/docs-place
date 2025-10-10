@@ -1,16 +1,19 @@
 <template>
-  <div class="w-full" v-editable="block">
-    <component v-for="block in block.body" :key="block._uid" :block="block" :is="block.component" />
+  <div class="w-full" v-editable="blok">
+    <StoryblokComponent
+      v-for="blok in blok.body"
+      :key="blok._uid"
+      :blok="blok"
+      :is="blok.component"
+    />
   </div>
 </template>
 
-<script>
-  export default {
-    props: {
-      block: {
-        type: Object,
-        required: true,
-      },
+<script setup>
+  defineProps({
+    blok: {
+      type: Object,
+      required: true,
     },
-  }
+  })
 </script>

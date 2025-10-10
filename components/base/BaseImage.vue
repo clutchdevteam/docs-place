@@ -20,7 +20,7 @@
        */
       alt: {
         type: String,
-        required: true,
+        default: '',
       },
     },
   }

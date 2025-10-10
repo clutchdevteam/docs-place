@@ -1,68 +1,64 @@
 <template>
   <div>
-    <!-- <FooterCallToAction :block="footerContent.footerCTA" />
-    <footer class="py-12 bg-gray-light border-t-4 border-primary-light">
-      <div class="flex flex-col items-center space-y-10">
-        <div class="w-44">
-          <BaseImage :src="footerContent.logo.filename" :alt="footerContent.logo.alt" />
+    <ContactForm v-if="showContactForm" />
+    <footer class="overflow-hidden relative py-12 lg:py-24 bg-black">
+      <div class="relative z-10 container mx-auto flex flex-col items-center space-y-10">
+        <div v-if="footerContent.logo" class="w-72">
+          <img :src="footerContent.logo.filename" :alt="footerContent.logo.alt" />
         </div>
 
-        <nav class="uppercase text-primary-dark font-bold lg:text-lg">
+        <nav
+          v-if="footerContent.footerNav && footerContent.footerNav.length"
+          class="uppercase lg:text-lg text-white"
+        >
           <ul
             class="flex flex-col lg:flex-row text-center lg:text-left space-y-8 lg:space-x-12 lg:space-y-0"
           >
             <li v-for="menu in footerContent.footerNav" :key="menu.id">
-              <BaseLink classes="border-b-2 border-transparent p-1" :href="menu.slug.cached_url">{{
-                menu.title
-              }}</BaseLink>
+              <NuxtLink :href="menu.slug.cached_url"
+                ><Typography as="span">{{ menu.title }}</Typography></NuxtLink
+              >
             </li>
           </ul>
         </nav>
 
-        <div class="flex space-x-6 text-primary-dark">
-          <a
-            v-for="item in contact"
-            :key="item.id"
-            class="flex items-center p-2"
-            :href="item.link.url"
-            target="_blank"
-          >
-            <span class="mr-3 text-primary-light">
-              <BaseIcon class="h-5 w-5" :file="item.icon" :alt="item.icon" />
-            </span>
-            <div class="">
-              <p class="text-sm font-semibold">{{ item.Heading }}</p>
-              <p class="text-xs">{{ item.Subheading }}</p>
-            </div>
-          </a>
+        <div class="border-t border-white/25 flex justify-center w-full py-3 text-white/50">
+          <Typography as="span" variant="body-small">
+            &copy; {{ new Date().getFullYear() }} Place Recovery. All rights reserved.
+          </Typography>
         </div>
       </div>
-    </footer> -->
+      <img
+        src="/static/beach-footer.jpg"
+        alt="Beach Footer"
+        class="absolute inset-0 object-cover w-full object-center opacity-10"
+      />
+    </footer>
   </div>
 </template>
 
-<script>
-  import FooterCallToAction from '~/components/blocks/FooterCallToAction'
+<script setup>
+  import ContactForm from '@/components/global/ContactForm.vue'
+  import Typography from '@/components/atoms/Typography.vue'
 
-  export default {
-    components: {
-      FooterCallToAction,
+  defineProps({
+    footerContent: {
+      type: Object,
+      required: true,
     },
-    props: {
-      footerContent: {
-        type: Object,
-        required: true,
-      },
-      contact: {
-        type: Array,
-        required: true,
-      },
+    contact: {
+      type: Array,
+      required: true,
     },
-  }
+    showContactForm: {
+      type: Boolean,
+      required: true,
+    },
+  })
 </script>
 
 <style lang="postcss" scoped>
   .nuxt-link-exact-active {
-    @apply border-primary-light;
+    @apply border-gray-900;
   }
 </style>

@@ -35,7 +35,7 @@
   h4,
   h5,
   h6 {
-    @apply font-bold text-primary-dark;
+    @apply font-bold text-gray-900-dark;
   }
 
   p,
@@ -58,7 +58,7 @@
   }
 
   blockquote {
-    @apply border-l-2 border-secondary-light pl-4 py-2 ml-2;
+    @apply border-l-2 border-gray-400-light pl-4 py-2 ml-2;
   }
 
   blockquote p {
@@ -66,7 +66,7 @@
   }
 
   a {
-    @apply underline text-primary-darker font-bold;
+    @apply underline text-gray-900-darker font-bold;
   }
 
   @screen md {

@@ -1,45 +1,53 @@
 <template>
   <div class="site-wrapper">
-    <SiteHeader :nav="mainNav" :logo="logo" :contact="contact" :inert="hasOpenMenu" />
-
-    <main
-      :class="`${!isHomePage ? 'mt-[66.36px] lg:mt-[74.94px]' : ''} ${
-        lockScroll ? 'overflow-hidden' : ''
-      }`"
+    <SiteHeader
+      :nav="mainNav || []"
+      :logo="logo || {}"
+      :contact="contact || []"
       :inert="hasOpenMenu"
-    >
-      <Nuxt />
+      :isHomePage="isHomePage"
+    />
+
+    <main :inert="hasOpenMenu">
+      <NuxtPage />
     </main>
 
-    <SiteFooter :footer-content="footer" :contact="contact" :inert="hasOpenMenu" />
-
-    <Teleport to="body">
-      <div id="modal"></div>
-    </Teleport>
-    <Teleport to="body">
-      <div id="mobile-menu"></div>
-    </Teleport>
+    <SiteFooter
+      :footer-content="footer || {}"
+      :contact="contact || []"
+      :inert="hasOpenMenu"
+      :showContactForm="route.name !== 'contact-us'"
+    />
   </div>
 </template>
 
 <script setup>
   const route = useRoute()
 
-  // Simple state management without Vuex
-  const pageHasModalOpen = ref(false)
-  const isMobileMenuOpen = ref(false)
-  const mainNav = ref([])
-  const logo = ref(null)
-  const footer = ref({
-    footerNav: [],
-    logo: null,
-    footerCTA: {},
-  })
-  const contact = ref([])
+  // Use the global data composable
+  const { setGlobals, setLoaded, mainNav, logo, footer, contact, hasOpenMenu, isHomepage } =
+    useGlobalData()
 
-  const hasOpenMenu = computed(() => pageHasModalOpen.value || isMobileMenuOpen.value)
-  const isHomePage = computed(() => route.fullPath === '/')
-  const lockScroll = computed(() => pageHasModalOpen.value || isMobileMenuOpen.value)
+  const { story: globalStory } = await useAsyncStoryblok('global', {
+    api: {
+      version: 'draft',
+    },
+  })
+
+  // Set the global data from Storyblok
+  if (globalStory?.value.content) {
+    setGlobals(globalStory.value.content)
+  }
+
+  // Mark as loaded
+  setLoaded(true)
+
+  // Create a computed property that reacts to both the route and the global state
+  const isHomePage = computed(() => {
+    return route.fullPath === '/' || isHomepage.value
+  })
+
+  const lockScroll = computed(() => hasOpenMenu.value)
 </script>
 
 <style lang="postcss" scoped>

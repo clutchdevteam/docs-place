@@ -4,7 +4,7 @@
       <BaseMenuItem :class="classes" :menu="menu" :depth="depth + 1" />
     </template>
 
-    <nuxt-link :class="`${classes} block`" v-else :to="menu.slug.cached_url">
+    <nuxt-link :class="`${classes} block`" v-else :to="`/${menu.slug.cached_url}`">
       {{ menu.title }}
     </nuxt-link>
   </div>

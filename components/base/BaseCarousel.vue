@@ -14,9 +14,7 @@
 </template>
 
 <script>
-  import Swiper, { Navigation, Pagination, A11y } from 'swiper'
-
-  Swiper.use([Navigation, Pagination, A11y])
+  import Swiper from 'swiper'
 
   /**
    * A swipeable slider (AKA carousel or slideshow).
@@ -113,7 +111,7 @@
     transform: translateX(-50%);
 
     &-bullet {
-      @apply my-0 bg-primary-dark opacity-100;
+      @apply my-0 bg-gray-900 opacity-100;
 
       &-active {
         @apply bg-black;

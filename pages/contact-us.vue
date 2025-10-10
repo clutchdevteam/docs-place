@@ -1,47 +1,52 @@
 <template>
-  <section class="w-full overflow-y-hidden">
-    <div class="flex flex-col lg:grid lg:grid-cols-2 h-full items-center">
+  <div class="w-full">
+    <PageTitle
+      :blok="{
+        heading: 'Contact Us.',
+        text: 'Do not hesitate to contact us with any questions or concerns regarding availability and admissions.',
+      }"
+    />
+
+    <div class="flex flex-col lg:grid lg:grid-cols-2 items-center">
       <div class="mb-10 py-10 lg:py-0">
-        <div class="lg:w-3/4 mx-auto px-4 lg:px-0">
+        <div class="lg:w-3/4 mx-auto px-4 lg:px-0 py-3">
           <div class="mb-8">
-            <BaseHeading class="font-bold text-primary-dark mb-4" size="h3" tag="h1"
-              >Contact Us.</BaseHeading
-            >
-            <BaseText class="-mt-3">
+            <Typography variant="h2" class="mb-4"> Contact Us. </Typography>
+            <Typography>
               Do not hesitate to contact us with any questions or concerns regarding availability
               and admissions.
-            </BaseText>
+            </Typography>
           </div>
 
           <form class="relative flex flex-col" @submit.prevent="handleSubmit">
-            <input class="hidden" type="hidden" name="form-name" value="contact" />
+            <Input class="hidden" type="hidden" name="form-name" value="contact" />
 
-            <BaseInput class="mb-4" v-model="form.name" name="name" required>Name</BaseInput>
+            <Stack space="small">
+              <Input v-model="form.name" name="name" required>Name</Input>
 
-            <BaseInput class="mb-4" v-model="form.email" name="email" type="email" required>
-              Email
-            </BaseInput>
+              <Input v-model="form.email" name="email" type="email" required> Email </Input>
 
-            <BaseInput class="mb-4" v-model="form.phone" name="phone" type="tel">Phone</BaseInput>
+              <Input v-model="form.phone" name="phone" type="tel">Phone</Input>
 
-            <BaseTextarea class="mb-4" v-model="form.message" name="message" required>
-              Message
-            </BaseTextarea>
+              <Textarea v-model="form.message" name="message" rows="4" required> Message </Textarea>
+            </Stack>
 
             <p class="hidden">
               <label>Don't fill this out if you're human: <input name="bot-field" /></label>
             </p>
 
-            <BaseButton type="submit">Send Message</BaseButton>
+            <div class="mt-6">
+              <Button type="submit" theme="primary-outline" icon="ArrowRight" iconPosition="right"
+                >Send Message</Button
+              >
+            </div>
 
-            <p
+            <Typography
               v-if="responseMessage"
-              :class="`${
-                responseState === 'success' ? 'text-secondary-dark' : 'text-red-700'
-              } text-sm absolute bottom-0 mb-[-42px]`"
+              :class="responseState === 'success' ? 'text-secondary' : 'text-red-700'"
             >
               {{ responseMessage }}
-            </p>
+            </Typography>
           </form>
         </div>
       </div>
@@ -56,12 +61,15 @@
         ></iframe>
       </div>
     </div>
-  </section>
+  </div>
 </template>
 
 <script setup>
-  const route = useRoute()
-  const router = useRouter()
+  import Typography from '@/components/atoms/Typography.vue'
+  import Stack from '@/components/atoms/Stack.vue'
+  import Input from '@/components/atoms/Input.vue'
+  import Textarea from '@/components/atoms/Textarea.vue'
+  import Button from '@/components/atoms/Button.vue'
 
   // Form data
   const form = ref({
@@ -74,26 +82,33 @@
   const responseMessage = ref(null)
   const responseState = ref(null)
 
-  // Get the full slug for the current route
-  const fullSlug = route.path === '/' ? 'home' : route.path.replace(/^\//, '')
+  const slug = useRoute().params.slug
 
-  // Set version based on environment and query params
-  const version = route.query._storyblok || process.dev ? 'draft' : 'published'
+  const path = slug && slug.length > 0 ? slug.join('/') : 'contact-us'
 
-  // Fetch the story using the new Storyblok composable
-  const { story } = await useAsyncStoryblok(fullSlug, {
-    version: version,
-    resolveRelations: ['featured-articles.articles'],
-  }).catch(() => {
-    // Fallback if Storyblok is not configured
-    return { story: { content: { component: 'page' } } }
+  // Use the global data composable
+  const { setIsHomepage } = useGlobalData()
+
+  setIsHomepage(false)
+
+  // Determine version and API key based on environment
+  const isDevelopment = process.env.ENV === 'develop'
+  const version = isDevelopment ? 'draft' : 'published'
+  const apiKey = isDevelopment
+    ? useRuntimeConfig().public.storyblokPreviewApiKey
+    : useRuntimeConfig().public.storyblokApiKey
+
+  const { story } = await useAsyncStoryblok(path, {
+    api: {
+      version: version,
+    },
   })
 
   // Handle Storyblok bridge for live editing
   onMounted(() => {
     if (window.storyblok) {
       window.storyblok.init({
-        accessToken: useRuntimeConfig().public.storyblokPreviewApiKey,
+        accessToken: apiKey,
       })
 
       window.storyblok.on(['input', 'published', 'change'], (event) => {
@@ -102,7 +117,7 @@
             story.value.content = event.story.content
           }
         } else {
-          router.go(0) // Reload the page
+          window.location.reload()
         }
       })
     }

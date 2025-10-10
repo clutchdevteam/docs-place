@@ -1,49 +1,40 @@
-<!-- <template>
-  <button class="open-button" @click="openModal" ref="openButtonRef" type="button">
+<template>
+  <button class="open-button" @click="openModal" :ref="openButtonRef" type="button">
     <slot name="button" />
-    <Portal v-if="isOpen" to="modal">
-      <div class="modal-wrapper" @keydown.esc="closeModal">
+    <Teleport to="body">
+      <div v-if="isOpen" class="modal-wrapper" @keydown.esc="closeModal">
         <div class="modal-content">
-          <button @click="closeModal" ref="closeButtonRef" type="button">Close Modal</button>
+          <button @click="closeModal" :ref="closeButtonRef" type="button">Close Modal</button>
           <slot name="content" />
         </div>
       </div>
-    </Portal>
+    </Teleport>
   </button>
 </template>
 
-<script>
-  import { mapState } from 'vuex'
-  import { Portal } from 'portal-vue'
+<script setup>
+  const isOpen = ref(false)
 
-  export default {
-    components: {
-      Portal,
-    },
-    data() {
-      return {
-        isOpen: false,
-      }
-    },
-    computed: {
-      ...mapState('global', ['pageHasModalOpen']),
-    },
-    methods: {
-      async closeModal() {
-        this.isOpen = false
-        await this.$store.commit('modal/isModalOpen', false)
-        await this.$nextTick()
-        await this.$nextTick()
-        this.$refs.openButtonRef?.focus()
-      },
-      async openModal() {
-        this.isOpen = true
-        await this.$store.commit('modal/isModalOpen', true)
-        await this.$nextTick()
-        await this.$nextTick()
-        this.$refs.closeButtonRef?.focus()
-      },
-    },
+  // Use the global data composable
+  const { pageHasModalOpen, setModalOpen } = useGlobalData()
+
+  const openButtonRef = ref(null)
+  const closeButtonRef = ref(null)
+
+  const openModal = async () => {
+    isOpen.value = true
+    setModalOpen(true)
+    await nextTick()
+    await nextTick()
+    closeButtonRef.value?.focus()
+  }
+
+  const closeModal = async () => {
+    isOpen.value = false
+    setModalOpen(false)
+    await nextTick()
+    await nextTick()
+    openButtonRef.value?.focus()
   }
 </script>
 
@@ -70,4 +61,4 @@
     background-color: red;
     color: white;
   }
-</style> -->
+</style>

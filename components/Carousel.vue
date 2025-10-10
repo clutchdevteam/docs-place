@@ -1,22 +1,20 @@
 <template>
-  <section class="base-wrapper my-24 px-4 lg:px-0">
+  <section class="base-wrapper my-24 px-4 lg:px-0" v-editable="blok">
     <BaseCarousel hasPagination class="slider">
-      <BaseCarouselSlide v-for="img in block.images" :key="img.id" class="slide">
+      <BaseCarouselSlide v-for="img in blok.images" :key="img.id" class="slide">
         <BaseImage :src="img.filename" :alt="img.alt" />
       </BaseCarouselSlide>
     </BaseCarousel>
   </section>
 </template>
 
-<script>
-  export default {
-    props: {
-      block: {
-        type: Object,
-        required: true,
-      },
+<script setup>
+  defineProps({
+    blok: {
+      type: Object,
+      required: true,
     },
-  }
+  })
 </script>
 
 <style lang="postcss">
@@ -38,7 +36,7 @@
     @apply relative flex justify-center space-x-3 py-8;
 
     & .swiper-pagination-bullet-active {
-      @apply bg-primary-dark;
+      @apply bg-gray-900;
     }
   }
 

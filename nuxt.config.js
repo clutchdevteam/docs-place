@@ -1,3 +1,14 @@
+// Determine Storyblok access token based on environment
+function getStoryblokAccessToken() {
+  const isDevelopment = process.env.ENV === 'develop'
+
+  if (isDevelopment) {
+    return process.env.STORYBLOK_PREVIEW_API_KEY
+  } else {
+    return process.env.STORYBLOK_API_KEY
+  }
+}
+
 export default defineNuxtConfig({
   // Target: https://go.nuxtjs.dev/config-target
   ssr: true,
@@ -5,22 +16,6 @@ export default defineNuxtConfig({
   nitro: {
     prerender: {
       routes: [],
-    },
-  },
-
-  runtimeConfig: {
-    storyblok: {
-      accessToken:
-        process.env.STORYBLOK_PREVIEW_API_KEY ||
-        process.env.STORYBLOK_API_KEY ||
-        'your-preview-token',
-      apiOptions: {
-        region: 'us',
-      },
-    },
-    public: {
-      storyblokApiKey: process.env.STORYBLOK_API_KEY || 'your-published-token',
-      storyblokPreviewApiKey: process.env.STORYBLOK_PREVIEW_API_KEY || 'your-preview-token',
     },
   },
 
@@ -112,7 +107,19 @@ export default defineNuxtConfig({
   components: true,
 
   // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  modules: ['@nuxtjs/tailwindcss', '@storyblok/nuxt'],
+  modules: [
+    '@nuxtjs/tailwindcss',
+    [
+      '@storyblok/nuxt',
+      {
+        accessToken: getStoryblokAccessToken(),
+        apiOptions: {
+          region: 'eu',
+        },
+      },
+    ],
+    '@nuxt/image',
+  ],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   vite: {
@@ -142,18 +149,19 @@ export default defineNuxtConfig({
 })
 
 async function getStoryblokRoutes() {
-  const token = process.env.STORYBLOK_API_KEY
-  const version = 'published'
+  const token = getStoryblokAccessToken()
+  const isDevelopment = process.env.NODE_ENV === 'development' || process.env.ENV === 'develop'
+  const version = isDevelopment ? 'draft' : 'published'
   const ignoreFiles = ['home', 'global', 'sitefooter']
   const routes = ['/']
 
   try {
-    const spaceResponse = await fetch(`https://api.storyblok.com/v1/cdn/spaces/me?token=${token}`)
+    const spaceResponse = await fetch(`https://api.storyblok.com/v2/cdn/spaces/me?token=${token}`)
     const spaceData = await spaceResponse.json()
     const cacheVersion = spaceData.space.version
 
     const linksResponse = await fetch(
-      `https://api.storyblok.com/v1/cdn/links?token=${token}&version=${version}&cv=${cacheVersion}`
+      `https://api.storyblok.com/v2/cdn/links?token=${token}&version=${version}&cv=${cacheVersion}`
     )
     const linksData = await linksResponse.json()
 

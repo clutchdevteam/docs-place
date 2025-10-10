@@ -1,11 +1,13 @@
-@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700;800;900&display=swap');
 
 html {
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
-  @apply font-display overflow-x-hidden;
+  @apply font-display overflow-x-hidden text-primary;
 }
 
 *:focus-visible {

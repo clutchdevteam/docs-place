@@ -1,25 +1,17 @@
 <template>
-  <header
-    :class="`z-[51] absolute w-full flex items-center justify-between ${
-      !isHomePage ? 'shadow-md' : ''
-    }`"
-  >
-    <div class="bg-secondary-light p-4 z-50">
-      <BaseLink href="/" :inert="isMobileMenuOpen">
-        <BaseImage class="w-16 lg:w-20" v-if="logo" :src="logo.filename" :alt="logo.alt" />
+  <header class="z-[51] absolute w-full flex items-center justify-between border-b border-white/25">
+    <div class="p-4 z-50 border-r border-white/25">
+      <BaseLink href="/" :inert="isMobileMenuOpen" class="hover:bg-white/10">
+        <img class="w-16 lg:w-20" v-if="logo" :src="logo.filename" :alt="logo.alt" />
       </BaseLink>
     </div>
 
-    <nav
-      :class="`absolute z-40 hidden lg:flex items-center justify-center w-full h-full font-semibold ${
-        isHomePage ? 'text-white' : 'text-primary-dark'
-      }`"
-    >
+    <nav class="hidden lg:flex justify-end w-full h-full font-normal text-sm text-white">
       <ul class="flex uppercase mr-6 xl:mr-0">
         <li v-for="(menu, index) in nav" :key="menu.id">
           <BaseMenu
             :id="`${menu.title.toLowerCase().replace(' ', '-')}-${index}`"
-            classes="w-32 xl:w-40 text-center py-2 border-t-2 border-transparent hover:border-primary-light"
+            classes="border-l border-white/25 text-center p-8  hover:bg-white/10"
             :menu="menu"
             :depth="0"
           />
@@ -27,31 +19,9 @@
       </ul>
     </nav>
 
-    <div
-      :class="`hidden lg:flex space-x-6 mr-6 z-50 origin-right scale-90 xl:transform-none ${
-        isHomePage ? 'text-white' : 'text-primary-dark'
-      }`"
-    >
-      <a
-        v-for="item in contact"
-        :key="item.id"
-        class="flex items-center opacity-75 hover:opacity-100 p-1"
-        :href="item.link.url"
-        target="_blank"
-      >
-        <span class="mr-3 text-primary-light">
-          <BaseIcon class="h-5 w-5" :file="item.icon" :alt="item.icon" />
-        </span>
-        <div class="">
-          <p class="text-sm font-semibold">{{ item.Heading }}</p>
-          <p class="text-xs">{{ item.Subheading }}</p>
-        </div>
-      </a>
-    </div>
-
     <div class="mobile lg:hidden">
       <button
-        :class="`p-4 ${isHomePage ? 'text-white' : 'text-primary-dark'}`"
+        class="p-4 text-white"
         ref="openButtonRef"
         @click="openMobileMenu"
         type="button"
@@ -60,7 +30,7 @@
         <span class="sr-only">Open main menu</span>
         <BaseIcon class="w-8 h-8" file="menu-icon" alt="Open Menu" />
 
-        <Portal to="mobile-menu">
+        <Teleport to="body">
           <div
             :class="`z-[52] fixed lg:hidden inset-0 bg-black transition duration-150 ${
               isMobileMenuOpen ? 'bg-opacity-75' : 'bg-opacity-0 pointer-events-none'
@@ -86,7 +56,7 @@
               </div>
 
               <div class="flex flex-col justify-between h-screen w-full bg-white">
-                <nav class="text-primary-dark" role="navigation">
+                <nav class="text-gray-900" role="navigation">
                   <ul>
                     <li v-for="menu in nav" :key="menu.id">
                       <BaseMenu
@@ -106,7 +76,7 @@
               </div>
             </div>
           </div>
-        </Portal>
+        </Teleport>
       </button>
     </div>
   </header>
@@ -122,8 +92,8 @@
     },
     logo: {
       type: Object,
-      required: true,
-      default: () => {},
+      required: false,
+      default: () => ({}),
     },
     contact: {
       type: Array,
@@ -133,12 +103,14 @@
       type: Boolean,
       default: false,
     },
+    isHomePage: {
+      type: Boolean,
+      default: false,
+    },
   })
 
-  const isMobileMenuOpen = ref(false)
-  const pageHasModalOpen = ref(false)
-
-  const isHomePage = computed(() => route.fullPath === '/')
+  // Use the global data composable
+  const { isMobileMenuOpen, pageHasModalOpen, setMobileMenuOpen, setModalOpen } = useGlobalData()
 
   watch(
     () => route.fullPath,
@@ -148,14 +120,14 @@
   )
 
   const openMobileMenu = async () => {
-    isMobileMenuOpen.value = true
+    setMobileMenuOpen(true)
     await nextTick()
     await nextTick()
     // Focus close button if it exists
   }
 
   const closeMenu = async () => {
-    isMobileMenuOpen.value = false
+    setMobileMenuOpen(false)
     await nextTick()
     await nextTick()
   }
@@ -163,10 +135,10 @@
 
 <style lang="postcss">
   nav ul li div a {
-    @apply uppercase font-semibold tracking-wider;
+    @apply tracking-wider;
   }
 
   .nuxt-link-exact-active {
-    @apply border-primary-light opacity-100;
+    @apply border-gray-900 opacity-100;
   }
 </style>

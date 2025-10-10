@@ -1,0 +1,19 @@
+<template>
+  <div class="w-full" v-editable="blok">
+    <StoryblokComponent
+      v-for="blok in blok.body"
+      :key="blok._uid"
+      :blok="blok"
+      :is="blok.component"
+    />
+  </div>
+</template>
+
+<script setup>
+  defineProps({
+    blok: {
+      type: Object,
+      required: true,
+    },
+  })
+</script>
