@@ -100,7 +100,7 @@ export default defineNuxtConfig({
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    '~/plugins/components',
+    '~/plugins/storyblok-components.js',
     '~/plugins/wicg-inert.client.js',
     '~/plugins/rich-text-renderer.js',
   ],
