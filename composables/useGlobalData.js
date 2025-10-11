@@ -40,6 +40,8 @@ export const useGlobalData = () => {
     footer.value.footerNav = globals?.footer?.[0]?.footerNav || []
     footer.value.logo = globals?.footer?.[0]?.logo || null
     footer.value.footerCTA = globals?.footer?.[0]?.footerCTA?.[0] || {}
+
+    setLoaded(true)
   }
 
   const setIsHomepage = (value) => {

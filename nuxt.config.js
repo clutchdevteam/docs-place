@@ -15,7 +15,6 @@ export default defineNuxtConfig({
   compatibilityDate: '2024-10-05',
   nitro: {
     prerender: {
-      routes: [],
       failOnError: false,
       crawlLinks: true,
     },
@@ -99,11 +98,7 @@ export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: [
-    '~/plugins/storyblok-components.js',
-    '~/plugins/wicg-inert.client.js',
-    '~/plugins/rich-text-renderer.js',
-  ],
+  plugins: ['~/plugins/storyblok-components.js', '~/plugins/wicg-inert.client.js'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -138,45 +133,4 @@ export default defineNuxtConfig({
       },
     },
   },
-
-  // Generate static routes from Storyblok
-  hooks: {
-    async 'nitro:config'(nitroConfig) {
-      if (nitroConfig.prerender?.routes) {
-        const routes = await getStoryblokRoutes()
-        nitroConfig.prerender.routes.push(...routes)
-      }
-    },
-  },
 })
-
-async function getStoryblokRoutes() {
-  const token = getStoryblokAccessToken()
-  const isDevelopment = process.env.NODE_ENV === 'development' || process.env.ENV === 'develop'
-  const version = isDevelopment ? 'draft' : 'published'
-  const ignoreFiles = ['home', 'global', 'sitefooter']
-  const routes = ['/']
-
-  try {
-    const spaceResponse = await fetch(`https://api.storyblok.com/v2/cdn/spaces/me?token=${token}`)
-    const spaceData = await spaceResponse.json()
-    const cacheVersion = spaceData.space.version
-
-    const linksResponse = await fetch(
-      `https://api.storyblok.com/v2/cdn/links?token=${token}&version=${version}&cv=${cacheVersion}`
-    )
-    const linksData = await linksResponse.json()
-
-    Object.keys(linksData.links).forEach((key) => {
-      if (!ignoreFiles.includes(linksData.links[key].slug)) {
-        if (!(linksData.links[key].is_folder && !linksData.links[key].is_startpage)) {
-          routes.push('/' + linksData.links[key].slug)
-        }
-      }
-    })
-  } catch (error) {
-    console.error('Error fetching Storyblok routes:', error)
-  }
-
-  return routes
-}

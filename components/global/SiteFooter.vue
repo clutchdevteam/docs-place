@@ -32,7 +32,7 @@
         <img
           src="/static/beach-footer.jpg"
           alt="Beach Footer"
-          class="object-cover h-full w-full object-center opacity-10"
+          class="object-cover h-full object-center opacity-10"
         />
       </div>
     </footer>

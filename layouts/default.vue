@@ -1,5 +1,5 @@
 <template>
-  <div class="site-wrapper">
+  <div class="site-wrapper" :class="{ 'overflow-x-hidden': lockScroll }">
     <SiteHeader
       :nav="mainNav || []"
       :logo="logo || {}"
@@ -28,59 +28,19 @@
   const { setGlobals, setLoaded, mainNav, logo, footer, contact, hasOpenMenu, isHomepage } =
     useGlobalData()
 
-  const isDevelopment = process.env.ENV === 'develop'
-  const version = isDevelopment ? 'draft' : 'published'
-
-  // Use refreshCookie to ensure data is available on both server and client
-  const { story: globalStory, refresh: refreshGlobalStory } = await useAsyncStoryblok('global', {
+  const { story: globalStory } = await useAsyncStoryblok('global', {
     api: {
-      version,
+      version: 'draft',
     },
-    key: 'global-story', // Add a key for caching
   })
 
   // Set the global data from Storyblok
-  if (globalStory?.value?.content) {
+  if (globalStory?.value.content) {
     setGlobals(globalStory.value.content)
+    setLoaded(true)
   }
 
-  // Mark as loaded
-  setLoaded(true)
-
-  // Handle client-side hydration and Storyblok bridge
-  onMounted(async () => {
-    // If globalStory is undefined on client, refetch it
-    if (!globalStory?.value?.content) {
-      console.log('Refetching global story on client...')
-      await refreshGlobalStory()
-      if (globalStory?.value?.content) {
-        setGlobals(globalStory.value.content)
-      }
-    }
-
-    // Handle Storyblok bridge for live editing
-    if (window.storyblok) {
-      window.storyblok.init({
-        accessToken: isDevelopment
-          ? useRuntimeConfig().public.storyblokPreviewApiKey
-          : useRuntimeConfig().public.storyblokApiKey,
-      })
-
-      window.storyblok.on(['input', 'published', 'change'], (event) => {
-        if (event.action === 'input') {
-          // Update the story data and refresh
-          globalStory.value = event.story
-          if (event.story?.content) {
-            setGlobals(event.story.content)
-          }
-        } else {
-          // Refresh the data for published changes
-          refreshGlobalStory()
-        }
-      })
-    }
-  })
-
+  // Create a computed property that reacts to both the route and the global state
   const isHomePage = computed(() => {
     return route.fullPath === '/' || isHomepage.value
   })

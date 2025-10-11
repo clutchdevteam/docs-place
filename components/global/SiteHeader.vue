@@ -28,7 +28,7 @@
         :inert="isMobileMenuOpen"
       >
         <span class="sr-only">Open main menu</span>
-        <BaseIcon class="w-8 h-8" file="menu-icon" alt="Open Menu" />
+        <Menu class="w-8 h-8" file="menu-icon" alt="Open Menu" />
 
         <Teleport to="body">
           <div
@@ -51,12 +51,12 @@
                   type="button"
                 >
                   <span class="sr-only">Close menu</span>
-                  <BaseIcon class="w-6 h-6" file="close-icon" alt="Close menu" />
+                  <X class="w-6 h-6" file="close-icon" alt="Close menu" />
                 </button>
               </div>
 
               <div class="flex flex-col justify-between h-screen w-full bg-white">
-                <nav class="text-gray-900" role="navigation">
+                <nav role="navigation">
                   <ul>
                     <li v-for="menu in nav" :key="menu.id">
                       <BaseMenu
@@ -68,11 +68,11 @@
                   </ul>
                 </nav>
 
-                <div class="px-3 py-6">
+                <footer class="px-3 py-6 bg-black">
                   <BaseLink href="/">
-                    <BaseImage v-if="logo" :src="logo.filename" :alt="logo.alt" />
+                    <img v-if="logo" :src="logo.filename" :alt="logo.alt" class="mx-auto size-48" />
                   </BaseLink>
-                </div>
+                </footer>
               </div>
             </div>
           </div>
@@ -83,6 +83,8 @@
 </template>
 
 <script setup>
+  import { Menu, X } from 'lucide-vue-next'
+
   const route = useRoute()
 
   const props = defineProps({

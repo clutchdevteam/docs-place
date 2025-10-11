@@ -25,23 +25,4 @@
       version: version,
     },
   })
-
-  // Handle Storyblok bridge for live editing
-  onMounted(() => {
-    if (window.storyblok) {
-      window.storyblok.init({
-        accessToken: apiKey,
-      })
-
-      window.storyblok.on(['input', 'published', 'change'], (event) => {
-        if (event.action === 'input') {
-          if (event.story.id === story.value.id) {
-            story.value.content = event.story.content
-          }
-        } else {
-          window.location.reload()
-        }
-      })
-    }
-  })
 </script>
