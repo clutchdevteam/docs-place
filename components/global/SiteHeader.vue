@@ -55,7 +55,7 @@
                 </button>
               </div>
 
-              <div class="flex flex-col justify-between h-screen w-full bg-white">
+              <div class="flex flex-col justify-between h-screen w-full overflow-y-auto bg-white">
                 <nav role="navigation">
                   <ul>
                     <li v-for="menu in nav" :key="menu.id">
@@ -69,9 +69,19 @@
                 </nav>
 
                 <footer class="px-3 py-6 bg-black">
-                  <BaseLink href="/">
-                    <img v-if="logo" :src="logo.filename" :alt="logo.alt" class="mx-auto size-48" />
-                  </BaseLink>
+                  <Stack space="small" class="items-center">
+                    <BaseLink href="/">
+                      <img
+                        v-if="logo"
+                        :src="logo.filename"
+                        :alt="logo.alt"
+                        class="mx-auto size-48"
+                      />
+                    </BaseLink>
+                    <Typography as="span" variant="body-small" class="text-white/50">
+                      &copy; {{ new Date().getFullYear() }} Place Recovery. All rights reserved.
+                    </Typography>
+                  </Stack>
                 </footer>
               </div>
             </div>
@@ -84,6 +94,8 @@
 
 <script setup>
   import { Menu, X } from 'lucide-vue-next'
+  import Stack from '@/components/atoms/Stack.vue'
+  import Typography from '@/components/atoms/Typography.vue'
 
   const route = useRoute()
 
