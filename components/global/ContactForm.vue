@@ -93,7 +93,7 @@
           </form>
           <div>
             <Stack>
-              <Stack space="small" class="items-end">
+              <Stack space="small" class="lg:items-end">
                 <Typography variant="h3" class="text-secondary uppercase"
                   >Support Available 24/7</Typography
                 >
@@ -105,10 +105,10 @@
                 </div>
               </Stack>
 
-              <Stack space="small" class="items-end">
+              <Stack space="small" class="lg:items-end">
                 <Typography variant="h4">Our address</Typography>
 
-                <address class="text-right">
+                <address class="lg:text-right">
                   <Typography>
                     902 Halifax Square,<br />
                     Brunswick, GA 31520

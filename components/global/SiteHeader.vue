@@ -28,7 +28,7 @@
         :inert="isMobileMenuOpen"
       >
         <span class="sr-only">Open main menu</span>
-        <Menu class="w-8 h-8" file="menu-icon" alt="Open Menu" />
+        <Icon name="menu" class="w-8 h-8" />
 
         <Teleport to="body">
           <div
@@ -51,7 +51,7 @@
                   type="button"
                 >
                   <span class="sr-only">Close menu</span>
-                  <X class="w-6 h-6" file="close-icon" alt="Close menu" />
+                  <Icon name="x" class="w-6 h-6" />
                 </button>
               </div>
 
@@ -93,7 +93,7 @@
 </template>
 
 <script setup>
-  import { Menu, X } from 'lucide-vue-next'
+  import Icon from '@/components/atoms/Icon.vue'
   import Stack from '@/components/atoms/Stack.vue'
   import Typography from '@/components/atoms/Typography.vue'
 
