@@ -57,12 +57,19 @@
   const api = useStoryblokApi()
 
   // Fetch all articles nested under /article
-  const { data: articlePostsData } = await api.get('cdn/stories', {
-    version: version,
-    starts_with: 'articles/',
-    is_startpage: false,
-    per_page: 50,
-  })
+  let articlePostsData = null
+  try {
+    const response = await api.get('cdn/stories', {
+      version: version,
+      starts_with: 'articles/',
+      is_startpage: false,
+      per_page: 50,
+    })
+    articlePostsData = response.data
+  } catch (error) {
+    console.error('Failed to fetch articles:', error)
+    articlePostsData = { stories: [] }
+  }
 
   // Format date helper
   const formatDate = (dateString) => {

@@ -1,4 +1,4 @@
-import { ref, computed, readonly } from 'vue'
+import { ref, computed } from 'vue'
 
 // Global data composable for header and footer content
 export const useGlobalData = () => {
