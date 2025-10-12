@@ -8,7 +8,7 @@
     />
 
     <section v-if="articlePosts.length > 0" class="container mx-auto py-12 lg:py-24">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         <article
           v-for="post in articlePosts"
           :key="post.uuid"
@@ -16,16 +16,13 @@
         >
           <NuxtLink :to="`/articles/${post.slug}`">
             <div class="flex p-6 items-center">
-              <div class="aspect-square overflow-hidden w-1/4 shrink-0">
+              <div class="aspect-square overflow-hidden w-1/2">
                 <img
-                  v-if="post?.content?.body?.length > 0 && post?.content?.body[0]?.image?.filename"
-                  :src="post.content.body[0].image.filename"
-                  :alt="post.content.body[0].image.alt || post.name"
+                  v-if="post?.content?.body[0]?.image?.filename"
+                  :src="post?.content?.body[0]?.image.filename"
+                  :alt="post?.content?.body[0]?.image.alt || post.name"
                   class="object-cover h-full"
                 />
-                <div v-else class="bg-gray-200 h-full flex items-center justify-center">
-                  <Icon name="Image" class="size-8 text-gray-400" />
-                </div>
               </div>
               <div class="p-6">
                 <Typography variant="h3" class="mb-3">{{ post.name }}</Typography>
@@ -40,10 +37,6 @@
           </NuxtLink>
         </article>
       </div>
-    </section>
-
-    <section v-else>
-      <Typography variant="h2">No articles found</Typography>
     </section>
   </div>
 </template>
@@ -61,21 +54,25 @@
   // Determine version and API key based on environment
   const isDevelopment = process.env.ENV === 'develop'
   const version = isDevelopment ? 'draft' : 'published'
+  const apiKey = isDevelopment
+    ? useRuntimeConfig().public.storyblokPreviewApiKey
+    : useRuntimeConfig().public.storyblokApiKey
 
   const api = useStoryblokApi()
 
   // Fetch all articles nested under /article
   const { data: articlePostsData } = await api.get('cdn/stories', {
     version: version,
-    is_startpage: false,
     starts_with: 'articles/',
+    is_startpage: false,
     per_page: 50,
   })
 
   const articlePosts = computed(() => {
-    return articlePostsData?.stories.filter((post) => post.name !== 'Index') || []
+    return articlePostsData?.stories || []
   })
 
+  // Format date helper
   const formatDate = (dateString) => {
     const date = new Date(dateString)
     return date.toLocaleDateString('en-US', {
