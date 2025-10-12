@@ -38,6 +38,10 @@
         </article>
       </div>
     </section>
+
+    <section v-else>
+      <Typography variant="h2">No articles found</Typography>
+    </section>
   </div>
 </template>
 
@@ -60,7 +64,7 @@
   // Fetch all articles nested under /article
   const { data: articlePostsData } = await api.get('cdn/stories', {
     version: version,
-    excluding_slugs: 'articles/', // Exclude the main articles page itself
+    is_startpage: false,
     starts_with: 'articles/',
     per_page: 50,
   })
