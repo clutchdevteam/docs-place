@@ -36,7 +36,6 @@
 
   // Set the global data from Storyblok
   if (globalStory?.value.content) {
-    console.log(globalStory.value)
     setGlobals(globalStory.value.content)
     setLoaded(true)
   }

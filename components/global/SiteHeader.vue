@@ -29,66 +29,56 @@
       >
         <span class="sr-only">Open main menu</span>
         <MenuIcon />
-
-        <Teleport to="body">
-          <div
-            :class="`z-[52] fixed lg:hidden inset-0 bg-black transition duration-150 ${
-              isMobileMenuOpen ? 'bg-opacity-75' : 'bg-opacity-0 pointer-events-none'
-            }`"
-            :inert="!isMobileMenuOpen"
-            @keydown.esc="closeMenu"
-          >
-            <div
-              :class="`flex transform transition-transform duration-150 ease-in-out ${
-                isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-              }`"
-            >
-              <div @click="closeMenu">
-                <button
-                  class="flex justify-center items-center bg-white rounded-full ml-4 mr-4 mt-4 h-12 w-12"
-                  ref="closeButtonRef"
-                  @click="closeMenu"
-                  type="button"
-                >
-                  <span class="sr-only">Close menu</span>
-                  <Icon name="x" class="w-6 h-6" />
-                </button>
-              </div>
-
-              <div class="flex flex-col justify-between h-screen w-full overflow-y-auto bg-white">
-                <nav role="navigation">
-                  <ul>
-                    <li v-for="menu in nav" :key="menu.id">
-                      <BaseMenu
-                        classes="py-6 px-4 border-b border-gray-300"
-                        :menu="menu"
-                        :depth="0"
-                      />
-                    </li>
-                  </ul>
-                </nav>
-
-                <footer class="px-3 py-6 bg-black">
-                  <Stack space="small" class="items-center">
-                    <BaseLink href="/">
-                      <img
-                        v-if="logo"
-                        :src="logo.filename"
-                        :alt="logo.alt"
-                        class="mx-auto size-48"
-                      />
-                    </BaseLink>
-                    <Typography as="span" variant="body-small" class="text-white/50">
-                      &copy; {{ new Date().getFullYear() }} Place Recovery. All rights reserved.
-                    </Typography>
-                  </Stack>
-                </footer>
-              </div>
-            </div>
-          </div>
-        </Teleport>
       </button>
     </div>
+    <Teleport to="body">
+      <div
+        :class="`z-[52] fixed lg:hidden inset-0 bg-black transition duration-150 ${
+          isMobileMenuOpen ? 'bg-opacity-75' : 'bg-opacity-0 pointer-events-none'
+        }`"
+        :inert="!isMobileMenuOpen"
+        @keydown.esc="closeMenu"
+      >
+        <div
+          :class="`flex transform transition-transform duration-150 ease-in-out ${
+            isMobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+          }`"
+        >
+          <div @click="closeMenu">
+            <button
+              class="flex justify-center items-center bg-white rounded-full ml-4 mr-4 mt-4 h-12 w-12"
+              ref="closeButtonRef"
+              @click="closeMenu"
+              type="button"
+            >
+              <span class="sr-only">Close menu</span>
+              <Icon name="x" class="w-6 h-6" />
+            </button>
+          </div>
+
+          <div class="flex flex-col justify-between h-screen w-full overflow-y-auto bg-white">
+            <nav role="navigation">
+              <ul>
+                <li v-for="menu in nav" :key="menu.id">
+                  <BaseMenu classes="py-6 px-4 border-b border-gray-300" :menu="menu" :depth="0" />
+                </li>
+              </ul>
+            </nav>
+
+            <footer class="px-3 py-6 bg-black">
+              <Stack space="small" class="items-center">
+                <BaseLink href="/">
+                  <img v-if="logo" :src="logo.filename" :alt="logo.alt" class="mx-auto size-48" />
+                </BaseLink>
+                <Typography as="span" variant="body-small" class="text-white/50">
+                  &copy; {{ new Date().getFullYear() }} Place Recovery. All rights reserved.
+                </Typography>
+              </Stack>
+            </footer>
+          </div>
+        </div>
+      </div>
+    </Teleport>
   </header>
 </template>
 
