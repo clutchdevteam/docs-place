@@ -7,16 +7,16 @@
       }"
     />
 
-    <section v-if="articlePosts.length > 0" class="container mx-auto py-12 lg:py-24">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <section v-if="articlePostsData.stories.length > 0" class="container mx-auto py-12 lg:py-24">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <article
-          v-for="post in articlePosts"
+          v-for="post in articlePostsData.stories"
           :key="post.uuid"
           class="border border-gray-100 border-l-secondary border-l-2"
         >
           <NuxtLink :to="`/articles/${post.slug}`">
             <div class="flex p-6 items-center">
-              <div class="aspect-square overflow-hidden w-1/2">
+              <div class="aspect-square overflow-hidden w-1/3 shrink-0">
                 <img
                   v-if="post?.content?.body[0]?.image?.filename"
                   :src="post?.content?.body[0]?.image.filename"
@@ -42,7 +42,6 @@
 </template>
 
 <script setup>
-  import { computed } from 'vue'
   import Typography from '@/components/atoms/Typography.vue'
   import Icon from '@/components/atoms/Icon.vue'
   import { useGlobalData } from '@/composables/useGlobalData'
@@ -54,9 +53,6 @@
   // Determine version and API key based on environment
   const isDevelopment = process.env.ENV === 'develop'
   const version = isDevelopment ? 'draft' : 'published'
-  const apiKey = isDevelopment
-    ? useRuntimeConfig().public.storyblokPreviewApiKey
-    : useRuntimeConfig().public.storyblokApiKey
 
   const api = useStoryblokApi()
 
@@ -66,10 +62,6 @@
     starts_with: 'articles/',
     is_startpage: false,
     per_page: 50,
-  })
-
-  const articlePosts = computed(() => {
-    return articlePostsData?.stories || []
   })
 
   // Format date helper

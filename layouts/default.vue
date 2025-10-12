@@ -28,9 +28,13 @@
   const { setGlobals, setLoaded, mainNav, logo, footer, contact, hasOpenMenu, isHomepage } =
     useGlobalData()
 
+  // Determine version and API key based on environment
+  const isDevelopment = process.env.ENV === 'develop' || process.env.ENV === 'staging'
+  const version = isDevelopment ? 'draft' : 'published'
+
   const { story: globalStory } = await useAsyncStoryblok('global', {
     api: {
-      version: 'draft',
+      version: version,
     },
   })
 
