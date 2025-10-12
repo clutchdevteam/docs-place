@@ -28,7 +28,7 @@
         :inert="isMobileMenuOpen"
       >
         <span class="sr-only">Open main menu</span>
-        <Icon name="menu" class="w-8 h-8" />
+        <MenuIcon />
 
         <Teleport to="body">
           <div
@@ -96,6 +96,8 @@
   import Icon from '@/components/atoms/Icon.vue'
   import Stack from '@/components/atoms/Stack.vue'
   import Typography from '@/components/atoms/Typography.vue'
+  import MenuIcon from '@/components/atoms/MenuIcon.vue'
+  import CloseIcon from '@/components/atoms/CloseIcon.vue'
 
   const route = useRoute()
 

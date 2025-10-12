@@ -18,7 +18,7 @@
             <div class="flex p-6 items-center">
               <div class="aspect-square overflow-hidden w-1/2">
                 <img
-                  v-if="post?.content?.body[0]?.image?.filename"
+                  v-if="post?.content?.body.length > 0"
                   :src="post?.content?.body[0]?.image.filename"
                   :alt="post?.content?.body[0]?.image.alt || post.name"
                   class="object-cover h-full"

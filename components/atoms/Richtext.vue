@@ -14,35 +14,36 @@
 </template>
 
 <style lang="postcss">
+  /* Specific element styles */
   #richtext h1 {
-    @apply text-5xl leading-none font-medium my-5;
+    @apply text-5xl leading-none font-medium my-10;
   }
 
   #richtext h2 {
-    @apply text-4xl leading-6 font-medium my-5;
+    @apply text-4xl leading-6 font-medium my-10;
   }
 
   #richtext h3 {
-    @apply text-2xl leading-6 font-medium my-5;
+    @apply text-2xl leading-6 font-medium my-10;
   }
 
   #richtext h4 {
-    @apply text-xl font-medium my-2.5;
+    @apply text-xl font-medium my-5;
   }
 
   #richtext h5 {
-    @apply text-lg font-medium my-2.5;
+    @apply text-lg font-medium my-5;
   }
 
   #richtext h6 {
-    @apply font-medium my-2.5;
+    @apply font-medium my-5;
   }
 
   #richtext p {
-    @apply text-lg font-light my-5;
+    @apply text-lg font-light my-10;
   }
 
-  #richtext p:not(:has(strong, b, a)) {
+  #richtext p:not(:has(strong, b, a, img)) {
     @apply opacity-75;
   }
 
