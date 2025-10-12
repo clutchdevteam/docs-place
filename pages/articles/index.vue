@@ -8,7 +8,7 @@
     />
 
     <section v-if="articlePosts.length > 0" class="container mx-auto py-12 lg:py-24">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
         <article
           v-for="post in articlePosts"
           :key="post.uuid"
@@ -16,7 +16,7 @@
         >
           <NuxtLink :to="`/articles/${post.slug}`">
             <div class="flex p-6 items-center">
-              <div class="aspect-square overflow-hidden w-1/2">
+              <div class="aspect-square overflow-hidden w-1/4 shrink-0">
                 <img
                   v-if="post?.content?.body?.length > 0"
                   :src="post?.content?.body[0]?.image.filename"
@@ -54,25 +54,21 @@
   // Determine version and API key based on environment
   const isDevelopment = process.env.ENV === 'develop'
   const version = isDevelopment ? 'draft' : 'published'
-  const apiKey = isDevelopment
-    ? useRuntimeConfig().public.storyblokPreviewApiKey
-    : useRuntimeConfig().public.storyblokApiKey
 
   const api = useStoryblokApi()
 
   // Fetch all articles nested under /article
   const { data: articlePostsData } = await api.get('cdn/stories', {
     version: version,
+    excluding_slugs: 'articles/', // Exclude the main articles page itself
     starts_with: 'articles/',
-    excluding_slugs: 'articles', // Exclude the main articles page itself
     per_page: 50,
   })
 
   const articlePosts = computed(() => {
-    return articlePostsData?.stories || []
+    return articlePostsData?.stories.filter((post) => post.name !== 'Index') || []
   })
 
-  // Format date helper
   const formatDate = (dateString) => {
     const date = new Date(dateString)
     return date.toLocaleDateString('en-US', {
@@ -81,23 +77,4 @@
       year: 'numeric',
     })
   }
-
-  // Handle Storyblok bridge for live editing
-  onMounted(() => {
-    if (window.storyblok) {
-      window.storyblok.init({
-        accessToken: apiKey,
-      })
-
-      window.storyblok.on(['input', 'published', 'change'], (event) => {
-        if (event.action === 'input') {
-          if (event.story.id === story.value.id) {
-            story.value.content = event.story.content
-          }
-        } else {
-          window.location.reload()
-        }
-      })
-    }
-  })
 </script>

@@ -14,6 +14,7 @@ export default defineNuxtConfig({
   ssr: true,
   compatibilityDate: '2024-10-05',
   nitro: {
+    preset: 'netlify',
     prerender: {
       failOnError: false,
       crawlLinks: true,

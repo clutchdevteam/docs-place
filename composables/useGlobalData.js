@@ -32,7 +32,6 @@ export const useGlobalData = () => {
   }
 
   const setGlobals = (globals) => {
-    console.log(globals.mainNav)
     mainNav.value = globals.mainNav || []
     logo.value = globals.Logo || null
     contact.value = globals.contact || []
