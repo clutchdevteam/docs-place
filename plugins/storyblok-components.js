@@ -16,6 +16,7 @@ import TextImageSplit from '~/components/TextImageSplit.vue'
 import FeaturedContent from '~/components/FeaturedContent.vue'
 import FrequentlyAskedQuestions from '~/components/FrequentlyAskedQuestions.vue'
 import Article from '~/components/Article.vue'
+import AllArticles from '~/components/AllArticles.vue'
 
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.component('Page', Page)
@@ -36,4 +37,5 @@ export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.component('FeaturedContent', FeaturedContent)
   nuxtApp.vueApp.component('FrequentlyAskedQuestions', FrequentlyAskedQuestions)
   nuxtApp.vueApp.component('Article', Article)
+  nuxtApp.vueApp.component('AllArticles', AllArticles)
 })

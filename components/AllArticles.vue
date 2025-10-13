@@ -44,11 +44,6 @@
 <script setup>
   import Typography from '@/components/atoms/Typography.vue'
   import Icon from '@/components/atoms/Icon.vue'
-  import { useGlobalData } from '@/composables/useGlobalData'
-
-  const { setIsHomepage } = useGlobalData()
-
-  setIsHomepage(false)
 
   // Determine version and API key based on environment
   const isDevelopment = process.env.ENV === 'develop'
