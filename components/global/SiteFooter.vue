@@ -2,8 +2,8 @@
   <div>
     <ContactForm v-if="showContactForm" />
     <footer class="overflow-hidden relative py-12 lg:py-24 bg-black">
-      <div class="relative z-10 container mx-auto flex flex-col items-center space-y-10">
-        <div v-if="footerContent.logo" class="w-72">
+      <div class="relative z-10 container mx-auto flex flex-col space-y-10">
+        <div v-if="footerContent.logo" class="w-72 mx-auto">
           <img :src="footerContent.logo.filename" :alt="footerContent.logo.alt" />
         </div>
 
@@ -11,9 +11,7 @@
           v-if="footerContent.footerNav && footerContent.footerNav.length"
           class="uppercase lg:text-lg text-white"
         >
-          <ul
-            class="flex flex-col lg:flex-row text-center lg:text-left space-y-8 lg:space-x-12 lg:space-y-0"
-          >
+          <ul class="flex flex-row space-x-6 lg:space-x-12 lg:justify-center">
             <li v-for="menu in footerContent.footerNav" :key="menu.id">
               <NuxtLink :href="`/${menu.slug.cached_url}`">
                 <Typography as="span">{{ menu.title }}</Typography>
@@ -32,7 +30,7 @@
         <img
           src="/static/beach-footer.jpg"
           alt="Beach Footer"
-          class="object-cover h-full object-center opacity-10"
+          class="object-cover h-full min-w-fullobject-center opacity-10"
         />
       </div>
     </footer>
